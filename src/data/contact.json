@@ -1,0 +1,35 @@
+{
+  "site": {
+    "title": "Contact Us - Ion Print & Promo",
+    "description": "Get in touch with ION Print & Promo (formerly Gibson Digital Print Designs & Signs, PROS Marketing and IO Promo). Call today for print and promo product solutions fo your business Real people, real service, local expertise."
+  },
+  "hero": {
+    "title": "Contact Us",
+    "imageAlt": "Contact us banner",
+    "bgColor": "#536878",
+    "image": "hero"
+  },
+  "contact": {
+    "header": "Get in touch with us.",
+    "description": "<p>We're still the same great team you know and trust — formerly <strong>Gibson's Print &amp; PROS Marketing</strong> — just with a new name and an even stronger lineup of print and promotional services.</p><p>We believe personal, reliable service is what our clients deserve. We take pride in being local, responsive, and always easy to reach.</p>",
+    "phone": "705-739-1969",
+    "email": "sales@iongroup.ca",
+    "address": "178 Tiffin Street, Barrie, ON"
+  },
+    "features": [
+    {
+      "id": "outro",
+      "image": "feature1",
+      "title": "Same great service, new Midland location!",
+      "description": "<p>For friendly, local support and service in the Midland area, visit our location at <a href=\"https://maps.app.goo.gl/tXxCsubesGEwuCeZ8\" target=\"_blank\" rel=\"noopener noreferrer\"><strong>304-9170 County Rd. 93</strong></a>.</p> <p>While our location has changed, our staffing, commitment to quality, and great service remains the same.</p><p>Contact our Midland office by phone at <a href=\"tel:7055277767\">705-527-7767</a> or email us at <a href=\"mailto:sales@iongroup.ca\">sales@iongroup.ca</a> for more information.</p>",
+      "imageAlt": "Modern digital printing equipment producing high-quality materials",
+      "imagePosition": "left"
+    }
+  ],
+  "cta": {
+    "imageAlt": "Ready to start your project",
+    "heading": "We are here to answer your call. Get in touch with us today!",
+    "button": "Call Us Today",
+    "link": "tel:7057391969"
+  }
+}

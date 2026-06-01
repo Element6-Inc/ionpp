@@ -1,0 +1,73 @@
+---
+// CardSlider.astro
+import Card from "./Card.astro";
+import content from "../../data/index.json";
+
+// Import icon assets
+import cleaningIcon from "../../assets/icons/cleaning.png";
+import printingIcon from "../../assets/icons/printing.png";
+import promoIcon from "../../assets/icons/promo.png";
+import signIcon from "../../assets/icons/sign.png";
+import marketingIcon from "../../assets/icons/marketing.png";
+import webIcon from "../../assets/icons/web.png";
+import graphicIcon from "../../assets/icons/graphics.png";
+
+// Create icon mapping
+const iconMap = {
+  cleaning: cleaningIcon,
+  printing: printingIcon,
+  promo: promoIcon,
+  signs: signIcon,
+  marketing: marketingIcon,
+  web: webIcon,
+  graphic: graphicIcon,
+};
+
+const getIcon = (iconName: string) => {
+  return iconMap[iconName as keyof typeof iconMap];
+};
+
+const cards = content.cardSlider.cards.map((card) => ({
+  ...card,
+  icon: getIcon(card.icon),
+}));
+---
+
+<section class="pt-4 bg-slate-50">
+  <div
+    class="max-w-7xl mx-auto bg-white p-8 sm:py-12 sm:rounded-3xl drop-shadow-xl"
+  >
+    <div class="container mx-auto">
+      <div class="relative">
+        <div class="card-container">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              {
+                cards.map((card) => (
+                  <Card
+                    icon={card.icon}
+                    name={card.name}
+                    description={card.description}
+                    link={card.link ?? "#"}
+                  />
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Pagination -->
+        <div class="custom-pagination mt-8 px-5 md:px-3">
+          <button
+            class="pagination-dot active"
+            data-index="0"
+            aria-label="Go to slide group 1"></button>
+          <button
+            class="pagination-dot"
+            data-index="1"
+            aria-label="Go to slide group 2"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

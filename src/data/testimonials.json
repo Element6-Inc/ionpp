@@ -1,0 +1,33 @@
+{
+  "testimonials": {
+    "sectionTitle": "Real Stories. Real People.",
+    "maxChars": 280,
+    "items": [
+      {
+        "id": "katlyn-hunter",
+        "content": "Glenn and his team are absolutely wonderful to work with. We do lots of work with Gibson's Digital Print Design & Sign, varying from new signage, flags and graphics to repairs for existing. They are always quick to respond and complete all work that is requested. Definitely suggest them for any future sign work.",
+        "author": "Katlyn Hunter"
+      },
+      {
+        "id": "jill-kyle",
+        "content": "The sign at my office was damaged by strong winds. They responded quickly, communicated clearly, repaired an older sign with great quality at a reasonable price, and put my mind at ease. Highly recommended. Always.",
+        "author": "Jill Kyle"
+      },
+      {
+        "id": "scott-ingham",
+        "content": "Cindy was super helpful and very professional in creating the lettering for my new boat. She listened to what I wanted, offered great suggestions, and delivered high-quality work. A genuinely nice person - highly recommended!",
+        "author": "Scott Ingham"
+      },
+      {
+        "id": "samantha-bodanis",
+        "content": "I love working with this print shop, specifically Shawn, Steve, and the always friendly Barbara. The shop offers incredible personal service, flexibility, attention to detail, fair pricing, and amazing range of offerings. They always make the process smooth, easy, and genuinely enjoyable, and I know I'm in great hands every time.",
+        "author": "Samantha Bodanis"
+      },
+      {
+        "id": "gabriella-bueno",
+        "content": "We've worked with IO Promo for several years now at Ontario Soccer, and Rob has consistently been a trusted partner - always reliable, responsive, and there when we need support. When we said we wanted to open a store, Rob reassured us he could help - and they really did! Dan also played a key role in bringing our vision for the online store to life. During a particularly busy period, he showed great flexibility, dedication, and a solutions-oriented mindset. We're very happy with the final result and truly appreciate the effort and care that this team put in. Always great quality and service!",
+        "author": "Gabriella Bueno"
+      }
+    ]
+  }
+}

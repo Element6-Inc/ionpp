@@ -1,0 +1,99 @@
+---
+/* =======================================================
+ * IMPORTS
+ * ======================================================= */
+// Layout & Components
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/hero/HeroLarge.astro";
+import CentreText from "../components/content/CentreText.astro";
+import Feature from "../components/content/Feature.astro";
+import Testimonial from "../components/content/Testimonial.astro";
+import Slider from "../components/animated/LogoSlider.astro";
+import CardSlider from "../components/cards/CardSlider.astro";
+
+// Assets - Hero & Logo
+import heroImage from "../assets/heros/main/main-hero-image.jpg";
+import icon from "../assets/logos/logo-stacked-colour.png";
+
+// Assets - Feature Images
+import feature1Image from "../assets/features/main/locally-powered.jpg";
+import feature2Image from "../assets/features/main/print-services.jpg";
+import feature3Image from "../assets/features/main/promotional-swag.jpg";
+import feature4Image from "../assets/features/main/design-digital.jpg";
+
+// Content Data
+import content from "../data/index.json";
+
+/* =======================================================
+ * CONFIGURATION
+ * ======================================================= */
+const imageMap = {
+  hero:     heroImage,
+  icon,
+  feature1: feature1Image,
+  feature2: feature2Image,
+  feature3: feature3Image,
+  feature4: feature4Image,
+};
+---
+
+<Layout title={content.site.title} description={content.site.description}>
+  <!-- Hero Section -->
+  <Hero
+    title={content.hero.title}
+    description={content.hero.description}
+    ctaText={content.hero.ctaText}
+    ctaHref={content.hero.ctaHref}
+    imageSrc={heroImage}
+    imageAlt={content.hero.imageAlt}
+  />
+
+  <!-- Logo Slider (Desktop Only) -->
+  <section
+    class="relative -mt-16 sm:-mt-20 md:-mt-24 z-10 px-4 sm:px-6 hidden sm:block"
+  >
+    <div class="container mx-auto">
+      <Slider />
+    </div>
+  </section>
+
+  <!-- Centre Text with Logo -->
+  <section class="bg-slate-50">
+    <CentreText
+      title={content.centreText.title}
+      description={content.centreText.description}
+      imageSrc={icon.src}
+      imageAlt="ION Group Logo"
+    />
+  </section>
+
+  <!-- Services Card Slider -->
+    <CardSlider />
+
+  <!-- Feature Sections -->
+  <section class="py-6 sm:pt-32 sm:-mt-72 md:-mt-24 bg-white">
+    {
+      content.features.map((feature) => (
+        <div id={feature.id}>
+          <Feature
+            title={feature.title}
+            description={feature.description}
+            imageSrc={imageMap[feature.image as keyof typeof imageMap]}
+            imageAlt={feature.imageAlt}
+            imagePosition={feature.imagePosition as "left" | "right"}
+            buttonLink={feature.buttonLink}
+            buttonText={feature.buttonText}
+          />
+        </div>
+      ))
+    }
+  </section>
+
+  <!-- Customer Testimonials -->
+  <section>
+    <Testimonial
+      testimonials={content.testimonials.items}
+      sectionTitle={content.testimonials.sectionTitle}
+    />
+  </section>
+</Layout>

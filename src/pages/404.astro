@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CentreText from "../components/content/CentreText.astro";
+
+import content from "../data/404.json";
+---
+
+<Layout title={content.site.title} description={content.site.description}>
+
+  <section style="padding-top: 200px; padding-bottom: 160px;" class="px-4">
+    <div class="mx-auto max-w-4xl text-center px-4 sm:px-6 py-8">
+      <h1 class="h1-error !mb-0">{content.content.eyebrow}</h1>
+      <h2>{content.content.title}</h2>
+      <p>{content.content.description}</p>
+    </div>
+    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
+      <a href={content.content.primaryButton.href} class="btn">
+        {content.content.primaryButton.label}
+      </a>
+      <a href={content.content.secondaryButton.href} class="btn btn-secondary">
+        {content.content.secondaryButton.label}
+      </a>
+    </div>
+  </section>
+
+</Layout>

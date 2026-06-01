@@ -1,0 +1,127 @@
+---
+/**
+ * Accordion Component
+ * A reusable accordion component with smooth animations
+ * 
+ * Props:
+ * @param {Array} items - Array of accordion items with title and content
+ * @param {boolean} allowMultiple - Allow multiple panels to be open simultaneously (default: false)
+ * @param {string} className - Additional CSS classes
+ */
+
+interface AccordionItem {
+  id: string;
+  title: string;
+  content: string;
+}
+
+interface Props {
+  items: AccordionItem[];
+  allowMultiple?: boolean;
+  className?: string;
+}
+
+const { items, allowMultiple = false, className = '' } = Astro.props;
+---
+
+<div class={`accordion-wrapper ${className}`}>
+  {items.map((item, index) => (
+    <div class="accordion-item" data-accordion-item>
+      <button
+        class="accordion-trigger"
+        type="button"
+        aria-expanded="false"
+        aria-controls={`accordion-content-${item.id}`}
+        id={`accordion-trigger-${item.id}`}
+        data-accordion-trigger
+      >
+        <span class="accordion-title">{item.title}</span>
+        <svg
+          class="accordion-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      
+      <div
+        class="accordion-content"
+        id={`accordion-content-${item.id}`}
+        role="region"
+        aria-labelledby={`accordion-trigger-${item.id}`}
+        data-accordion-content
+      >
+        <div class="accordion-content-inner">
+          <p set:html={item.content} />
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script define:vars={{ allowMultiple }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const accordionItems = document.querySelectorAll('[data-accordion-item]');
+    
+    accordionItems.forEach((item) => {
+      const trigger = item.querySelector('[data-accordion-trigger]');
+      const content = item.querySelector('[data-accordion-content]');
+      const contentInner = content.querySelector('.accordion-content-inner');
+      
+      if (!trigger || !content || !contentInner) return;
+      
+      // Set initial height
+      content.style.height = '0px';
+      
+      trigger.addEventListener('click', () => {
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        
+        if (!allowMultiple) {
+          // Close all other accordion items
+          accordionItems.forEach((otherItem) => {
+            if (otherItem !== item) {
+              const otherTrigger = otherItem.querySelector('[data-accordion-trigger]');
+              const otherContent = otherItem.querySelector('[data-accordion-content]');
+              
+              if (otherTrigger && otherContent) {
+                otherTrigger.setAttribute('aria-expanded', 'false');
+                otherContent.style.height = '0px';
+              }
+            }
+          });
+        }
+        
+        // Toggle current item
+        if (isExpanded) {
+          trigger.setAttribute('aria-expanded', 'false');
+          content.style.height = '0px';
+        } else {
+          trigger.setAttribute('aria-expanded', 'true');
+          const height = contentInner.scrollHeight;
+          content.style.height = `${height}px`;
+        }
+      });
+      
+      // Handle window resize
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (trigger.getAttribute('aria-expanded') === 'true') {
+            const height = contentInner.scrollHeight;
+            content.style.height = `${height}px`;
+          }
+        }, 250);
+      });
+    });
+  });
+</script>

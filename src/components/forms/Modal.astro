@@ -1,0 +1,182 @@
+---
+/* =======================================================
+ * MODAL COMPONENT
+ * Reusable modal overlay with close button
+ * ======================================================= */
+interface Props {
+  id: string;
+  title?: string;
+}
+
+const { id, title = "Success!" } = Astro.props;
+---
+
+<div
+  id={id}
+  class="modal-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`${id}-title`}
+  tabindex="-1"
+>
+  <div class="modal-container">
+    <div class="modal-content">
+      <!-- Close Button -->
+      <button type="button" class="modal-close" aria-label="Close modal">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <path d="m9 11 3 3L22 4"></path>
+          </svg>
+        </div>
+        <h3 id={`${id}-title`} class="modal-title">{title}</h3>
+      </div>
+
+      <!-- Modal Body (slot for custom content) -->
+      <div class="modal-body">
+        <slot>
+          <p>Thank you for reaching out! We'll get back to you shortly.</p>
+        </slot>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn modal-btn-close"> Close </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Modal state management
+  const modalState = {
+    scrollPosition: 0,
+    activeModal: null as string | null
+  };
+
+  // Lock body scroll - uses fixed positioning to freeze page in place
+  function lockBodyScroll() {
+    modalState.scrollPosition = window.scrollY;
+    
+    // Calculate scrollbar width before hiding it
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    
+    // Apply fixed positioning to body at current scroll position
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${modalState.scrollPosition}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+  }
+
+  // Unlock body scroll - restores original position
+  function unlockBodyScroll() {
+    // Remove fixed positioning
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.paddingRight = "";
+    
+    // Restore scroll position immediately
+    window.scrollTo(0, modalState.scrollPosition);
+  }
+
+  // Close modal function
+  function closeModal(modalId: string) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    modal.classList.remove("modal-active");
+    modalState.activeModal = null;
+    
+    // Reload the current page
+    window.location.reload();
+  }
+
+  // Open modal function
+  function openModal(modalId: string) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    modalState.activeModal = modalId;
+    
+    // Lock scroll first, before showing modal
+    lockBodyScroll();
+
+    // Show modal
+    modal.classList.add("modal-active");
+    
+    // Reset modal overlay scroll to top (in case modal content is scrollable)
+    modal.scrollTop = 0;
+  }
+
+  // Initialize modal when DOM is ready
+  function initModals() {
+    const modals = document.querySelectorAll(".modal-overlay");
+    
+    modals.forEach((modal) => {
+      if (!modal.id) return;
+      
+      const modalId = modal.id;
+      const closeButtons = modal.querySelectorAll(".modal-close, .modal-btn-close");
+
+      // Close on button clicks
+      closeButtons.forEach((button) => {
+        button.addEventListener("click", () => closeModal(modalId));
+      });
+
+      // Close on overlay click (outside modal content)
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal(modalId);
+        }
+      });
+    });
+
+    // Global escape key handler
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modalState.activeModal) {
+        closeModal(modalState.activeModal);
+      }
+    });
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initModals);
+  } else {
+    initModals();
+  }
+
+  // Expose openModal globally
+  (window as any).openModal = openModal;
+</script>

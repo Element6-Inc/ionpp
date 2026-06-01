@@ -1,0 +1,13 @@
+---
+import ServicePage from "../layouts/ServicePage.astro";
+import content from "../data/printing.json";
+
+import hero     from "../assets/heros/printing/printing-main.jpg";
+import feature1 from "../assets/features/printing/local-print.jpg";
+import feature2 from "../assets/features/printing/cardinal-signs.jpg";
+import icon     from "../assets/icons/printing.png";
+
+const imageMap = { hero, feature1, feature2, icon };
+---
+
+<ServicePage content={content} imageMap={imageMap} />

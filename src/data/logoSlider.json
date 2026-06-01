@@ -1,0 +1,70 @@
+{
+  "logoSlider": {
+    "animationDuration": {
+      "desktop": "40s",
+      "mobile": "22s"
+    },
+    "logos": [
+      {
+        "id": "woodbine",
+        "file": "woodbine.svg",
+        "alt": "Woodbine Entertainment"
+      },
+      {
+        "id": "aurora",
+        "file": "aurora.svg",
+        "alt": "Aurora"
+      },
+      {
+        "id": "ontario-soccer",
+        "file": "ontario-soccer.svg",
+        "alt": "Ontario Soccer"
+      },
+      {
+        "id": "park-place",
+        "file": "park-place.svg",
+        "alt": "Park Place"
+      },
+      {
+        "id": "remax",
+        "file": "remax.svg",
+        "alt": "RE/MAX"
+      },
+      {
+        "id": "rock95",
+        "file": "rock95.svg",
+        "alt": "Rock 95"
+      },
+      {
+        "id": "friday-harbor",
+        "file": "friday-harbor.svg",
+        "alt": "Friday Harbour Resort"
+      },
+      {
+        "id": "barrie-ford",
+        "file": "barrie-ford.svg",
+        "alt": "Barrie Ford"
+      },
+      {
+        "id": "barrie-welding",
+        "file": "barrie-welding.svg",
+        "alt": "Barrie Welding"
+      },
+      {
+        "id": "canadian-tire",
+        "file": "canadian-tire.svg",
+        "alt": "Canadian Tire"
+      },
+      {
+        "id": "zenetec",
+        "file": "zenetec.svg",
+        "alt": "Zenetec"
+      },
+      {
+        "id": "dooley",
+        "file": "dooley.svg",
+        "alt": "Dooley"
+      }
+    ]
+  }
+}

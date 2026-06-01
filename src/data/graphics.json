@@ -1,0 +1,56 @@
+{
+  "site": {
+    "title": "Design & Digital Services | ION Print & Promo",
+    "description": "Affordable, professional, collaborative graphic design for small businesses across Simcoe County, Muskoka, GTA and beyond. Our ION Print & Promo design team is here for you. "
+  },
+  "hero": {
+    "title": "Design & Digital",
+    "imageAlt": "Professional printing services showcase",
+    "bgColor": "#663399",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Good design makes a big difference!",
+    "description": "At ION Print & Promo, our in-house designers help local businesses look professional—without the big-agency price tag. From logos to signage and marketing materials, we'll make your brand consistent, polished, and built to impress.",
+    "icon": "icon"
+  },
+  "features": [
+    {
+      "id": "intro",
+      "title": "A seamless brand experience",
+      "description": "<p>From your storefront to your website, everything your customers see should look sharp and feel like you. We help businesses and non-profits look good—both in print and online.</p><p>Whether it's your business cards, signs, menus, vehicle graphics, website updates, or anything else, our designers work closely with you to get it right, every time.</p>",
+      "imageAlt": "Modern digital printing equipment producing high-quality materials",
+      "imagePosition": "left",
+      "image": "feature1"
+    },
+    {
+      "id": "made simple",
+      "title": "Good design shouldn't feel complicated",
+      "description": "<p>We take the time to understand your business, your goals, and your audience, then bring your ideas to life with clear, easy communication along the way.</p><p>You'll be involved from the first concept to the final proof, making sure everything looks great and works just the way you need it to.</p>",
+      "imageAlt": "Custom printed materials with specialty finishes",
+      "imagePosition": "right",
+      "image": "feature2",
+      "buttonLink": "/printing",
+      "buttonText": "Explore Printing Services"
+    }
+  ],
+  "services": {
+    "checklist": [
+      { "text": "Brand Identity" },
+      { "text": "Print Materials" },
+      { "text": "Business Cards" },
+      { "text": "Flyers" },
+      { "text": "Logo Concepts" },
+      { "text": "Packaging & Labels" },
+      { "text": "Posters & Signs" },
+      { "text": "Social Media Graphics" },
+      { "text": "Websites" }
+    ]
+  },
+  "cta": {
+    "heading": "Visit us at our Barrie location at 178 Tiffin Street, Barrie or call us at 705-739-1969!",
+    "button": "Get in Touch Today",
+    "link": "/contact",
+    "imageAlt": "Professional printing consultation and services"
+  }
+}

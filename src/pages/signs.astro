@@ -1,0 +1,13 @@
+---
+import ServicePage from "../layouts/ServicePage.astro";
+import content from "../data/signs.json";
+
+import hero     from "../assets/heros/signs/signs-hero.jpg";
+import feature1 from "../assets/features/signs/wind-flag.jpg";
+import feature2 from "../assets/features/signs/the-elements.jpg";
+import icon     from "../assets/icons/sign.png";
+
+const imageMap = { hero, feature1, feature2, icon };
+---
+
+<ServicePage content={content} imageMap={imageMap} />

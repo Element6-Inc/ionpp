@@ -1,0 +1,113 @@
+---
+import { Image } from "astro:assets";
+import sliderContent from "../../data/logoSlider.json";
+
+/* =======================================================
+ * CONFIGURATION
+ * -------------------------------------------------------
+ * Logos are stored in src/assets/brands/.
+ * ======================================================= */
+const logoAssets = import.meta.glob<{ default: ImageMetadata }>(
+  "../../assets/brands/*.svg",
+  { eager: true },
+);
+
+const { logos, animationDuration } = sliderContent.logoSlider;
+
+// Resolve each JSON entry to its glob'd asset
+const resolved = logos.map((item) => {
+  const key = `../../assets/brands/${item.file}`;
+  const asset = logoAssets[key];
+
+  if (!asset) {
+    throw new Error(
+      `[LogoSlider] Logo asset not found: "${item.file}". ` +
+        `Check that the file exists in src/assets/brands/ and the filename in logoSlider.json is correct.`,
+    );
+  }
+
+  return {
+    src: asset.default,
+    alt: item.alt,
+    id: item.id,
+  };
+});
+
+// Fisher-Yates shuffle — randomises order at each build
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const logoData = shuffle(resolved);
+---
+
+<!-- Container with drop shadow and responsive width -->
+<div class="w-full px-4 sm:px-6 py-4">
+  <div
+    class="max-w-6xl mx-auto bg-white py-6 px-4 sm:px-6 rounded-3xl drop-shadow-xl overflow-hidden"
+  >
+    <!-- Logo slider with responsive fade masks -->
+    <div
+      class="w-full inline-flex flex-nowrap overflow-hidden
+      [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]
+      sm:[mask-image:_linear-gradient(to_right,transparent_0,_black_64px,_black_calc(100%-64px),transparent_100%)]"
+    >
+      <ol
+        id="logoList"
+        class="flex items-center justify-center md:justify-start
+        [&_li]:mx-2 sm:[&_li]:mx-4 md:[&_li]:mx-5
+        [&_img]:max-w-none animate-infinite-scroll"
+      >
+        {
+          logoData.map((item) => (
+            <li class="flex items-center justify-center">
+              <div class="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 flex items-center justify-center">
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  width={150}
+                  height={150}
+                  class="w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain hover:opacity-100 transition-opacity"
+                />
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+      <!-- Duplicate list for seamless loop — injected by slider.js -->
+    </div>
+  </div>
+</div>
+
+<style
+  define:vars={{
+    durationDesktop: animationDuration.desktop,
+    durationMobile: animationDuration.mobile,
+  }}
+>
+  @keyframes infinite-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-infinite-scroll {
+    animation: infinite-scroll var(--durationDesktop) linear infinite;
+  }
+
+  @media (max-width: 768px) {
+    .animate-infinite-scroll {
+      animation-duration: var(--durationMobile);
+    }
+  }
+</style>
+
+<script src="../../scripts/slider.js"></script>

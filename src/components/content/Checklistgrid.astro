@@ -1,0 +1,56 @@
+---
+interface Props {
+  items: { text: string }[];
+}
+
+const { items } = Astro.props;
+
+const rows = Array.from({ length: Math.ceil(items.length / 4) }, (_, i) =>
+  items.slice(i * 4, i * 4 + 4)
+);
+---
+
+<!-- Outer wrapper: hidden on mobile, centered and width-capped on desktop -->
+<div class="hidden lg:block container mx-auto px-4 max-w-6xl">
+  <!-- Card: white background, rounded, shadow, clips the decorative SVG -->
+  <div class="relative py-8 sm:py-12 px-6 sm:px-12 bg-white rounded-2xl shadow-lg overflow-hidden">
+    <!-- Decorative circle: bottom-right corner accent -->
+    <svg
+      class="absolute bottom-0 right-0 w-28 h-28 sm:w-36 sm:h-36 text-slate-50"
+      viewBox="0 0 100 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="100" cy="100" r="80" fill="currentColor" />
+      <path d="M100 60 Q80 80 60 100 L100 100 Z" fill="white" fill-opacity="0.3" />
+    </svg>
+
+    <!-- Content: stacks rows vertically, sits above the decorative SVG -->
+    <div class="relative z-10 py-4 flex flex-col gap-y-4">
+      {rows.map((row) => (
+        // <!-- Row: up to 4 items in a 4-column grid -->
+        <ol class="grid grid-cols-4 gap-x-10">
+          {row.map((item) => (
+            <li class="flex items-start gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-5 h-5 flex-shrink-0 mt-0.5 text-sky-500"
+                aria-hidden="true"
+              >
+                <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                <path d="m9 11 3 3L22 4" />
+              </svg>
+              <span class="text-slate-500 leading-relaxed">{item.text}</span>
+            </li>
+          ))}
+        </ol>
+      ))}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  imageSrc: ImageMetadata;
+  imageAlt?: string;
+  bgColor?: string;
+}
+
+const {
+  title,
+  imageSrc,
+  imageAlt = "Hero background image",
+  bgColor = "#09090b",
+} = Astro.props;
+---
+
+<div class="bg-[#09090b]" style={`background-color: ${bgColor}`}>
+  <div class="relative">
+    <div class="mx-auto max-w-7xl">
+      <div class="relative z-10 pt-20 lg:w-full lg:max-w-2xl">
+        <svg
+          class="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 lg:block"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          fill={bgColor}
+        >
+          <polygon points="0,0 90,0 50,100 0,100"></polygon>
+        </svg>
+
+        <div class="relative px-6 py-16 lg:px-2 lg:py-32 lg:pr-0">
+          <div class="mx-auto max-w-xl lg:mx-0 lg:ml-8">
+            <h1>{title}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hidden on mobile, shown on lg+ -->
+    <div
+      class="hidden lg:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2"
+    >
+      <div class="image-zoom-container h-full w-full overflow-hidden bg-[#314158]">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="h-full w-full object-cover image-zoom"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .image-zoom {
+    animation: slowZoom 10s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowZoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+</style>

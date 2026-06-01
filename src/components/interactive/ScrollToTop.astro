@@ -1,0 +1,25 @@
+---
+// ScrollToTop.astro
+// scroll.js is imported once in Layout.astro and initialises via
+// astro:page-load. Do not re-add the <script> tag here.
+---
+
+<button
+  id="scrollToTopBtn"
+  class="fixed bottom-6 right-6 bg-gradient-to-br from-sky-400 to-blue-600 hover:from-sky-500 hover:to-blue-700 text-white rounded-full p-3 shadow-lg opacity-0 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 z-50"
+  aria-label="Scroll to top"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-5 w-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M5 15l7-7 7 7"></path>
+  </svg>
+</button>

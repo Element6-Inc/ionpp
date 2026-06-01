@@ -1,0 +1,71 @@
+---
+/* =======================================================
+ * COMPONENT IMPORTS
+ * ======================================================= */
+import Layout from "../layouts/Layout.astro";
+import SmallHero from "../components/hero/HeroSmall.astro";
+import ContactSection from "../components/contact/ContactSection.astro";
+import Feature from "../components/content/Feature.astro";
+import CTA from "../components/content/CTA.astro";
+
+/* =======================================================
+ * ASSET IMPORTS
+ * ======================================================= */
+import heroImage    from "../assets/heros/contact/contact-hero.jpg";
+import feature1Image from "../assets/features/contact/midland-location.jpg";
+
+/* =======================================================
+ * DATA IMPORTS
+ * ======================================================= */
+import content from "../data/contact.json";
+
+/* =======================================================
+ * CONFIGURATION
+ * ======================================================= */
+const imageMap = {
+  hero:     heroImage,
+  feature1: feature1Image,
+};
+---
+
+<Layout title={content.site.title} description={content.site.description}>
+  <!-- HERO SECTION -->
+  <SmallHero
+    title={content.hero.title}
+    imageSrc={imageMap.hero}
+    imageAlt={content.hero.imageAlt}
+    bgColor={content.hero.bgColor}
+  />
+
+  <!-- CONTACT SECTION -->
+  <ContactSection
+    header={content.contact.header}
+    description={content.contact.description}
+    phone={content.contact.phone}
+    email={content.contact.email}
+    address={content.contact.address}
+  />
+
+  <!-- FEATURE SECTIONS -->
+  <section class="pt-6 sm:pb-20 sm:pt-24 sm:-mt-24 bg-white">
+    {
+      content.features.map((feature) => (
+        <div id={feature.id}>
+          <Feature
+            title={feature.title}
+            description={feature.description}
+            imageSrc={imageMap[feature.image as keyof typeof imageMap]}
+            imageAlt={feature.imageAlt}
+            imagePosition={feature.imagePosition as "left" | "right"}
+          />
+        </div>
+      ))
+    }
+  </section>
+      <!-- CTA SECTION -->
+    <CTA
+      heading={content.cta.heading}
+      button={content.cta.button}
+      link={content.cta.link}
+    />
+</Layout>

@@ -1,0 +1,18 @@
+---
+// FooterLinks.astro - Footer navigation links
+// Links are defined in /data/navData.ts
+
+import { getFooterLinks } from "../../../data/navData";
+
+const footerLinks = getFooterLinks();
+---
+
+<ol class="space-y-5">
+    {footerLinks.map((link) => (
+        <li>
+            <a href={link.href} class="footer-link flex items-center gap-2">
+                {link.label}
+            </a>
+        </li>
+    ))}
+</ol>

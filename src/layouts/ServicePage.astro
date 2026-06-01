@@ -1,0 +1,85 @@
+---
+/* =======================================================
+ * ServicePage.astro
+ * Shared layout for all service pages (printing, signs,
+ * promo, design). Each page passes its content + imageMap.
+ * ======================================================= */
+
+/* =======================================================
+ * COMPONENT IMPORTS
+ * ======================================================= */
+import Layout from "../layouts/Layout.astro";
+import SmallHero from "../components/hero/HeroSmall.astro";
+import CentreText from "../components/content/CentreText.astro";
+import Feature from "../components/content/Feature.astro";
+import ChecklistGrid from "../components/content/Checklistgrid.astro";
+import CTA from "../components/content/CTA.astro";
+
+/* =======================================================
+ * PROPS
+ * ======================================================= */
+interface Props {
+  content: any;
+  imageMap: Record<string, ImageMetadata>;
+  checklistBg?: string; // optional override, defaults to "bg-slate-50"
+}
+
+const { content, imageMap, checklistBg = "bg-slate-50" } = Astro.props;
+---
+
+<Layout title={content.site.title} description={content.site.description}>
+  <!-- HERO SECTION -->
+  <SmallHero
+    title={content.hero.title}
+    imageSrc={imageMap[content.hero.image]}
+    imageAlt={content.hero.imageAlt}
+    bgColor={content.hero.bgColor}
+  />
+
+  <!-- CENTRE TEXT SECTION -->
+  <section class={`sm:pt-12 relative ${checklistBg}`}>
+    <CentreText
+      title={content.centreText.title}
+      description={content.centreText.description}
+      imageSrc={imageMap[content.centreText.icon].src}
+      imageAlt="ION Group Logo"
+    />
+  </section>
+
+  <!-- CHECKLIST SECTION -->
+  <section class={checklistBg}>
+    <div class="pt-6">
+      <ChecklistGrid items={content.services.checklist} />
+    </div>
+  </section>
+
+  <!-- FEATURE SECTIONS -->
+  <section class="pt-6 sm:pb-20 sm:pt-32 sm:-mt-24 bg-white">
+    {
+      content.features.map((feature: any, index: number) => (
+        <>
+          <div id={feature.id}>
+            <Feature
+              title={feature.title}
+              description={feature.description}
+              imageSrc={imageMap[feature.image]}
+              imageAlt={feature.imageAlt}
+              imagePosition={feature.imagePosition}
+              buttonLink={feature.buttonLink}
+              buttonText={feature.buttonText}
+              buttonTarget={feature.buttonTarget}
+            />
+          </div>
+          {index < content.features.length - 1 && <div class="sm:py-4" />}
+        </>
+      ))
+    }
+  </section>
+
+  <!-- CTA SECTION -->
+  <CTA
+    heading={content.cta.heading}
+    button={content.cta.button}
+    link={content.cta.link}
+  />
+</Layout>

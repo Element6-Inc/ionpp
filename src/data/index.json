@@ -1,0 +1,133 @@
+{
+  "site": {
+    "title": "ION Print & Promo",
+    "description": "Gibson Print, PROS Marketing and IO Promo have become ION Print & Promo! We've moved to 178 Tiffin St. Barrie, offering even MORE print services & promo products for enhanced business success."
+  },
+  "hero": {
+    "title": "Print & Promo Services Together.",
+    "description": "Power up with quality <strong>Print & Promo Services</strong> across Simcoe & Muskoka!",
+    "ctaText": "Contact Us",
+    "ctaHref": "/contact",
+    "imageAlt": "Hapy print shop workers"
+  },
+  "centreText": {
+    "title": "Comprehensive services tailored to your needs.",
+    "description": "Our name and location may have changed, but our staffing, commitment to quality and great service remains the same."
+  },
+  "cardSlider": {
+    "title": "Services tailored to your needs",
+    "cards": [
+      {
+        "icon": "printing",
+        "name": "Printing Services",
+        "description": "Expert digital and large-format printing that helps every business stand out with style.",
+        "link": "/printing"
+      },
+      {
+        "icon": "signs",
+        "name": "Sign Services",
+        "description": "We deliver real estate and large-format signs that make your business stand out.",
+        "link": "/signs"
+      },
+      {
+        "icon": "promo",
+        "name": "Promotional Products",
+        "description": "Custom promotional products that strengthen your brand identity & create lasting impressions.",
+        "link": "/promo-products"
+      },
+      {
+        "icon": "marketing",
+        "name": "Marketing Strategies",
+        "description": "Strategic marketing approaches that connect your business with target audiences & drive growth.",
+        "link": "/marketing"
+      },
+      {
+        "icon": "graphic",
+        "name": "Graphic Design",
+        "description": "Visual strategies converting ideas into powerful designs that express your message.",
+        "link": "/design-digital"
+      },
+      {
+        "icon": "web",
+        "name": "Web Development",
+        "description": "Custom web development showcasing responsive, user-friendly digital experiences.",
+        "link": "/design-digital"
+      }
+    ]
+  },
+  "features": [
+    {
+      "id": "printing",
+      "image": "feature1",
+      "title": "Printing Services",
+      "description": "<p>We deliver high-quality print products in all shapes, sizes and formats, from simple projects to bold full-colour displays, including real estate signs and installations.</p><p>Our experienced design and print team works with you to keep your brand sharp, consistent and professional.</p>",
+      "imageAlt": "Professional printing equipment and promotional materials showcase",
+      "imagePosition": "left",
+      "buttonLink": "/printing",
+      "buttonText": "Explore Print Services"
+    },
+    {
+      "id": "signs",
+      "image": "feature4",
+      "title": "Sign Services",
+      "description": "<p>From real estate signs to large-format displays, we deliver signage solutions that make your business impossible to miss.</p><p>Our team handles everything from design through to professional installation, so your brand shows up sharp every time.</p>",
+      "imageAlt": "Professional sign services showcase",
+      "imagePosition": "right",
+      "buttonLink": "/signs",
+      "buttonText": "Explore Sign Services"
+    },
+    {
+      "id": "promo",
+      "image": "feature3",
+      "title": "Promotional Products",
+      "description": "<p>Why juggle multiple suppliers when you can get everything in one place? From custom merchandise to branded apparel and gifts, we help your organization stand out.</p><p>ION Print & Promo, formerly IO Promo, keeps your brand polished and top of mind. Visit our Barrie Showroom to explore items and apparel for your organization.</p>",
+      "imageAlt": "Team collaboration and creative workspace at ION Print & Promo",
+      "imagePosition": "left",
+      "buttonLink": "/promo-products",
+      "buttonText": "Explore Promo Services"
+    },
+    {
+      "id": "design-digital",
+      "image": "feature4",
+      "title": "Design & Web",
+      "description": "<p>Along with in-house graphic design, print and promotional services, our team can also support your website, copywriting and marketing needs, keeping your brand sharp, consistent and professional everywhere it appears.</p>",
+      "imageAlt": "Professional design and digital services showcase",
+      "imagePosition": "right",
+      "buttonLink": "/design-digital",
+      "buttonText": "Explore Design Services"
+    }
+  ],
+  "testimonials": {
+    "sectionTitle": "Real Stories. Real People.",
+    "items": [
+      {
+        "content": "Cindy was super helpful and very professional in creating the lettering for my new boat. She listened to what I wanted, offered great suggestions, and delivered high-quality work. A genuinely nice person - highly recommended!",
+        "author": "Scott Ingham"
+      },
+      {
+        "content": "We've had the pleasure of working with IO Promo on multiple projects, and Rob has become a trusted promotional partner. His professionalism, creativity, and dedication consistently exceed our expectations, always delivering high-quality results.",
+        "author": "Liliana Salazar"
+      },
+      {
+        "content": "Glenn and his team are absolutely wonderful to work with. We do lots of work with Gibson's Digital Print Design & Sign, varying from new signage, flags and graphics to repairs for existing. They are always quick to respond and complete all work that is requested. Definitely suggest them for any future sign work.",
+        "author": "Katlyn Hunter"
+      }
+    ]
+  },
+  "footer": {
+    "socialLinks": [
+      {
+        "platform": "facebook",
+        "href": "https://www.facebook.com/gibsondigitalbarrie/"
+      },
+      {
+        "platform": "instagram",
+        "href": "https://www.instagram.com/prosmarketing/"
+      },
+      {
+        "platform": "linkedin",
+        "href": "https://www.linkedin.com/company/io-promo-products/"
+      }
+    ]
+  }
+}

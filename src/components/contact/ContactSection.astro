@@ -1,0 +1,85 @@
+---
+/* =======================================================
+ * CONTACT SECTION COMPONENT
+ * Two-column layout with contact info and form
+ * ======================================================= */
+import ContactForm from "../forms/ContactForm.astro";
+import SocialIcons from "../socials/SocialIcons.astro";
+
+interface Props {
+  header: string;
+  description: string;
+  phone: string;
+  email: string;
+  address: string;
+}
+
+const { header, description, phone, email, address } = Astro.props;
+---
+
+<section class="contact-section">
+  <div class="contact-container">
+    <div class="contact-grid">
+      <!-- LEFT COLUMN - Contact Information -->
+      <div class="contact-info">
+        <!-- Header -->
+        <div>
+          <h3 class="mb-4">
+            {header}
+          </h3>
+          <p
+            class="text-lg text-gray-600 leading-relaxed"
+            set:html={description}
+          />
+        </div>
+
+        <!-- Contact Details Stack -->
+        <div class="contact-details">
+          <!-- Phone -->
+          <div class="contact-item">
+            <h6 class="contact-label">
+              P:
+            </h6>
+            <a
+              href={`tel:${phone.replace(/\s/g, "")}`}
+              class="contact-link"
+            >
+              {phone}
+            </a>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-item">
+            <h6 class="contact-label">
+              E:
+            </h6>
+            <a
+              href={`mailto:${email}`}
+              class="contact-link"
+            >
+              {email}
+            </a>
+          </div>
+
+          <!-- Address -->
+          <div class="contact-item">
+            <h6 class="contact-label">
+              A:
+            </h6>
+            <address class="contact-address">
+              {address}
+            </address>
+          </div>
+        </div>
+        <div>
+          <SocialIcons />
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN - Contact Form -->
+      <div class="contact-form-card">
+        <ContactForm />
+      </div>
+    </div>
+  </div>
+</section>

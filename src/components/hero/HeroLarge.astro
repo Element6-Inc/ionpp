@@ -1,0 +1,75 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  imageSrc: ImageMetadata;
+  imageAlt?: string;
+}
+
+const {
+  title = "",
+  description = "",
+  ctaText = "",
+  ctaHref = "#",
+  imageSrc,
+  imageAlt = "",
+} = Astro.props;
+---
+
+<div class="bg-[#111111]">
+  <div class="relative">
+    <div class="mx-auto max-w-7xl">
+      <div class="relative z-10 pt-20 sm:pt-10 lg:w-full lg:max-w-2xl">
+        <svg
+          class="absolute inset-y-0 right-8 hidden h-full w-80 translate-x-1/2 lg:block"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          fill="#111111"
+        >
+          <polygon points="0,0 90,0 50,100 0,100"></polygon>
+        </svg>
+
+        <div class="relative px-4 py-20 lg:px-8 lg:py-56 lg:pr-0">
+          <div class="mx-auto max-w-xl lg:mx-0">
+            <h1>{title}</h1>
+            <p class="subheading" set:html={description} />
+            <div class="mt-10 flex items-center gap-x-6">
+              <a href={ctaHref} class="btn">{ctaText}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hidden on mobile, shown on lg+ -->
+    <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+      <div class="h-full w-full overflow-hidden bg-[#314158]">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          class="h-full w-full object-cover image-zoom"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .image-zoom {
+    animation: slowZoom 10s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowZoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+</style>

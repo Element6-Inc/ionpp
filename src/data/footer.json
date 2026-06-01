@@ -1,0 +1,54 @@
+{
+  "logo": {
+    "alt": "ION Print & Promo Logo"
+  },
+  "contact": {
+    "locations": [
+      {
+        "name": "Barrie Head Office",
+        "address": "178 Tiffin St., Barrie, ON, L4N 2N4",
+        "phone": {
+          "number": "705.739.1969",
+          "href": "tel:7057391969"
+        },
+        "email": {
+          "address": "sales@iongroup.ca",
+          "href": "mailto:sales@iongroup.ca"
+        }
+      },
+      {
+        "name": "Midland",
+        "address": "304-9170 County Rd. 93, Midland, ON, L4R 4K4",
+        "phone": {
+          "number": "705.527.7767",
+          "href": "tel:7055277767"
+        }
+      },
+      {
+        "name": "Vaughan",
+        "address": "164 Buttermill Ave., Unit #1, Concord, ON, L4K 3X6",
+        "phone": {
+          "number": "416.991.3767",
+          "href": "tel:4169913767"
+        }
+      }
+    ]
+  },
+  "hours": [
+    {
+      "days": "Mon - Thurs:",
+      "time": "9:00 AM - 5:00 PM"
+    },
+    {
+      "days": "Fri:",
+      "time": "9:00 AM - 4:00 PM"
+    },
+    {
+      "days": "Sat - Sun:",
+      "time": "Closed"
+    }
+  ],
+  "copyright": {
+    "text": "ION Print & Promo | Proudly local & 100% Canadian owned!"
+  }
+}
