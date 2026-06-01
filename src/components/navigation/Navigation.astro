@@ -13,8 +13,8 @@ const navItems = getNavItems();
 const pathname = Astro.url.pathname;
 
 function isActive(href: string): boolean {
-  if (href.startsWith("/")) return pathname === href;
-  return pathname === "/" + href || pathname.startsWith("/" + href + "/");
+  const normalized = href.startsWith("/") ? href : "/" + href;
+  return pathname === normalized || pathname.startsWith(normalized + "/");
 }
 
 function dropdownIsActive(children: NavLink[]): boolean {
