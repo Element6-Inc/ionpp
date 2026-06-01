@@ -1,17 +1,9 @@
 ---
-import { readFileSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { resolve, dirname } from 'path';
+import shapesUrl from '../../assets/svg/shapes.svg?url';
+import circleUrl from '../../assets/svg/circle.svg?url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// Read SVGs and convert to base64 data URIs for use in CSS background-image
-const shapesRaw = readFileSync(resolve(__dirname, '../../assets/svg/shapes.svg'));
-const circleRaw = readFileSync(resolve(__dirname, '../../assets/svg/circle.svg'));
-
-const shapesSrc = `data:image/svg+xml;base64,${shapesRaw.toString('base64')}`;
-const circleSrc = `data:image/svg+xml;base64,${circleRaw.toString('base64')}`;
+const shapesSrc = shapesUrl;
+const circleSrc = circleUrl;
 
 interface Props {
   heading: string;
