@@ -4,36 +4,34 @@
     "description": "Expert digital and large-format printing services in Barrie. From business cards to banners, we deliver high-quality print solutions for every business need."
   },
   "hero": {
-    "title": "Printing",
+    "title": "Printing Services",
     "imageAlt": "Professional printing services showcase",
     "bgColor": "#1164B4",
     "image": "hero"
   },
   "centreText": {
-    "title": "Print services you can rely on.",
-    "description": "Still the same trusted team from Gibson's Digital & PROS Marketing that you know and trust, now with expanded print services!",
+    "title": "Print that means business",
+    "description": "Our printing services help keep your business moving and get the job done – with quality printing, great pricing and friendly customer care. There is no job too big or small. ",
     "icon": "icon"
   },
   "features": [
     {
-      "id": "printing",
-      "title": "Print power, right here at home!",
-      "description": "<p>At ION Print & Promo, we offer a full range of digital and offset printing under one roof, delivering seamless service for small runs and large-scale projects.</p><p>Our experienced team uses modern, in-house equipment to keep every job on time, on budget, and on brand.</p>",
+      "id": "intro",
+      "title": "Professional printing starts here.",
+      "description": "<p>Printed materials remain one of the most effective tools for marketing, communication, operations, and brand visibility.</p><p>Strong print design and quality production help businesses stand out, stay organized, and create a more professional customer experience.</p><p>From sales materials and office essentials to event printing and branded packaging, professionally printed materials help reinforce your brand in ways digital advertising alone cannot.</p>",
       "imageAlt": "Modern digital printing equipment producing high-quality materials",
       "imagePosition": "left",
       "image": "feature1",
       "buttonLink": "/contact",
-      "buttonText": "Get a Quote"
+      "buttonText": "Inquire Today"
     },
     {
-      "id": "real-estate",
-      "title": "Real estate moves fast and so do we.",
-      "description": "<p>Through our partnership with Cardinal Signs, we provide complete real estate signage services that help listings stand out across Simcoe County and beyond.</p><p></p><ul><li>Custom signs for residential listings</li><li>Custom signs for commercial listings</li><li>Professional installation and removal</li><li>Quick turnaround times with dependable local service you can count on</li></ul></p>",
+      "id": "local printing",
+      "title": "Local Printing. Real People.",
+      "description": "<p>With 20+ years serving Simcoe County and surrounding areas, ION Print & Promo (formerly Gibson Digital Print) provides professional printing, signage, promo products and installation services with an impressive selection of:<p><ul><li>Commercial digital printers</li><li>Large format equipment</li><li>Flatbed printers</li><li>Finishing equipment & more</li></ul></p><p>Whether you need help choosing materials, preparing artwork, or finding the right print solution, we're here to help make the process easy.</p>",
       "imageAlt": "Custom printed materials with specialty finishes",
       "imagePosition": "right",
-      "image": "feature2",
-      "buttonLink": "mailto:signs@iongroup.ca",
-      "buttonText": "Inquire Today"
+      "image": "feature2"
     }
   ],
   "services": {
@@ -43,16 +41,15 @@
       { "text": "Business Cards" },
       { "text": "Event Printing" },
       { "text": "Labels & Stickers" },
-      { "text": "Large Format" },
-      { "text": "NCR Forms" },
+      { "text": "NCR Forms & Cheques" },
       { "text": "Office Stationery" },
-      { "text": "Rack & Postcards" }
+      { "text": "Post & Rack Cards" }
     ]
   },
   "cta": {
-    "heading": "Explore giveaways, apparel, signs & event printing all in one place.",
+    "heading": "Explore apparel, giveaways & promo products all in one place.",
     "button": "Discover More",
-    "link": "/printing",
+    "link": "/promo-products",
     "imageAlt": "Professional printing consultation and services"
   }
 }

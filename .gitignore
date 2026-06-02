@@ -42,3 +42,6 @@ coverage/
 # Misc
 *.pid
 *.seed
+
+# Local Netlify folder
+.netlify
