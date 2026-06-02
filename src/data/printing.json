@@ -10,7 +10,7 @@
     "image": "hero"
   },
   "centreText": {
-    "title": "Print that means business",
+    "title": "Print That Means Business",
     "description": "Our printing services help keep your business moving and get the job done – with quality printing, great pricing and friendly customer care. There is no job too big or small. ",
     "icon": "icon"
   },
@@ -47,8 +47,8 @@
     ]
   },
   "cta": {
-    "heading": "Explore apparel, giveaways & promo products all in one place.",
-    "button": "Discover More",
+    "heading": "Explore apparel, giveaways, promo products & more all in one place.",
+    "button": "Learn More",
     "link": "/promo-products",
     "imageAlt": "Professional printing consultation and services"
   }
