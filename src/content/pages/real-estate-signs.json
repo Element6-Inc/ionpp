@@ -40,7 +40,7 @@
     {
       "id": "installs",
       "title": "Sign installs for busy realtors.",
-      "description": "<p>ION Print & Promo provides trusted real estate sign installation and take-down services for realtors, agents and brokerages. We help wiith:</p><ul><li>Real estate sign installation</li><li>Sign take-downs</li><li>Custom toppers & sign printing</li><li>Service routes across Barrie & Simcoe County</li></ul><p>Check out our FAQ <strong>(coming soon)</strong> below for all the details and how to get signed up! </p>",
+      "description": "<p>ION Print & Promo provides trusted real estate sign installation and take-down services for realtors, agents and brokerages. We help wiith:</p><ul><li>Real estate sign installation</li><li>Sign take-downs</li><li>Custom toppers & sign printing</li><li>Service routes across Barrie & Simcoe County</li></ul><p>Be sure to check back for our FAQs <strong>(coming soon)</strong> for all the details and how to get signed up! </p>",
       "imageAlt": "Sign post installation in front yard",
       "imagePosition": "right",
       "image": "feature2"
@@ -51,23 +51,23 @@
       "description": "<p>We print all sizes of real estate signs, custom toppers, sold signs, open house signs, directional signs and A-frames designed to stand up to the elements! We use tough coroplast and laminate it for extra durability.</p><p>We also support agents and brokers with everyday print materials to market their listings and build their business.</p><p>This includes feature sheets, business cards, postcards, door hangers, presentation folders and custom brokerage materials.</p>",
       "imageAlt": "Real estate coroplast lawn sign installation",
       "imagePosition": "left",
-      "image": "feature1",
+      "image": "feature3",
       "buttonLink": "/printing",
       "buttonText": "Learn More"
     },
     {
       "id": "promo",
       "title": "Promo products & client gifts.",
-      "description": "<p>Print & Promo helps sales agents and brokers create useful branded promo products and thoughtful client gifts that keep your name in front of buyers, sellers and neighbours.</p><ul><li>Branded pens, notepads & magnets</li><li>Closing gifts & thank-you items</li><li>Open house giveaways</li><li>Key tags & home-related promo items</li><li>Brokerage-branded merchandise</li><li>Custom gifts for buyers, sellers & referral partners</li></ul>",
+      "description": "<p>Print & Promo helps sales agents and brokers create useful branded promo products and thoughtful client gifts that keep your name in front of buyers, sellers and neighbours.</p><ul><li>Branded pens, notepads & magnets</li><li>Closing gifts & thank-you items</li><li>Open house giveaways</li><li>Key tags & home-related promo items</li><li>Brokerage-branded merchandise</li></ul>",
       "imageAlt": "Sign post installation in front yard",
       "imagePosition": "right",
-      "image": "feature2",
+      "image": "feature4",
       "buttonLink": "/promo-products",
       "buttonText": "Learn More"
     }
   ],
   "accordionHeading": "Frequently Asked Questions Coming Soon!",
-  "accordions": [
+  "_accordions": [
     {
       "id": "turnaround",
       "title": "How fast can you turn around sign orders?",

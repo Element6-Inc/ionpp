@@ -6,11 +6,13 @@ const entry = await getEntry("pages", "real-estate-signs");
 const content = entry!.data;
 
 import hero     from "../assets/heros/realtors.webp";
-import feature1 from "../assets/features/signs/wind-flag.webp";
-import feature2 from "../assets/features/signs/the-elements.webp";
+import feature1 from "../assets/features/realtors/experience.webp";
+import feature2 from "../assets/features/realtors/realtor-instal.webp";
+import feature3 from "../assets/features/realtors/realtor-printing.webp";
+import feature4 from "../assets/features/realtors/realtor-promo.webp";
 import icon     from "../assets/icons/realtor.png";
 
-const imageMap = { hero, feature1, feature2, icon };
+const imageMap = { hero, feature1, feature2, feature3, feature4, icon };
 ---
 
 <RealEstateSignsPage content={content} imageMap={imageMap} />
