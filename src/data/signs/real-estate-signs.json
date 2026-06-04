@@ -4,7 +4,7 @@
     "description": "Professional real estate sign services for real estate agents and brokers across Simcoe County. We design, print, install, and remove durable coroplast signs backed by 20+ years of experience (formerly Cardinal Signs & Gibson Digital Print)."
   },
   "hero": {
-    "title": "Realtor Signs & Services",
+    "title": "Real Estate Sign Services",
     "imageAlt": "Real estate signs on a lawn",
     "bgColor": "#DA2C43",
     "image": "hero"
@@ -40,7 +40,7 @@
     {
       "id": "install",
       "title": "More ways to market your listings.",
-      "description": "<p>We also offer print and promotional services for realtors, including business cards, feature sheets, client gifts and more.</p><p>Everything is designed to help you promote your listings, build your brand and grow your real estate business.</p>",
+      "description": "<p>We also offer print and promotional services for realtors, including business cards, feature sheets, client gifts and more.</p><p>We are here to power up your real estate business.</p>",
       "imageAlt": "Sign post installation in front yard",
       "imagePosition": "right",
       "image": "feature2",
