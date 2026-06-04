@@ -1,7 +1,14 @@
 ---
-import RealEstateSignsPage from "../layouts/ServicePage.astro";
-import { getEntry } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import SmallHero from "../components/hero/HeroSmall.astro";
+import CentreText from "../components/content/CentreText.astro";
+import Feature from "../components/content/Feature.astro";
+import ChecklistGrid from "../components/content/Checklistgrid.astro";
+import AccordionSection from "../components/accordions/AccordionSection.astro";
+import CTA from "../components/content/CTA.astro";
+import ServiceAreaModal from "../components/interactive/ServiceAreaModal.astro";
 
+import { getEntry } from "astro:content";
 const entry = await getEntry("pages", "real-estate-signs");
 const content = entry!.data;
 
@@ -13,6 +20,67 @@ import feature4 from "../assets/features/realtors/realtor-promo.webp";
 import icon     from "../assets/icons/realtor.png";
 
 const imageMap = { hero, feature1, feature2, feature3, feature4, icon };
+const features = content.features ?? [];
+const accordions = content.accordions ?? [];
+const mapToken = import.meta.env.PUBLIC_MAPBOX_TOKEN;
 ---
 
-<RealEstateSignsPage content={content} imageMap={imageMap} />
+<Layout title={content.site.title} description={content.site.description}>
+
+  <!-- HERO -->
+  <SmallHero
+    title={content.hero.title}
+    imageSrc={imageMap.hero}
+    imageAlt={content.hero.imageAlt}
+    bgColor={content.hero.bgColor}
+  />
+
+  <!-- CENTRE TEXT -->
+  <section class="sm:pt-12 relative bg-slate-50">
+    <CentreText
+      title={content.centreText.title}
+      description={content.centreText.description}
+      imageSrc={imageMap[content.centreText.icon].src}
+      imageAlt="ION Group Logo"
+    />
+  </section>
+
+  <!-- CHECKLIST -->
+  <section class="bg-slate-50">
+    <div class="pt-6">
+      <ChecklistGrid items={content.services.checklist} />
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="pt-6 sm:pb-20 sm:pt-32 sm:-mt-24 bg-white">
+    {features.map((feature: any) => (
+      <div id={feature.id}>
+        <Feature
+          title={feature.title}
+          description={feature.description}
+          imageSrc={imageMap[feature.image]}
+          imageAlt={feature.imageAlt}
+          imagePosition={feature.imagePosition}
+          buttonLink={feature.buttonLink}
+          buttonText={feature.buttonText}
+          buttonTarget={feature.buttonTarget}
+        />
+      </div>
+    ))}
+  </section>
+
+  <!-- SERVICE AREA MODAL TRIGGER -->
+  {mapToken && <ServiceAreaModal token={mapToken} />}
+
+  <!-- ACCORDION -->
+  <AccordionSection items={accordions} heading={content.accordionHeading} />
+
+  <!-- CTA -->
+  <CTA
+    heading={content.cta.heading}
+    button={content.cta.button}
+    link={content.cta.link}
+  />
+
+</Layout>

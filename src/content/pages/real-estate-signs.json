@@ -34,8 +34,8 @@
       "imageAlt": "Real estate coroplast lawn sign installation",
       "imagePosition": "left",
       "image": "feature1",
-      "buttonLink": "/contact",
-      "buttonText": "Get a Quote"
+      "buttonLink": "#install-map",
+      "buttonText": "Check Install Pricing"
     },
     {
       "id": "installs",

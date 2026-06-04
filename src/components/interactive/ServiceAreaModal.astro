@@ -1,0 +1,292 @@
+---
+interface Props {
+  token: string;
+}
+const { token } = Astro.props;
+---
+
+<!-- Modal backdrop -->
+<div
+  id="sam-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+  style="background: var(--color-bg-overlay);"
+>
+  <div
+    class="relative w-full max-w-2xl bg-white rounded-2xl overflow-hidden flex flex-col"
+    style="max-height: 92vh; border: 1px solid var(--color-border-base); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);"
+  >
+
+    <!-- Header -->
+    <div class="flex items-start justify-between px-6 pt-6 pb-4">
+      <div>
+        <h3 class="text-xl font-bold" style="color: var(--color-primary);">Sign Install Pricing Map</h3>
+        <p class="text-sm mt-1" style="color: var(--color-text-base);">Surcharges are based on straight-line distance from Barrie.</p>
+      </div>
+      <button id="sam-close" type="button" class="ml-4 flex-shrink-0 mt-0.5 transition-colors" style="color: var(--color-text-placeholder);">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Search -->
+    <div class="px-6 pb-4">
+      <div id="sam-geocoder"></div>
+    </div>
+
+    <!-- Map -->
+    <div id="sam-map" data-token={token} style="height: 340px; flex-shrink: 0;"></div>
+
+    <!-- Result -->
+    <div id="sam-result" class="hidden px-6 py-5" style="border-top: 1px solid var(--color-border-base);"></div>
+
+  </div>
+</div>
+
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+<link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" rel="stylesheet" />
+
+<style is:global>
+  #sam-geocoder .mapboxgl-ctrl-geocoder {
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+    border: 1px solid var(--color-border-base);
+    border-radius: 0.5rem;
+    font-family: inherit;
+  }
+  #sam-geocoder .mapboxgl-ctrl-geocoder--input {
+    padding: 0.6rem 2.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-heading);
+  }
+  #sam-geocoder .mapboxgl-ctrl-geocoder--input:focus {
+    outline: 2px solid var(--color-border-accent);
+    outline-offset: -2px;
+  }
+  .mapboxgl-ctrl-attrib,
+  .mapboxgl-ctrl-logo { display: none !important; }
+</style>
+
+<script>
+  const BARRIE = { lat: 44.3894, lng: -79.6903 };
+
+  const ZONES = [
+    { id: 'z20', minKm: 0,  maxKm: 20, surcharge: 0,  color: '#0ea5e9', label: 'Within Barrie area'    },
+    { id: 'z30', minKm: 20, maxKm: 30, surcharge: 10, color: '#fbbf24', label: '20 – 30 km from Barrie' },
+    { id: 'z40', minKm: 30, maxKm: 40, surcharge: 15, color: '#f97316', label: '30 – 40 km from Barrie' },
+    { id: 'z50', minKm: 40, maxKm: 50, surcharge: 20, color: '#f43f5e', label: '40 – 50 km from Barrie' },
+  ];
+
+  function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number) {
+    const R = 6371, toRad = (x: number) => x * Math.PI / 180;
+    const dLat = toRad(lat2 - lat1), dLng = toRad(lng2 - lng1);
+    const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng/2)**2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  function circleCoords(lat: number, lng: number, radiusKm: number, steps = 80): [number,number][] {
+    const pts: [number,number][] = [];
+    for (let i = 0; i <= steps; i++) {
+      const a = (i / steps) * 2 * Math.PI;
+      pts.push([
+        lng + (radiusKm / (111.32 * Math.cos(lat * Math.PI / 180))) * Math.sin(a),
+        lat + (radiusKm / 111.32) * Math.cos(a),
+      ]);
+    }
+    return pts;
+  }
+
+  function donutGeoJSON(lat: number, lng: number, innerKm: number, outerKm: number) {
+    const outer = circleCoords(lat, lng, outerKm);
+    const inner = [...circleCoords(lat, lng, innerKm)].reverse();
+    return { type: 'Feature' as const, geometry: { type: 'Polygon' as const, coordinates: innerKm === 0 ? [outer] : [outer, inner] } };
+  }
+
+  function getZone(km: number) {
+    return ZONES.find(z => km > z.minKm && km <= z.maxKm) ?? (km <= 20 ? ZONES[0] : null);
+  }
+
+  // Fetch actual place polygon from Nominatim
+  async function fetchPlacePolygon(lat: number, lng: number): Promise<any> {
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=geojson&polygon_geojson=1&zoom=10`,
+        { headers: { 'Accept-Language': 'en' } }
+      );
+      const data = await res.json();
+      return data.features?.[0]?.geometry ?? null;
+    } catch {
+      return null;
+    }
+  }
+
+  function boldFirstPart(placeName: string): string {
+    const idx = placeName.indexOf(',');
+    if (idx === -1) return `<strong>${placeName}</strong>`;
+    return `<strong>${placeName.slice(0, idx)}</strong>${placeName.slice(idx)}`;
+  }
+
+  function showResult(distKm: number, placeName: string, map: any, zone: any) {
+    const el = document.getElementById('sam-result');
+    if (!el) return;
+
+    const dist = Math.round(distKm);
+    const boldPlace = boldFirstPart(placeName);
+
+    if (!zone) {
+      el.innerHTML = `
+        <div class="flex items-start gap-4">
+          <div class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--color-bg-subtle)">
+            <svg class="w-5 h-5" style="color:var(--color-text-base)" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-bold text-base" style="color:var(--color-text-heading)">Outside standard service area</p>
+            <p class="text-sm mt-0.5" style="color:var(--color-text-placeholder)">Your location: ${boldPlace} &middot; ${dist} km from Barrie</p>
+            <p class="text-sm mt-1" style="color:var(--color-text-base)">Please <a href="/contact" class="font-medium" style="color:var(--color-text-accent)">contact us</a> for a custom install quote.</p>
+          </div>
+        </div>`;
+    } else {
+      const free = zone.surcharge === 0;
+      el.innerHTML = `
+        <div class="flex items-start gap-4">
+          <div class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style="background:${zone.color}20;">
+            <svg class="w-5 h-5" style="color:${zone.color}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              ${free
+                ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>`
+                : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>`
+              }
+            </svg>
+          </div>
+          <div>
+            <p class="font-bold text-base" style="color:var(--color-text-heading)">
+              ${free ? 'Standard installation rate' : `+$${zone.surcharge} install surcharge`}
+            </p>
+            <p class="text-sm mt-0.5" style="color:var(--color-text-placeholder)">
+              Your location: ${boldPlace} &middot; ${dist} km from Barrie
+            </p>
+            <p class="text-sm mt-1" style="color:var(--color-text-base)">
+              ${free
+                ? 'No surcharge — your address falls within the standard service area.'
+                : `${zone.label}. <a href="/contact" class="font-medium" style="color:var(--color-text-accent)">Contact us</a> to confirm your order.`
+              }
+            </p>
+          </div>
+        </div>`;
+    }
+    el.classList.remove('hidden');
+  }
+
+  function loadScript(src: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (document.querySelector(`script[src="${src}"]`)) { resolve(); return; }
+      const s = document.createElement('script');
+      s.src = src; s.onload = () => resolve(); s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  let mapInstance: any = null;
+
+  async function openModal() {
+    const modal = document.getElementById('sam-modal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+
+    if (mapInstance) { mapInstance.resize(); return; }
+
+    const token = (document.getElementById('sam-map') as HTMLElement)?.dataset.token;
+    if (!token) return;
+
+    await loadScript('https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js');
+    await loadScript('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js');
+
+    const mapboxgl = (window as any).mapboxgl;
+    const MapboxGeocoder = (window as any).MapboxGeocoder;
+    mapboxgl.accessToken = token;
+
+    mapInstance = new mapboxgl.Map({
+      container: 'sam-map',
+      style: 'mapbox://styles/mapbox/light-v11',
+      center: [BARRIE.lng, BARRIE.lat],
+      zoom: 9,
+    });
+
+    mapInstance.on('load', () => {
+      // Draw donut zones — outermost first so inner paints on top
+      [...ZONES].reverse().forEach(z => {
+        mapInstance.addSource(z.id, { type: 'geojson', data: donutGeoJSON(BARRIE.lat, BARRIE.lng, z.minKm, z.maxKm) });
+        mapInstance.addLayer({ id: `${z.id}-fill`, type: 'fill', source: z.id, paint: { 'fill-color': z.color, 'fill-opacity': 0.08 } });
+        mapInstance.addLayer({ id: `${z.id}-line`, type: 'line', source: z.id, paint: { 'line-color': z.color, 'line-width': 1.5, 'line-opacity': 0.35 } });
+      });
+
+      // Place highlight layer (empty until search)
+      mapInstance.addSource('place-hl', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      mapInstance.addLayer({ id: 'place-hl-fill', type: 'fill', source: 'place-hl', paint: { 'fill-color': '#0ea5e9', 'fill-opacity': 0.3 } });
+      mapInstance.addLayer({ id: 'place-hl-line', type: 'line', source: 'place-hl', paint: { 'line-color': '#0ea5e9', 'line-width': 2.5, 'line-opacity': 0.9 } });
+
+      new mapboxgl.Marker({ color: '#0ea5e9' })
+        .setLngLat([BARRIE.lng, BARRIE.lat])
+        .addTo(mapInstance);
+    });
+
+    const geocoder = new MapboxGeocoder({
+      accessToken: token, mapboxgl,
+      placeholder: 'Enter your address or city...',
+      countries: 'ca',
+      proximity: { longitude: BARRIE.lng, latitude: BARRIE.lat },
+      marker: { color: '#0ea5e9' },
+    });
+
+    document.getElementById('sam-geocoder')?.appendChild(geocoder.onAdd(mapInstance));
+
+    geocoder.on('result', (e: any) => {
+      const [lng, lat] = e.result.center;
+      const dist = haversineKm(BARRIE.lat, BARRIE.lng, lat, lng);
+      const zone = getZone(dist);
+      const zoneColor = zone?.color ?? '#94a3b8';
+
+      showResult(dist, e.result.place_name, mapInstance, zone);
+
+      // Fetch place polygon async — separated from the sync handler to avoid breaking the event
+      fetchPlacePolygon(lat, lng).then(geometry => {
+        if (!geometry || !mapInstance?.getSource('place-hl')) return;
+        mapInstance.getSource('place-hl').setData({ type: 'Feature', geometry });
+        mapInstance.setPaintProperty('place-hl-fill', 'fill-color', zoneColor);
+        mapInstance.setPaintProperty('place-hl-line', 'line-color', zoneColor);
+      });
+    });
+
+    geocoder.on('clear', () => {
+      document.getElementById('sam-result')?.classList.add('hidden');
+      if (mapInstance.getSource('place-hl')) {
+        mapInstance.getSource('place-hl').setData({ type: 'FeatureCollection', features: [] });
+      }
+    });
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('sam-modal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  function setup() {
+    document.querySelectorAll('a[href="#install-map"]').forEach(el => {
+      el.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+    });
+    document.getElementById('sam-close')?.addEventListener('click', closeModal);
+    document.getElementById('sam-modal')?.addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+    document.addEventListener('astro:before-swap', () => { mapInstance = null; }, { once: true });
+  }
+
+  document.addEventListener('astro:page-load', setup);
+</script>
