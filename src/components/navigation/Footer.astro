@@ -6,7 +6,9 @@ import { Image } from "astro:assets";
 import Logo from "../../assets/logos/logo-landscape-white.png";
 import CanadaIcon from "../../assets/svg/canada.svg";
 import SocialIcons from "../socials/SocialIcons.astro";
-import footerData from "../../data/footer.json";
+import { getEntry } from "astro:content";
+const footerEntry = await getEntry("footer", "footer");
+const footerData = footerEntry!.data;
 import FooterLinks from "./links/FooterLinks.astro";
 
 const currentYear = new Date().getFullYear();

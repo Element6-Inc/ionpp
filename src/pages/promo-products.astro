@@ -1,6 +1,9 @@
 ---
 import ServicePage from "../layouts/ServicePage.astro";
-import content from "../data/promo.json";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("pages", "promo");
+const content = entry!.data;
 
 import hero     from "../assets/heros/promotional.webp";
 import feature1 from "../assets/features/promo/promo-products.webp";

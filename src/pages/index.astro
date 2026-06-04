@@ -22,7 +22,9 @@ import feature3Image from "../assets/features/main/promotional-swag.webp";
 import feature4Image from "../assets/features/main/design-digital.webp";
 
 // Content Data
-import content from "../data/index.json";
+import { getEntry } from "astro:content";
+const entry = await getEntry("pages", "index");
+const content = entry!.data;
 
 /* =======================================================
  * CONFIGURATION

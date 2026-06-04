@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import sliderContent from "../../data/logoSlider.json";
+import { getEntry } from "astro:content";
+const sliderEntry = await getEntry("logoSlider", "logoSlider");
+const sliderContent = sliderEntry!.data;
 
 /* =======================================================
  * CONFIGURATION

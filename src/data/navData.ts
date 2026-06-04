@@ -74,7 +74,7 @@ export const navigationItems: NavItem[] = [
     type: "link",
     data: {
       label: "Real Estate Signs",
-      footerLabel: "Realtor Signs & Services",
+      footerLabel: "Real Estate Signs",
       href: "/real-estate-signs",
     } as NavLink,
   },

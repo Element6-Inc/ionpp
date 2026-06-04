@@ -1,0 +1,37 @@
+{
+  "$ref": "#/definitions/social",
+  "definitions": {
+    "social": {
+      "type": "object",
+      "properties": {
+        "socialIcons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "href": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "href",
+              "icon"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "socialIcons"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

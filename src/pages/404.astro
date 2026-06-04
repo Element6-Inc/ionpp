@@ -2,7 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 import CentreText from "../components/content/CentreText.astro";
 
-import content from "../data/404.json";
+import { getEntry } from "astro:content";
+const entry = await getEntry("pages", "404");
+const content = entry!.data;
 ---
 
 <Layout title={content.site.title} description={content.site.description}>

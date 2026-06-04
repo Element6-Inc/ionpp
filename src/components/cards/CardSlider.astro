@@ -1,7 +1,9 @@
 ---
 // CardSlider.astro
 import Card from "./Card.astro";
-import content from "../../data/index.json";
+import { getEntry } from "astro:content";
+const entry = await getEntry("pages", "index");
+const content = entry!.data;
 
 // Import icon assets
 import cleaningIcon from "../../assets/icons/cleaning.png";

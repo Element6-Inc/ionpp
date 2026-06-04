@@ -1,7 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import Rating from "../../assets/svg/rating.svg";
-import content from "../../data/testimonials.json";
+import { getEntry } from "astro:content";
+const testimonialsEntry = await getEntry("testimonials", "testimonials");
+const content = testimonialsEntry!.data;
 
 const { sectionTitle, maxChars, items } = content.testimonials;
 

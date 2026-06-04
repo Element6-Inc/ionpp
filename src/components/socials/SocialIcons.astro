@@ -1,5 +1,7 @@
 ---
-import socialData from "../../data/social.json";
+import { getEntry } from "astro:content";
+const socialEntry = await getEntry("social", "social");
+const socialData = socialEntry!.data;
 
 // Social icon SVG generation with slate-500 and sky-500 hover colors
 const getSocialIcon = (platform: string) => {

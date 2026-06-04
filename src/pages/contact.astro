@@ -17,7 +17,9 @@ import feature1Image from "../assets/features/contact/midland-location.webp";
 /* =======================================================
  * DATA IMPORTS
  * ======================================================= */
-import content from "../data/contact.json";
+import { getEntry } from "astro:content";
+const entry = await getEntry("pages", "contact");
+const content = entry!.data;
 
 /* =======================================================
  * CONFIGURATION
