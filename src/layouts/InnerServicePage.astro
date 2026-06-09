@@ -11,6 +11,7 @@
 
 import Layout from "../layouts/Layout.astro";
 import SmallHero from "../components/hero/HeroSmall.astro";
+import { getImage } from "astro:assets";
 import CentreText from "../components/content/CentreText.astro";
 import ServiceFeatureNav from "../components/content/ServiceFeatureNav.astro";
 import ServiceSection from "../components/content/ServiceSection.astro";
@@ -27,10 +28,10 @@ const { content, imageMap } = Astro.props;
 const navItems = content.featureNav ?? [];
 const sections = content.sections ?? [];
 
-
+const preloadedHero = await getImage({ src: imageMap[content.hero.image], width: 1400, height: 900, format: "webp" });
 ---
 
-<Layout title={content.site.title} description={content.site.description}>
+<Layout title={content.site.title} description={content.site.description} preloadImageSrc={preloadedHero.src}>
 
   <!-- HERO -->
   <SmallHero

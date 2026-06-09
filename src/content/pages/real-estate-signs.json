@@ -10,7 +10,7 @@
     "image": "hero"
   },
   "centreText": {
-    "title": "Your one-stop real estate sign shop",
+    "title": "Your one-stop real estate sign hop",
     "description": "We do it all – sign printing, posts, installs and take-downs - handled by the trusted team that agents know and trust.",
     "icon": "icon"
   },
@@ -41,9 +41,7 @@
       "description": "<p>ION Print & Promo provides trusted real estate sign installation and take-down services for realtors, agents and brokerages. We help wiith:</p><ul><li>Real estate sign installation</li><li>Sign take-downs</li><li>Custom toppers & sign printing</li><li>Service routes across Barrie & Simcoe County</li></ul>",
       "imageAlt": "Sign post installation in front yard",
       "imagePosition": "right",
-      "image": "feature2",
-      "buttonLink": "#install-map",
-      "buttonText": "Service Area Map"
+      "image": "feature2"
     },
     {
       "id": "printing",
