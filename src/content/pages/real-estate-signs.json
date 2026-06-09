@@ -51,7 +51,7 @@
       "imagePosition": "left",
       "image": "feature3",
       "buttonLink": "/printing",
-      "buttonText": "Learn More"
+      "buttonText": "Explore Print"
     },
     {
       "id": "promo",
@@ -61,7 +61,7 @@
       "imagePosition": "right",
       "image": "feature4",
       "buttonLink": "/promo-products",
-      "buttonText": "Learn More"
+      "buttonText": "Explore Promo"
     }
   ],
   "installMap": {
