@@ -27,6 +27,14 @@ const { title, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYQR76L9N9"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FYQR76L9N9');
+    </script>
 
     <!-- Google Fonts — non-render-blocking load via preload + onload swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -74,6 +82,7 @@ const { title, description } = Astro.props;
 <script src="../scripts/testimonial.js"></script>
 <script src="../scripts/scroll.js"></script>
 <script src="../scripts/smoothScroll.js"></script>
+<script src="../scripts/heroFade.js"></script>
 
 <style is:global>
   html,
