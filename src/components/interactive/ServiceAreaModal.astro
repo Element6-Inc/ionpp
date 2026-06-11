@@ -256,9 +256,6 @@ const { token, installMap } = Astro.props;
       el.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
     });
     document.getElementById('sam-close')?.addEventListener('click', closeModal);
-    document.getElementById('sam-modal')?.addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) closeModal();
-    });
     document.addEventListener('astro:before-swap', () => { mapInstance = null; }, { once: true });
   }
 

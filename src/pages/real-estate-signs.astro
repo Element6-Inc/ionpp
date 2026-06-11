@@ -37,21 +37,25 @@ const installMap = content.installMap;
   />
 
   <!-- CENTRE TEXT -->
-  <section class="sm:pt-12 relative bg-slate-50">
-    <CentreText
-      title={content.centreText.title}
-      description={content.centreText.description}
-      imageSrc={imageMap[content.centreText.icon].src}
-      imageAlt="ION Group Logo"
-    />
-  </section>
+  {content.centreText && (
+    <section class="sm:pt-12 relative bg-slate-50">
+      <CentreText
+        title={content.centreText.title}
+        description={content.centreText.description}
+        imageSrc={imageMap[(content.centreText.icon ?? "icon") as keyof typeof imageMap].src}
+        imageAlt="ION Group Logo"
+      />
+    </section>
+  )}
 
   <!-- CHECKLIST -->
-  <section class="bg-slate-50">
-    <div class="pt-6">
-      <ChecklistGrid items={content.services.checklist} />
-    </div>
-  </section>
+  {content.services && (
+    <section class="bg-slate-50">
+      <div class="pt-6">
+        <ChecklistGrid items={content.services.checklist} />
+      </div>
+    </section>
+  )}
 
   <!-- FEATURES -->
   <section class="pt-6 sm:pb-20 sm:pt-32 sm:-mt-24 bg-white">
@@ -60,7 +64,7 @@ const installMap = content.installMap;
         <Feature
           title={feature.title}
           description={feature.description}
-          imageSrc={imageMap[feature.image]}
+          imageSrc={imageMap[(feature.image ?? "hero") as keyof typeof imageMap]}
           imageAlt={feature.imageAlt}
           imagePosition={feature.imagePosition}
           buttonLink={feature.buttonLink}
@@ -71,17 +75,29 @@ const installMap = content.installMap;
     ))}
   </section>
 
-  <!-- SERVICE AREA MODAL TRIGGER -->
-  {mapToken && installMap && <ServiceAreaModal token={mapToken} installMap={installMap} />}
+  <!-- INSTALL PRICING TRIGGER (hidden until map data is finalized) -->
+  <!-- {false && mapToken && installMap && content.installMapCta && (
+    <section class="bg-slate-50 py-20 sm:py-28 px-6 text-center">
+      <p class="text-sm font-semibold uppercase tracking-widest mb-2" style="color: var(--color-primary);">{content.installMapCta.eyebrow}</p>
+      <h2 class="mb-3">{content.installMapCta.title}</h2>
+      <p class="mb-10 max-w-md mx-auto">{content.installMapCta.description}</p>
+      <a href="#install-map" class="btn">Check Install Pricing</a>
+    </section>
+  )} -->
+
+  <!-- SERVICE AREA MODAL (hidden until map data is finalized) -->
+  <!-- {false && mapToken && installMap && <ServiceAreaModal token={mapToken} installMap={installMap} />} -->
 
   <!-- ACCORDION -->
   <AccordionSection items={accordions} heading={content.accordionHeading} />
 
   <!-- CTA -->
-  <CTA
-    heading={content.cta.heading}
-    button={content.cta.button}
-    link={content.cta.link}
-  />
+  {content.cta && (
+    <CTA
+      heading={content.cta.heading}
+      button={content.cta.button}
+      link={content.cta.link}
+    />
+  )}
 
 </Layout>

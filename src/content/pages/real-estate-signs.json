@@ -64,6 +64,11 @@
       "buttonText": "Explore Promo"
     }
   ],
+  "installMapCta": {
+    "eyebrow": "Installation Pricing",
+    "title": "Are you in our service area?",
+    "description": "Enter your address to see if an install surcharge applies to your location."
+  },
   "installMap": {
     "title": "Install Pricing Map",
     "subtitle": "Surcharges are based on straight-line distance from Barrie.",

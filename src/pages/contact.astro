@@ -40,18 +40,20 @@ const imageMap = {
   />
 
   <!-- CONTACT SECTION -->
-  <ContactSection
-    header={content.contact.header}
-    description={content.contact.description}
-    phone={content.contact.phone}
-    email={content.contact.email}
-    address={content.contact.address}
-  />
+  {content.contact && (
+    <ContactSection
+      header={content.contact.header}
+      description={content.contact.description}
+      phone={content.contact.phone}
+      email={content.contact.email}
+      address={content.contact.address}
+    />
+  )}
 
   <!-- FEATURE SECTIONS -->
-  <section class="pt-6 sm:pb-20 sm:pt-24 sm:-mt-24 bg-white">
-    {
-      content.features.map((feature) => (
+  {content.features && (
+    <section class="pt-6 sm:pb-20 sm:pt-24 sm:-mt-24 bg-white">
+      {content.features.map((feature) => (
         <div id={feature.id}>
           <Feature
             title={feature.title}
@@ -61,13 +63,16 @@ const imageMap = {
             imagePosition={feature.imagePosition as "left" | "right"}
           />
         </div>
-      ))
-    }
-  </section>
-      <!-- CTA SECTION -->
+      ))}
+    </section>
+  )}
+
+  <!-- CTA SECTION -->
+  {content.cta && (
     <CTA
       heading={content.cta.heading}
       button={content.cta.button}
       link={content.cta.link}
     />
+  )}
 </Layout>

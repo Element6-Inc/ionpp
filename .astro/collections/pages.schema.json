@@ -259,6 +259,26 @@
           ],
           "additionalProperties": false
         },
+        "installMapCta": {
+          "type": "object",
+          "properties": {
+            "eyebrow": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "eyebrow",
+            "title",
+            "description"
+          ],
+          "additionalProperties": false
+        },
         "installMap": {
           "type": "object",
           "properties": {

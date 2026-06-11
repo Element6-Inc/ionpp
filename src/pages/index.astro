@@ -60,24 +60,26 @@ const imageMap = {
   </section>
 
   <!-- Centre Text with Logo -->
-  <section class="bg-slate-50">
-    <CentreText
-      title={content.centreText.title}
-      description={content.centreText.description}
-      imageSrc={icon.src}
-      imageAlt="ION Group Logo"
-      imageWidth={icon.width}
-      imageHeight={icon.height}
-    />
-  </section>
+  {content.centreText && (
+    <section class="bg-slate-50">
+      <CentreText
+        title={content.centreText.title}
+        description={content.centreText.description}
+        imageSrc={icon.src}
+        imageAlt="ION Group Logo"
+        imageWidth={icon.width}
+        imageHeight={icon.height}
+      />
+    </section>
+  )}
 
   <!-- Services Card Slider -->
     <CardSlider />
 
   <!-- Feature Sections -->
-  <section class="py-6 sm:pt-32 sm:-mt-72 md:-mt-24 bg-white">
-    {
-      content.features.map((feature) => (
+  {content.features && (
+    <section class="py-6 sm:pt-32 sm:-mt-72 md:-mt-24 bg-white">
+      {content.features.map((feature) => (
         <div id={feature.id}>
           <Feature
             title={feature.title}
@@ -89,9 +91,9 @@ const imageMap = {
             buttonText={feature.buttonText}
           />
         </div>
-      ))
-    }
-  </section>
+      ))}
+    </section>
+  )}
 
   <!-- Customer Testimonials -->
   <section>
