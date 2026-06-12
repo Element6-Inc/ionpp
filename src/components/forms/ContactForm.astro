@@ -12,6 +12,7 @@ import Modal from "./Modal.astro";
   method="POST"
   data-netlify="true"
   netlify-honeypot="bot-field"
+  data-netlify-recaptcha="true"
   class="form-group"
 >
   <!-- Netlify form detection -->
@@ -84,6 +85,9 @@ import Modal from "./Modal.astro";
     <textarea id="message" name="message" rows="3" class="form-textarea"
     ></textarea>
   </div>
+
+  <!-- reCAPTCHA widget -->
+  <div data-netlify-recaptcha="true"></div>
 
   <!-- Submit Button -->
   <button type="submit" class="btn form-submit"> Send Message </button>
