@@ -34,6 +34,19 @@ export const navigationItems: NavItem[] = [
       href: "/printing",
     } as NavLink,
   },
+  // TODO: restore dropdown when print sub-pages are ready
+  // {
+  //   type: "dropdown",
+  //   data: {
+  //     label: "Printing",
+  //     footerLabel: "Printing Services",
+  //     href: "/printing",
+  //     children: [
+  //       { label: "Booklets & Manuals", href: "/printing/booklets-manuals" },
+  //       { label: "Rack Cards & Postcards", href: "/printing/rack-cards-postcards" },
+  //     ],
+  //   } as NavDropdown,
+  // },
   {
     type: "link",
     data: {

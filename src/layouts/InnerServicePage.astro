@@ -8,7 +8,7 @@
 import Layout from "../layouts/Layout.astro";
 import SmallHero from "../components/hero/HeroSmall.astro";
 import CentreText from "../components/content/CentreText.astro";
-import Feature from "../components/content/Feature.astro";
+import FeatureInner from "../components/content/FeatureInner.astro";
 import CTA from "../components/content/CTA.astro";
 
 interface Props {
@@ -46,7 +46,7 @@ for (const [path, mod] of Object.entries(iconModules)) {
 
   <!-- CENTRE TEXT -->
   {content.centreText && (
-    <section class={`sm:pt-12 relative ${checklistBg}`}>
+    <section class={`pt-12 relative ${checklistBg}`}>
       <CentreText
         title={content.centreText.title}
         description={content.centreText.description}
@@ -73,10 +73,16 @@ for (const [path, mod] of Object.entries(iconModules)) {
           </svg>
 
           <div class="tab-nav-pills">
+            <!-- Prev arrow -->
+            <button class="tab-arrow" id="tab-prev" type="button" aria-label="Previous tab">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m14 16-4-4 4-4"/></svg>
+            </button>
+
             {featureNav.map((tab: any, i: number) => (
               <button
                 class={`tab-pill${i === 0 ? " active" : ""}`}
                 data-target={tab.anchor}
+                data-tab-index={i}
                 type="button"
               >
                 {iconMap[tab.icon] && (
@@ -91,6 +97,11 @@ for (const [path, mod] of Object.entries(iconModules)) {
                 {tab.label}
               </button>
             ))}
+
+            <!-- Next arrow -->
+            <button class="tab-arrow" id="tab-next" type="button" aria-label="Next tab">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg>
+            </button>
           </div>
         </div>
       </div>
@@ -101,7 +112,7 @@ for (const [path, mod] of Object.entries(iconModules)) {
   <section class="pt-6 sm:py-32 sm:-mt-24 bg-white">
     {features.map((feature: any, i: number) => (
       <div data-panel={feature.id} hidden={featureNav.length > 0 && i !== 0}>
-        <Feature
+        <FeatureInner
           title={feature.title}
           description={feature.description}
           imageSrc={imageMap[feature.image]}
@@ -129,22 +140,40 @@ for (const [path, mod] of Object.entries(iconModules)) {
 <script>
   function initTabs() {
     const tabs = document.querySelectorAll<HTMLButtonElement>(".tab-pill");
+    const panels = document.querySelectorAll<HTMLElement>("[data-panel]");
     if (!tabs.length) return;
 
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        tabs.forEach((t) => t.classList.remove("active"));
-        tab.classList.add("active");
-        const targetId = tab.dataset.target;
-        document.querySelectorAll<HTMLElement>("[data-panel]").forEach((p) => {
-          p.hidden = true;
-        });
-        const panel = document.querySelector<HTMLElement>(
-          `[data-panel="${targetId}"]`
-        );
-        if (panel) panel.hidden = false;
-      });
+    const isDesktop = () => window.innerWidth >= 1024;
+    let current = 0;
+
+    function applyMobile() {
+      panels.forEach((p) => (p.hidden = false));
+    }
+
+    function activate(index: number) {
+      if (!isDesktop()) return;
+      current = (index + tabs.length) % tabs.length;
+      tabs.forEach((t, i) => t.classList.toggle("active", i === current));
+      panels.forEach((p, i) => (p.hidden = i !== current));
+    }
+
+    function onResize() {
+      if (isDesktop()) {
+        activate(current);
+      } else {
+        applyMobile();
+      }
+    }
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => activate(i));
     });
+
+    document.getElementById("tab-prev")?.addEventListener("click", () => activate(current - 1));
+    document.getElementById("tab-next")?.addEventListener("click", () => activate(current + 1));
+
+    window.addEventListener("resize", onResize);
+    onResize();
   }
 
   document.addEventListener("astro:page-load", initTabs);

@@ -1256,7 +1256,7 @@ li {
 /* --- 5.12 Tab Navigation --- */
 
 .tab-nav-section {
-  @apply hidden lg:block container mx-auto px-4 max-w-6xl;
+  @apply hidden lg:block container mx-auto px-4 max-w-5xl;
 }
 
 .tab-nav-card {
@@ -1268,17 +1268,21 @@ li {
 }
 
 .tab-nav-pills {
-  @apply relative z-10 flex justify-center flex-wrap gap-3;
+  @apply relative z-10 flex items-center;
+  border-bottom: 1px solid var(--slate-200);
 }
 
 .tab-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.625rem 1.75rem;
-  border-radius: 9999px;
-  border: 2px solid transparent;
-  color: var(--slate-500);
+  flex: 1;
+  justify-content: center;
+  padding: 0.875rem 1.25rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  color: var(--slate-400);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: var(--transition-fast);
@@ -1289,27 +1293,68 @@ li {
 }
 
 .tab-pill:hover {
-  color: var(--color-primary);
-  background: var(--sky-50);
-  border-color: var(--sky-200);
+  color: var(--slate-700);
 }
 
 .tab-pill.active {
-  background: var(--sky-50);
   color: var(--color-primary);
   font-weight: var(--font-weight-semibold);
-  border-color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
 }
 
 .tab-icon {
   width: 28px;
   height: 28px;
-  opacity: 0.6;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
 }
 
 .tab-pill.active .tab-icon,
 .tab-pill:hover .tab-icon {
   opacity: 1;
+}
+
+.tab-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--slate-400);
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.tab-arrow:hover {
+  color: var(--color-primary);
+}
+
+/* --- FeatureInner component --- */
+
+.inner-feature-description {
+  @apply text-sm;
+}
+
+@media (min-width: 1024px) {
+  .inner-feature-description {
+    @apply px-2;
+  }
+}
+
+.feat-inner-title {
+  @apply text-balance;
+}
+
+.feat-inner-img {
+  aspect-ratio: 1 / 1;
+}
+
+@media (min-width: 1024px) {
+  .feat-inner-img {
+    aspect-ratio: 2 / 3;
+  }
 }
 
 

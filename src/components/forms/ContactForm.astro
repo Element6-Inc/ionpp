@@ -102,10 +102,41 @@ import Modal from "./Modal.astro";
 </Modal>
 
 <script>
-  // Handle form submission
-  const form = document.getElementById("contact-form") as HTMLFormElement;
+  // Cache the reCAPTCHA site key across client-side navigations so we can
+  // re-render the widget after Astro's ClientRouter swaps the page content.
+  let cachedSiteKey: string | null = null;
 
-  if (form) {
+  function reinitRecaptcha() {
+    const container = document.querySelector<HTMLElement>(
+      '[data-netlify-recaptcha="true"]:not(form)'
+    );
+    if (!container) return;
+
+    const grecaptcha = (window as any).grecaptcha;
+    if (!grecaptcha) return;
+
+    // Grab the site key the first time Netlify renders the widget
+    if (!cachedSiteKey) {
+      const siteKeyEl = container.querySelector('[data-sitekey]');
+      cachedSiteKey = siteKeyEl?.getAttribute('data-sitekey') ?? null;
+    }
+
+    const isRendered = !!container.querySelector('iframe');
+
+    if (!isRendered && cachedSiteKey) {
+      // Widget was wiped by the page swap — re-render it
+      grecaptcha.render(container, { sitekey: cachedSiteKey });
+    } else if (isRendered) {
+      // Widget survived the swap (e.g. first load) — just reset the tick
+      grecaptcha.reset();
+    }
+  }
+
+  function initPage() {
+    // Re-attach the submit handler to the (potentially new) form element
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    if (!form) return;
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -129,5 +160,10 @@ import Modal from "./Modal.astro";
         alert("There was an error submitting the form. Please try again.");
       }
     });
+
+    reinitRecaptcha();
   }
+
+  // Runs after every client-side navigation (and after the initial load)
+  document.addEventListener("astro:page-load", initPage);
 </script>

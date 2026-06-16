@@ -2,11 +2,11 @@
 import InnerServicePage from "../../layouts/InnerServicePage.astro";
 import { getEntry } from "astro:content";
 
-const entry = await getEntry("pages", "printing/booklets");
+const entry = await getEntry("pages", "printing/rack-cards-postcards");
 const content = entry!.data;
 
 import hero     from "../../assets/heros/printing-main.webp";
-import icon     from "../../assets/icons/printing/books.png";
+import icon     from "../../assets/icons/printing/rackcard.png";
 import feature1 from "../../assets/features/printing/local-printing.webp";
 import feature2 from "../../assets/features/printing/professional-printing.webp";
 ---
