@@ -1276,13 +1276,7 @@ li {
 
 .inner-svc-img__img {
   @apply w-full object-cover block;
-  aspect-ratio: 4 / 3;
-}
-
-@media (min-width: 640px) {
-  .inner-svc-img__img {
-    aspect-ratio: 16 / 7;
-  }
+  aspect-ratio: 14 / 9;
 }
 
 /* Blog article */
