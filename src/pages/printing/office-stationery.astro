@@ -2,14 +2,14 @@
 import InnerServicePage from "../../layouts/InnerServicePage.astro";
 import { getEntry } from "astro:content";
 
-const entry = await getEntry("pages", "printing/rack-cards-postcards");
+const entry = await getEntry("pages", "printing/office-stationery");
 const content = entry!.data;
 
 import hero          from "../../assets/heros/printing-main.webp";
-import icon          from "../../assets/icons/printing/rackcard.png";
+import icon          from "../../assets/icons/printing/books.png";
 import feature1      from "../../assets/features/printing/local-printing.webp";
 import feature2      from "../../assets/features/printing/professional-printing.webp";
-import printerIcon   from "../../assets/icons/animated/postcard.gif";
+import printerIcon   from "../../assets/icons/animated/notebook.gif";
 ---
 
 <InnerServicePage content={content} imageMap={{ hero, icon, feature1, feature2 }} animatedIcon={printerIcon} />

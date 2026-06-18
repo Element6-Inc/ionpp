@@ -1,17 +1,18 @@
 {
   "site": {
     "title": "Rack Cards & Postcards | ION Print & Promo",
-    "description": "Rack cards, postcards, and custom card printing in Simcoe County, GTA & Muskoka. Ideal for handouts, mailers, and promotions! "
+    "description": "Rack cards, postcards, and custom card printing in Simcoe County, GTA & Muskoka. Ideal for handouts, mailers, and promotions!"
   },
   "hero": {
-    "title": "Rack & Postcards",
+    "title": "Rack Cards & Postcards",
     "imageAlt": "Professional rack card and postcard printing",
     "bgColor": "#1164B4",
     "image": "hero"
   },
+  "animatedIcon": "printer.gif",
   "centreText": {
-    "title": "Smart, compact marketing",
-    "description": "Printed on sturdy card stock, postcards and rack cards are designed to deliver your message efficiently and clearly! They pack a ton of helpful information without taking up a lot of space … or your budget!",
+    "title": "Designed to deliver your message efficiently",
+    "description": "Printed on sturdy card stock, postcards and rack cards are designed to deliver your message efficiently and clearly! ",
     "icon": "icon"
   },
   "featureNav": [
@@ -34,24 +35,24 @@
   "features": [
     {
       "id": "rackcard",
-      "title": "Rack cards for high-impact info.",
-      "description": "<p>Rack cards are two-sided, easy-to-read pieces often displayed in stands, counters, or reception areas. They're ideal for sharing key information in a clean, organized format.</p><p>Choose from gloss or matte finishes — perfect for:</p><ul><li>Tourism & local attractions</li><li>Service overviews</li><li>Menus or price lists</li><li>Community programs or trade shows</li><li>In-store or front-desk displays</li></ul>",
+      "title": "Rack Cards for High-Impact Information",
+      "description": "<p>Rack cards are two-sided, easy-to-read pieces that work well in stands, on counters, in reception areas, or anywhere customers may be browsing for information. They are ideal for presenting key details in a clean, organized format and can be printed with gloss or matte finishes depending on the look and feel you want.</p><p>Rack cards are a great choice for businesses, organizations, and events that need to share information quickly and professionally, including:</p><ul><li>Tourism and local attractions</li><li>Service overviews</li><li>Menus or price lists</li><li>Community programs or trade shows</li><li>In-store or front-desk displays</li></ul>",
       "imagePosition": "left",
       "image": "feature1",
       "imageAlt": "Professional rack card printing"
     },
     {
       "id": "postcard",
-      "title": "Postcards for mail, handouts & promotions.",
-      "description": "<p>Postcards are one of the most efficient ways to promote, inform, or follow up with customers. Whether mailed directly or handed out, they deliver your message loud and clear — commonly used for:</p><ul><li>Direct mail campaigns</li><li>Promotions & special offers</li><li>Event announcements</li><li>Thank-you or follow-up cards</li></ul><p>Simple, cost-effective, and easy to distribute, they continue to be a go-to, effective marketing tool!</p>",
+      "title": "Postcards for Mail, Handouts & Promotions",
+      "description": "<p>Postcards are one of the most efficient ways to promote, inform, or follow up with customers. Whether mailed directly, handed out at an event, included with a purchase, or used as a leave-behind, postcards deliver your message in a simple and memorable format.</p><p>They are commonly used for a wide range of marketing and communication needs, including:</p><ul><li>Direct mail campaigns</li><li>Promotions and special offers</li><li>Event announcements</li><li>Thank-you or follow-up cards</li></ul><p>Simple, cost-effective, and easy to distribute, postcards continue to be a reliable marketing tool for businesses and organizations of all sizes.</p>",
       "imagePosition": "left",
       "image": "feature2",
       "imageAlt": "Professional postcard printing"
     },
     {
       "id": "cardstock",
-      "title": "Additional card stock prints.",
-      "description": "<p>For any durable, print items that need to look polished and hold up over time, talk to us! Each piece is designed to be practical, professional, and aligned with your brand.</p><ul><li>Appointment cards</li><li>Loyalty or punch cards</li><li>Save-the-date cards</li><li>Announcement cards</li><li>Event printing & more</li></ul>",
+      "title": "Additional Card Stock Prints",
+      "description": "<p>For durable printed pieces that need to look polished and hold up over time, card stock is a practical choice. These materials are designed to be professional, easy to handle, and aligned with your brand.</p><p>We can design and print a variety of custom card stock items for everyday business, customer engagement, and event use, including:</p><ul><li>Appointment cards</li><li>Loyalty or punch cards</li><li>Save-the-date cards</li><li>Announcement cards</li><li>Event printing and more</li></ul>",
       "imagePosition": "left",
       "image": "feature1",
       "imageAlt": "Custom card stock printing"

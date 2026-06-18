@@ -1,37 +1,22 @@
 ---
-/* =======================================================
- * InnerServicePage.astro
- * Layout for inner service sub-pages (e.g. Booklets & Manuals).
- * Mirrors ServicePage.astro — tabs replace the ChecklistGrid.
- * ======================================================= */
-
 import Layout from "../layouts/Layout.astro";
 import SmallHero from "../components/hero/HeroSmall.astro";
 import CentreText from "../components/content/CentreText.astro";
-import FeatureInner from "../components/content/FeatureInner.astro";
 import CTA from "../components/content/CTA.astro";
+import { Image } from "astro:assets";
 
 interface Props {
   content: any;
   imageMap: Record<string, ImageMetadata>;
-  checklistBg?: string;
+  animatedIcon?: ImageMetadata;
 }
 
-const { content, imageMap, checklistBg = "bg-slate-50" } = Astro.props;
+const { content, imageMap, animatedIcon } = Astro.props;
 
-const featureNav = content.featureNav ?? [];
 const features = content.features ?? [];
 
-// Load small tab icons
-const iconModules = import.meta.glob<{ default: ImageMetadata }>(
-  "../assets/icons/small/*.png",
-  { eager: true }
-);
-const iconMap: Record<string, ImageMetadata> = {};
-for (const [path, mod] of Object.entries(iconModules)) {
-  const filename = path.split("/").pop()!;
-  iconMap[filename] = mod.default;
-}
+// First feature image — used in the hero position
+const heroFeature = features.find((f: any) => imageMap[f.image]);
 ---
 
 <Layout title={content.site.title} description={content.site.description}>
@@ -45,85 +30,66 @@ for (const [path, mod] of Object.entries(iconModules)) {
   />
 
   <!-- CENTRE TEXT -->
-  {content.centreText && (
-    <section class={`pt-12 relative ${checklistBg}`}>
+  <section class="sm:pt-12 relative bg-slate-50">
+    {content.centreText && (
       <CentreText
         title={content.centreText.title}
         description={content.centreText.description}
-        imageSrc={imageMap[content.centreText.icon].src}
-        imageAlt="ION Group Logo"
+        imageSrc={animatedIcon?.src}
+        imageClass="h-24 w-auto"
       />
-    </section>
-  )}
+    )}
+  </section>
 
-  <!-- TAB NAV (replaces ChecklistGrid) -->
-  {featureNav.length > 0 && (
-    <section class={checklistBg}>
-      <div class="tab-nav-section">
-        <div class="tab-nav-card">
-          <!-- Decorative circle (matches ChecklistGrid) -->
-          <svg
-            class="tab-nav-decoration"
-            viewBox="0 0 100 100"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="100" cy="100" r="80" fill="currentColor" />
-            <path d="M100 60 Q80 80 60 100 L100 100 Z" fill="white" fill-opacity="0.3" />
-          </svg>
-
-          <div class="tab-nav-pills">
-            <!-- Prev arrow -->
-            <button class="tab-arrow" id="tab-prev" type="button" aria-label="Previous tab">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m14 16-4-4 4-4"/></svg>
-            </button>
-
-            {featureNav.map((tab: any, i: number) => (
-              <button
-                class={`tab-pill${i === 0 ? " active" : ""}`}
-                data-target={tab.anchor}
-                data-tab-index={i}
-                type="button"
-              >
-                {iconMap[tab.icon] && (
-                  <img
-                    src={iconMap[tab.icon].src}
-                    alt=""
-                    class="tab-icon"
-                    width="28"
-                    height="28"
-                  />
-                )}
-                {tab.label}
-              </button>
-            ))}
-
-            <!-- Next arrow -->
-            <button class="tab-arrow" id="tab-next" type="button" aria-label="Next tab">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 4 4-4 4"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- FEATURE SECTIONS -->
-  <section class="pt-6 sm:py-32 sm:-mt-24 bg-white">
-    {features.map((feature: any, i: number) => (
-      <div data-panel={feature.id} hidden={featureNav.length > 0 && i !== 0}>
-        <FeatureInner
-          title={feature.title}
-          description={feature.description}
-          imageSrc={imageMap[feature.image]}
-          imageAlt={feature.imageAlt}
-          imagePosition={feature.imagePosition}
-          buttonLink={feature.buttonLink}
-          buttonText={feature.buttonText}
-          buttonTarget={feature.buttonTarget}
+  <!-- FEATURE IMAGE — replaces tab nav, same overlap position -->
+  {heroFeature && imageMap[heroFeature.image] && (
+    <section class="inner-svc-img">
+      <div class="inner-svc-img__wrap">
+        <Image
+          src={imageMap[heroFeature.image]}
+          alt={heroFeature.imageAlt}
+          width={1100}
+          height={440}
+          sizes="(max-width: 768px) 100vw, 1100px"
+          class="inner-svc-img__img"
+          loading="eager"
+          decoding="async"
         />
       </div>
-    ))}
+    </section>
+  )}
+
+  <!-- BLOG ARTICLE — all features flow as one continuous piece -->
+  <section class="inner-svc-content">
+    <article class="panel-blog">
+      <div class="panel-blog__inner">
+
+        {features.map((feature: any, i: number) => (
+          <section
+            id={feature.id}
+            class={`panel-blog__section${i > 0 ? " panel-blog__section--divided" : ""}`}
+            data-blog-section={feature.id}
+          >
+            <h3 class="panel-blog__section-title">{feature.title}</h3>
+            <div class="panel-blog__body" set:html={feature.description} />
+
+            {feature.buttonLink && feature.buttonText && (
+              <div class="mt-8">
+                <a
+                  href={feature.buttonLink}
+                  target={feature.buttonTarget || "_self"}
+                  rel={feature.buttonTarget === "_blank" ? "noopener noreferrer" : undefined}
+                  class="btn btn-secondary"
+                >
+                  {feature.buttonText}
+                </a>
+              </div>
+            )}
+          </section>
+        ))}
+
+      </div>
+    </article>
   </section>
 
   <!-- CTA -->
@@ -136,45 +102,3 @@ for (const [path, mod] of Object.entries(iconModules)) {
   )}
 
 </Layout>
-
-<script>
-  function initTabs() {
-    const tabs = document.querySelectorAll<HTMLButtonElement>(".tab-pill");
-    const panels = document.querySelectorAll<HTMLElement>("[data-panel]");
-    if (!tabs.length) return;
-
-    const isDesktop = () => window.innerWidth >= 1024;
-    let current = 0;
-
-    function applyMobile() {
-      panels.forEach((p) => (p.hidden = false));
-    }
-
-    function activate(index: number) {
-      if (!isDesktop()) return;
-      current = (index + tabs.length) % tabs.length;
-      tabs.forEach((t, i) => t.classList.toggle("active", i === current));
-      panels.forEach((p, i) => (p.hidden = i !== current));
-    }
-
-    function onResize() {
-      if (isDesktop()) {
-        activate(current);
-      } else {
-        applyMobile();
-      }
-    }
-
-    tabs.forEach((tab, i) => {
-      tab.addEventListener("click", () => activate(i));
-    });
-
-    document.getElementById("tab-prev")?.addEventListener("click", () => activate(current - 1));
-    document.getElementById("tab-next")?.addEventListener("click", () => activate(current + 1));
-
-    window.addEventListener("resize", onResize);
-    onResize();
-  }
-
-  document.addEventListener("astro:page-load", initTabs);
-</script>

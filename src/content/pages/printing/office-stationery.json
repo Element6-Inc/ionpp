@@ -1,0 +1,66 @@
+{
+  "site": {
+    "title": "Office Stationery & Essentials | ION Print & Promo",
+    "description": "Branded letterhead, envelopes, notepads, invoices, and everyday office print essentials for businesses in Simcoe County, Muskoka & GTA."
+  },
+  "hero": {
+    "title": "Office Stationery",
+    "imageAlt": "Branded office stationery and print essentials",
+    "bgColor": "#1164B4",
+    "image": "hero"
+  },
+  "animatedIcon": "printer.gif",
+  "centreText": {
+    "title": "Branded office essentials, made easy",
+    "description": "From letterhead and envelopes to invoices, tags, and notepads, we print the everyday office essentials that keep your brand looking polished, consistent, and professional.",
+    "icon": "icon"
+  },
+  "featureNav": [
+    {
+      "icon": "information.png",
+      "label": "Letterhead",
+      "anchor": "letterhead"
+    },
+    {
+      "icon": "cardstock.png",
+      "label": "Envelopes",
+      "anchor": "envelopes"
+    },
+    {
+      "icon": "booklet.png",
+      "label": "Office Items",
+      "anchor": "office-items"
+    }
+  ],
+  "features": [
+    {
+      "id": "letterhead",
+      "title": "Letterheads that look professional",
+      "description": "<p>Your letterhead is SO much more than just a logo at the top of a page! We print high-quality letterhead that’s perfect for contracts, quotes, internal documents, and client communications. </p><p>We print high-quality letterhead that can be customized to suit your brand, with options such as:</p><ul><li>Crisp, clean printing</li><li>Premium paper options</li><li>Consistent branding</li><li>Matching sets with envelopes</li></ul><p>From formal to modern, we help you choose the right look.</p>",
+      "imagePosition": "left",
+      "image": "feature1",
+      "imageAlt": "Professional branded letterhead printing"
+    },
+    {
+      "id": "envelopes",
+      "title": "Envelopes that get opened",
+      "description": "<p>Custom printed envelopes add credibility and trust as well as help your mail stand out – and get opened! </p><p>We can print a range of envelope styles to match your business needs, including:</p><ul><li>Standard and window envelopes</li><li>Return-addressed envelopes</li><li>Full-colour or simple one-colour designs</li><li>Matching sets with your letterhead</li></ul><p>Professional mail still matters, and we make sure yours looks the part.</p>",
+      "imagePosition": "left",
+      "image": "feature2",
+      "imageAlt": "Custom printed business envelopes"
+    },
+    {
+      "id": "office-items",
+      "title": "Practical office items",
+      "description": "<p>Office stationery covers more than just letterhead and envelopes. We also print a wide selection of handy paper supplies that help your team stay organized while keeping your branding consistent across everyday documents.</p><p>These practical printed pieces can include:</p><ul><li>Branded notepads or post-it style pads</li><li>Work orders, invoices, and chits</li><li>Packing slips and tags</li><li>Corporate memos and logs</li><li>Time sheets and requisition slips</li><li>Proposal covers and more</li></ul><p>These pieces may seem small, but they quietly reinforce your brand every day.</p>",
+      "imagePosition": "left",
+      "image": "feature1",
+      "imageAlt": "Custom branded office stationery and supplies"
+    }
+  ],
+  "cta": {
+    "heading": "Looking for internal signage too? Visit our business & storefront page.",
+    "button": "Learn More",
+    "link": "/design-digital"
+  }
+}

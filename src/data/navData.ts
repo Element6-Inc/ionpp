@@ -42,8 +42,10 @@ export const navigationItems: NavItem[] = [
   //     footerLabel: "Printing Services",
   //     href: "/printing",
   //     children: [
+  //       { label: "Printing Services", href: "/printing" },
   //       { label: "Booklets & Manuals", href: "/printing/booklets-manuals" },
   //       { label: "Rack Cards & Postcards", href: "/printing/rack-cards-postcards" },
+  //       { label: "Office Stationery", href: "/printing/office-stationery" },
   //     ],
   //   } as NavDropdown,
   // },

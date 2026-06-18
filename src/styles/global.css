@@ -187,7 +187,7 @@ h1 {
 }
 
 h2 {
-  @apply text-3xl sm:text-5xl/snug text-balance;
+  @apply text-3xl sm:text-5xl/tight text-balance;
   color: var(--color-primary-dark);
   font-weight: var(--font-weight-bold);
 }
@@ -1331,29 +1331,79 @@ li {
   color: var(--color-primary);
 }
 
-/* --- FeatureInner component --- */
+/* --- 5.13 Inner Service Page — feature tab nav --- */
 
-.inner-feature-description {
-  @apply text-sm;
+.svc-tab-link {
+  @apply inline-flex items-center gap-2 py-[0.4rem] pr-4 pl-2 rounded-full font-medium text-base leading-[1.625] no-underline cursor-pointer;
+  color: var(--slate-500);
+  transition-property: color, background;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 }
 
-@media (min-width: 1024px) {
-  .inner-feature-description {
-    @apply px-2;
-  }
+.svc-tab-link:hover {
+  color: var(--slate-700);
+  background: var(--slate-50);
 }
 
-.feat-inner-title {
-  @apply text-balance;
+.svc-tab-link:focus-visible {
+  outline: none;
 }
 
-.feat-inner-img {
-  aspect-ratio: 1 / 1;
+.svc-tab-link.active {
+  box-shadow: 0 0 0 2px var(--sky-700);
 }
 
-@media (min-width: 1024px) {
-  .feat-inner-img {
-    aspect-ratio: 2 / 3;
+.svc-tab-link.active {
+  @apply font-semibold;
+  color: var(--color-primary);
+  background: var(--sky-50);
+}
+
+.svc-tab-icon-wrap {
+  @apply flex items-center justify-center shrink-0 rounded-full;
+  width: 38px;
+  height: 38px;
+  background: var(--sky-50);
+}
+
+.svc-tab-link.active .svc-tab-icon-wrap {
+  @apply bg-white;
+}
+
+.svc-tab-icon {
+  @apply opacity-[.55];
+  width: 22px;
+  height: 22px;
+  transition-property: opacity, width, height;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.svc-tab-link:hover .svc-tab-icon,
+.svc-tab-link.active .svc-tab-icon {
+  @apply opacity-100;
+}
+
+.svc-tab-link.active .svc-tab-icon {
+  width: 26px;
+  height: 26px;
+}
+
+/* ── Panel enter animation ── */
+@keyframes panelEnter {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.panel-entering {
+  animation: panelEnter 0.35s ease forwards;
+}
+
+/* ── Mobile: show all panels ── */
+@media (max-width: 1023px) {
+  [data-feature-panel].hidden {
+    display: block !important;
   }
 }
 
@@ -1461,5 +1511,80 @@ li {
 .service-feature__title-link:hover {
   color: var(--color-primary-dark);
   @apply underline underline-offset-2 decoration-2;
+}
+
+
+/* ============================================================
+ * 8. INNER SERVICE PAGE — blog article layout
+ * ============================================================ */
+
+/* Outer white section — mirrors ServicePage feature pull-up */
+.inner-svc-content {
+  @apply pt-6 bg-white;
+  @apply sm:py-24 sm:-mt-20;
+}
+
+/* Feature image — occupies the same overlap position as the old tab nav card */
+.inner-svc-img {
+  @apply bg-slate-50 pt-4 px-4;
+}
+
+.inner-svc-img__wrap {
+  @apply mx-auto max-w-4xl rounded-2xl overflow-hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+}
+
+.inner-svc-img__img {
+  @apply w-full object-cover block;
+  aspect-ratio: 4 / 3;
+}
+
+@media (min-width: 640px) {
+  .inner-svc-img__img {
+    aspect-ratio: 16 / 7;
+  }
+}
+
+/* Blog article */
+.panel-blog {
+  @apply overflow-hidden py-10;
+}
+
+.panel-blog__inner {
+  @apply mx-auto px-6 lg:px-8;
+  max-width: 56rem; /* ~896px — slightly wider prose column */
+}
+
+/* Feature sections within the article */
+.panel-blog__section {
+  scroll-margin-top: 6rem;
+}
+
+.panel-blog__section--divided {
+  @apply mt-14 pt-14;
+  border-top: 1px solid var(--slate-100);
+}
+
+.panel-blog__section-title {
+  @apply mb-5 mt-0;
+}
+
+/* Prose body */
+.panel-blog__body {
+  @apply text-base leading-7;
+  color: var(--color-text-base);
+}
+
+.panel-blog__body > p {
+  @apply mb-5;
+}
+
+/* Lists — bullets come from global ul li::before; tune spacing only */
+.panel-blog__body ul {
+  @apply mb-6;
+}
+
+.panel-blog__body li {
+  @apply my-1.5;
 }
 
