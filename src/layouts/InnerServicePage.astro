@@ -19,7 +19,7 @@ const features = content.features ?? [];
 const heroFeature = features.find((f: any) => imageMap[f.image]);
 ---
 
-<Layout title={content.site.title} description={content.site.description}>
+<Layout title={content.site.title} description={content.site.description} noindex={true}>
 
   <!-- HERO -->
   <SmallHero
