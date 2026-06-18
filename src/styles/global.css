@@ -1279,6 +1279,12 @@ li {
   aspect-ratio: 14 / 9;
 }
 
+@media (min-width: 640px) {
+  .inner-svc-img__img {
+    aspect-ratio: 16 / 7;
+  }
+}
+
 /* Blog article */
 .panel-blog {
   @apply overflow-hidden py-10;
