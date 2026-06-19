@@ -4,6 +4,7 @@ import SmallHero from "../components/hero/HeroSmall.astro";
 import CentreText from "../components/content/CentreText.astro";
 import CTA from "../components/content/CTA.astro";
 import { Image } from "astro:assets";
+import { ctas, randomCtaPool, randomPrintCtaPool, randomPromoCtaPool } from "../data/ctas";
 
 interface Props {
   content: any;
@@ -15,8 +16,21 @@ const { content, imageMap, animatedIcon } = Astro.props;
 
 const features = content.features ?? [];
 
-// First feature image — used in the hero position
-const heroFeature = features.find((f: any) => imageMap[f.image]);
+// Top-level feature image — shown between centre text and article
+const featureImage = content.featureImage;
+
+// CTA — resolved from key, random pool, or inline definition
+const isRandom       = content.ctaKey === "random";
+const isRandomPrint  = content.ctaKey === "random-print";
+const isRandomPromo  = content.ctaKey === "random-promo";
+const activePool     = isRandomPrint ? randomPrintCtaPool
+                     : isRandomPromo ? randomPromoCtaPool
+                     : randomCtaPool;
+const cta = (isRandom || isRandomPrint || isRandomPromo)
+  ? activePool[0]                           // fallback for no-JS / build output
+  : content.ctaKey
+    ? ctas[content.ctaKey]
+    : content.cta;
 ---
 
 <Layout title={content.site.title} description={content.site.description} noindex={true}>
@@ -42,12 +56,12 @@ const heroFeature = features.find((f: any) => imageMap[f.image]);
   </section>
 
   <!-- FEATURE IMAGE — replaces tab nav, same overlap position -->
-  {heroFeature && imageMap[heroFeature.image] && (
+  {featureImage && imageMap[featureImage.image] && (
     <section class="inner-svc-img">
       <div class="inner-svc-img__wrap">
         <Image
-          src={imageMap[heroFeature.image]}
-          alt={heroFeature.imageAlt}
+          src={imageMap[featureImage.image]}
+          alt={featureImage.imageAlt}
           width={1400}
           height={900}
           sizes="(max-width: 768px) 100vw, 896px"
@@ -70,7 +84,7 @@ const heroFeature = features.find((f: any) => imageMap[f.image]);
             class={`panel-blog__section${i > 0 ? " panel-blog__section--divided" : ""}`}
             data-blog-section={feature.id}
           >
-            <h3 class="panel-blog__section-title">{feature.title}</h3>
+            <h3 class="panel-blog__section-title max-w-2xl text-balance">{feature.title}</h3>
             <div class="panel-blog__body" set:html={feature.description} />
 
             {feature.buttonLink && feature.buttonText && (
@@ -93,12 +107,29 @@ const heroFeature = features.find((f: any) => imageMap[f.image]);
   </section>
 
   <!-- CTA -->
-  {content.cta && (
-    <CTA
-      heading={content.cta.heading}
-      button={content.cta.button}
-      link={content.cta.link}
-    />
+  {cta && (
+    <div data-random-cta={(isRandom || isRandomPrint || isRandomPromo) ? JSON.stringify(activePool) : null}>
+      <CTA
+        heading={cta.heading}
+        button={cta.button}
+        link={cta.link}
+      />
+    </div>
+  )}
+
+  {(isRandom || isRandomPrint || isRandomPromo) && (
+    <script is:inline>
+      (function () {
+        const wrapper = document.querySelector("[data-random-cta]");
+        if (!wrapper) return;
+        const pool = JSON.parse(wrapper.getAttribute("data-random-cta"));
+        const pick = pool[Math.floor(Math.random() * pool.length)];
+        const heading = wrapper.querySelector(".cta-heading");
+        const btn = wrapper.querySelector(".btn-cta-white");
+        if (heading) heading.textContent = pick.heading;
+        if (btn) { btn.textContent = pick.button; btn.setAttribute("href", pick.link); }
+      })();
+    </script>
   )}
 
 </Layout>

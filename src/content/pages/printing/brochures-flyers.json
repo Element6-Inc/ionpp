@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Brochures & Flyers | ION Print & Promo",
+    "description": "Custom brochures and flyers printed and designed for businesses, events, and organizations in Simcoe County, Muskoka & GTA. Bi-fold, tri-fold, digital, and more."
+  },
+  "hero": {
+    "title": "Brochures & Flyers",
+    "imageAlt": "Custom brochure and flyer printing services",
+    "bgColor": "#1164B4",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Print That Gets Picked Up & Read",
+    "description": "From folded brochures to single-sheet flyers and digital-ready handouts, we help you get your message in front of the right people in the right format.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom brochure and flyer printing"
+  },
+  "features": [
+    {
+      "id": "brochures",
+      "title": "Brochures",
+      "description": "<p>We offer bi-fold and tri-fold brochures, along with a variety of great paper options to help match your brand, message, and budget. They are a strong choice for:</p><ul><li>Office reception & waiting areas</li><li>Trade shows & community events</li><li>Information sessions</li><li>Promotions</li><li>Mailers</li></ul>"
+    },
+    {
+      "id": "flyers",
+      "title": "Flyers",
+      "description": "<p>Flyers are a highly effective, affordable way to share your message. Whether you need a small batch for a local event or regular flyers for ongoing promotions, we make it simple for:</p><ul><li>Promoting sales or special offers</li><li>Advertising events & fundraisers</li><li>Introducing a new product or service</li><li>Sharing community announcements</li><li>Handing out information at trade shows or open houses</li></ul>"
+    },
+    {
+      "id": "digital",
+      "title": "Digital Brochures & Flyers",
+      "description": "<p>Not everything needs to be printed. Our in-house design team can create customized flyers and brochures for digital use, helping your message look clean, professional, and ready for:</p><ul><li>E-blasts & bulk emails</li><li>PDF handouts</li><li>Social sharing</li><li>Website downloads</li></ul>"
+    }
+  ],
+  "ctaKey": "random-print"
+}

@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "NCR Forms & Cheques | ION Print & Promo",
+    "description": "Custom NCR forms and cheque printing for small businesses in Simcoe County and beyond. Carbonless copies for invoices, work orders, receipts, and more — clean, simple"
+  },
+  "hero": {
+    "title": "NCR Forms & More",
+    "imageAlt": "NCR carbonless forms and business cheque printing",
+    "bgColor": "#1164B4",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Business Forms That Keep You Organized",
+    "description": "At ION Print & Promo, we print carbonless forms and cheques that help small and large businesses stay organized, professional, and efficient.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "NCR carbonless forms and business cheque printing"
+  },
+  "features": [
+    {
+      "id": "ncr-forms",
+      "title": "NCR Forms That Do the Duplicating for You",
+      "description": "<p>NCR, or No Carbon Required, forms create instant copies with no mess and no extra steps. They are a handy, streamlined way to keep track of paperwork, finances, and orders.</p><p>Available as pads, books, or loose sheets, NCR forms are a practical choice for businesses that need clear records and reliable copies for day-to-day use. They are commonly used for:</p><ul><li>Invoices</li><li>Work orders</li><li>Receipts</li><li>Service reports</li><li>Delivery notes</li></ul>"
+    },
+    {
+      "id": "cheques",
+      "title": "The Cheque, Please!",
+      "description": "<p>Your cheques don't have to come from a bank, and they don't have to look generic. We print all types of business cheques, customized to your brand, your accounting system, and how you operate.</p><p>Whether you need cheques for regular business payments, payroll, or accounting, we can help create a professional format that fits your process, including:</p><ul><li>Laser & manual cheques</li><li>Personal, business, & payroll formats</li><li>Custom layouts with your logo & details</li><li>Security features built in</li></ul>"
+    },
+    {
+      "id": "duplicate-printing",
+      "title": "Other Duplicate Printing to Make Life Easy",
+      "description": "<p>Along with NCR forms and cheques, we also print other carbon-copy style materials that help make paperwork easier to manage. These pieces are ideal for teams that need practical forms, quick copies, and clear records for:</p><ul><li>Job tickets</li><li>Purchase orders</li><li>Time sheets</li><li>Delivery dockets</li></ul>"
+    }
+  ],
+  "ctaKey": "random-print"
+}

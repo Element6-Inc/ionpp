@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Booklets & Manuals | ION Print & Promo",
-    "description": "Custom designed booklets, manuals, catalogues, guides & presentation folders printed professionally for businesses in Simcoe County, Muskoka & GTA."
+    "description": "Custom designed booklets, manuals, catalogues, guides & presentation folders printed professionally for businesses in Simcoe County, Muskoka & GTA. "
   },
   "hero": {
     "title": "Booklets & Manuals",
@@ -9,9 +9,13 @@
     "bgColor": "#1164B4",
     "image": "hero"
   },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Professional booklet and manual printing services"
+  },
   "animatedIcon": "printer.gif",
   "centreText": {
-    "title": "Booklets that make your message clear",
+    "title": "Booklets That Make Your Message Clear",
     "description": "Whether you're educating, presenting, or selling, we make sure your content is easy to read, easy to handle, and built to reflect your brand.",
     "icon": "icon"
   },
@@ -36,31 +40,18 @@
     {
       "id": "manuals",
       "title": "Manuals & Reports",
-      "description": "<p>We produce clean, well-organized manuals and reports that are built for everyday use. Whether you need internal documents, training materials, or formal business reports, we can help create printed pieces that are practical, professional, and easy to follow.</p><p>Our booklet printing services can support a wide range of business, training, and operational materials, including:</p><ul><li>Training manuals and employee handbooks</li><li>Safety manuals and compliance documents</li><li>Annual reports and corporate reports</li><li>Instructional guides and technical documents</li></ul><p>For businesses looking to keep their printed materials consistent across the office, we can also help with <a href=\"/printing\">custom stationery</a> and other everyday print essentials.</p>",
-      "image": "feature1",
-      "imageAlt": "Professional manual and report printing",
-      "imagePosition": "left"
+      "description": "<p>We produce clean, well-organized manuals and reports that are built for everyday use. Whether you need internal documents, training materials, or formal business reports, we can help create printed pieces that are practical, professional, and easy to follow.</p><p>Our booklet printing services can support a wide range of business, training, and operational materials, including:</p><ul><li>Training manuals & employee handbooks</li><li>Safety manuals & compliance documents</li><li>Annual reports & corporate reports</li><li>Instructional guides & technical documents</li></ul><p>For businesses looking to keep their printed materials consistent across the office, we can also help with <a href=\"/printing\">custom stationery</a> and other everyday print essentials.</p>"
     },
     {
       "id": "catalogues",
       "title": "Catalogues & Sales Materials",
-      "description": "<p>Shine your products and services in the best possible light. We are here to make it easy for customers to browse and buy! </p><p>These materials are ideal for sales teams, events, product launches, real estate marketing, and customer-facing presentations, including:</p><ul><li>Product catalogues and line sheets</li><li>Sales booklets and leave-behinds</li><li>Real estate and feature sheets</li><li>Event and program guides</li></ul><p>To help your catalogue or sales booklet feel polished and easy to use, we can also incorporate finishing options and production choices such as:</p><ul><li>Premium paper stocks and finishes</li><li>Clean layouts for easy navigation</li><li>Short-run and bulk printing options</li></ul>",
-      "image": "feature2",
-      "imageAlt": "Professional catalogue and sales material printing",
-      "imagePosition": "left"
+      "description": "<p>Shine your products and services in the best possible light. We are here to make it easy for customers to browse and buy! </p><p>These materials are ideal for sales teams, events, product launches, real estate marketing, and customer-facing presentations, including:</p><ul><li>Product catalogues & line sheets</li><li>Sales booklets & leave-behinds</li><li>Real estate & feature sheets</li><li>Event & program guides</li></ul><p>To help your catalogue or sales booklet feel polished and easy to use, we can also incorporate finishing options and production choices such as:</p><ul><li>Premium paper stocks & finishes</li><li>Clean layouts for easy navigation</li><li>Short-run & bulk printing options</li></ul>"
     },
     {
       "id": "booklets",
       "title": "Presentations & Specialty Booklets",
-      "description": "<p>We help you create polished, professional materials that support your pitch, event, or internal communications.</p><p>These printed pieces are a strong fit for business development, internal communications, events, client meetings, and custom projects, including:</p><ul><li>Presentation booklets and pitch decks</li><li>Company profiles and brand books</li><li>Event packages and information kits</li><li>Custom booklet formats for unique projects</li></ul><p>For a more complete and coordinated presentation, your booklet can also be paired with supporting print pieces and finishing details such as:</p><ul><li>Presentation folders and inserts</li><li>Tabs, covers, and custom sizing</li><li>Coordinated print packages for events or meetings</li></ul>",
-      "image": "feature1",
-      "imageAlt": "Specialty booklet and presentation printing",
-      "imagePosition": "left"
+      "description": "<p>We help you create polished, professional materials that support your pitch, event, or internal communications.</p><p>These printed pieces are a strong fit for business development, internal communications, events, client meetings, and custom projects, including:</p><ul><li>Presentation booklets & pitch decks</li><li>Company profiles & brand books</li><li>Event packages & information kits</li><li>Custom booklet formats for unique projects</li></ul><p>For a more complete and coordinated presentation, your booklet can also be paired with supporting print pieces and finishing details such as:</p><ul><li>Presentation folders & inserts</li><li>Tabs, covers, & custom sizing</li><li>Coordinated print packages for events or meetings</li></ul>"
     }
   ],
-  "cta": {
-    "heading": "Complete your sales toolkit with rack cards that keep you top of mind.",
-    "button": "Learn More",
-    "link": "/printing"
-  }
+  "ctaKey": "random-print"
 }

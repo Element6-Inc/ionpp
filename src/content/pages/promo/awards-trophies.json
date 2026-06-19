@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Awards & Trophies | ION Print & Promo",
+    "description": "Custom awards, plaques, engraved gifts, and framed recognition items for businesses, teams, schools, and events."
+  },
+  "hero": {
+    "title": "Awards & Trophies",
+    "imageAlt": "Custom awards, trophies, and engraved recognition items",
+    "bgColor": "#009E60",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Recognition That Matters",
+    "description": "From sports trophies and corporate awards to plaques, framed prints, and engraved gifts, we help organizations recognize the people and moments that matter most.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom awards and trophies"
+  },
+  "features": [
+    {
+      "id": "awards-plaques",
+      "title": "Awards, Plaques & Trophies",
+      "description": "<p>Give credit where it's due and reward those who show up and get the job done. Custom engraved awards and trophies celebrate achievement, honour milestones, and offer lasting recognition.</p><ul><li>Corporate awards & recognition</li><li>Acrylic, crystal & glass awards</li><li>Team awards & tournament trophies</li><li>Retirement & milestone recognition</li><li>Engraved gifts, drinkware & keepsakes</li></ul><p>Available in classic, trending, or custom styles, we'll help you choose the right piece for your team, event, or special occasion.</p>"
+    },
+    {
+      "id": "event-gear",
+      "title": "Big Bold Event Gear",
+      "description": "<p>For sports tournaments, school or corporate events, fundraisers, camps, weddings, or church celebrations, customizable products help create a memorable experience.</p><ul><li>Balls, towels & umbrellas</li><li>Water bottles, hats, t-shirts & hoodies</li><li>Cooler bags & fun outdoor items</li><li>Party & welcome bags</li><li>Handy home & office essentials</li></ul><p>Show your community you care with carefully curated items that are sure to be enjoyed.</p>"
+    },
+    {
+      "id": "fresh-ideas",
+      "title": "Fresh Ideas. Strong Branding",
+      "description": "<p>We help our clients choose products that are current, useful, and perfectly suited to your audience and event. Don't waste your time or money on outdated giveaway items that get ignored.</p><p>Talk to us about unique or trending items such as:</p><ul><li>Drinkware & insulated mugs</li><li>Phone accessories & chargers</li><li>Wellness & lifestyle items</li><li>Eco-friendly & reusable products</li><li>Upscale & exclusive gift items</li><li>Made in Canada swag</li></ul><p>We'll help you stay on budget, on trend, and aligned with your event goals.</p>"
+    }
+  ],
+  "ctaKey": "random-promo"
+}

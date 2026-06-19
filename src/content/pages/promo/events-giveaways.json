@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Events & Giveaways | ION Print & Promo",
+    "description": "Custom event giveaways, swag, trade show items & promo products for conferences, tournaments, corporate events, weddings & community programs."
+  },
+  "hero": {
+    "title": "Events & Giveaways",
+    "imageAlt": "Custom event giveaways and branded promotional products",
+    "bgColor": "#009E60",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Great Events Need Great Gear",
+    "description": "From conferences & tournaments to staff events & community programs, we help you choose branded products that are popular, practical, on budget & ready to impress.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom branded event giveaways and swag"
+  },
+  "features": [
+    {
+      "id": "trade-shows",
+      "title": "Trending Trade Shows",
+      "description": "<p>The right promo products attract attention, look professional & keep people engaged at conferences, trade shows & conventions. As a full-service print shop, we offer complete trade show packages including tablecloths, banners, media walls, flags, signs, brochures & swag.</p><ul><li>Tote bags & drawstring backpacks</li><li>Pens & notebooks</li><li>Water bottles & travel mugs</li><li>Lanyards & badge holders</li><li>Chargers & tech accessories</li></ul><p>Pair your promo items with banners, pop-up displays & signage to create a complete trade show setup that looks polished from every angle.</p>"
+    },
+    {
+      "id": "event-gear",
+      "title": "Big Bold Event Gear",
+      "description": "<p>For sports tournaments, school or corporate events, fundraisers, camps, weddings or church celebrations, customizable products help create a memorable experience.</p><ul><li>Balls, towels & umbrellas</li><li>Water bottles, hats, t-shirts & hoodies</li><li>Cooler bags & fun outdoor items</li><li>Party & welcome bags</li><li>Handy home & office essentials</li></ul><p>Show your community you care with carefully curated items that are sure to be enjoyed.</p>"
+    },
+    {
+      "id": "fresh-ideas",
+      "title": "Fresh Ideas. Strong Branding",
+      "description": "<p>We help our clients choose products that are current, useful & perfectly suited to your audience & event. Don't waste your time or money on outdated giveaway items that get ignored.</p><ul><li>Drinkware & insulated mugs</li><li>Phone accessories & chargers</li><li>Wellness & lifestyle items</li><li>Eco-friendly & reusable products</li><li>Upscale & exclusive gift items</li><li>Made in Canada swag</li></ul><p>We'll help you stay on budget, on trend & aligned with your event goals.</p>"
+    }
+  ],
+  "ctaKey": "random-promo"
+}

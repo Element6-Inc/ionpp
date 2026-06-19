@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "ION Print & Promo | real estate signs",
+    "title": "ION Print & Promo | Real Estate Signs",
     "description": "Professional real estate sign services for real estate agents and brokers across Simcoe County. We design, print, install, and remove durable coroplast signs backed by 20+ years of experience (formerly Cardinal Signs & Gibson Digital Print)."
   },
   "hero": {
@@ -10,7 +10,7 @@
     "image": "hero"
   },
   "centreText": {
-    "title": "Your one-stop real estate sign shop",
+    "title": "Your One-Stop Real Estate Sign Shop",
     "description": "We do it all – sign printing, posts, installs and take-downs - handled by the trusted team that agents know and trust.",
     "icon": "icon"
   },
@@ -29,7 +29,7 @@
   "features": [
     {
       "id": "signs",
-      "title": "Backed by experience.",
+      "title": "Backed by Experience",
       "description": "<p>We have over 20 years of experience through our partnership with Cardinal Signs, formerly Gibson Digital Print.</p><p>We handle everything from durable coroplast printing and sturdy wooden posts, to custom sign toppers, full installation and take-down so your listings and properties get the visibility they need.</p><p><p>Be sure to check back for our FAQs <strong>(coming soon)</strong> for all the details and how to get signed up! </p></p>",
       "imageAlt": "Real estate coroplast lawn sign installation",
       "imagePosition": "left",
@@ -37,7 +37,7 @@
     },
     {
       "id": "installs",
-      "title": "Sign installs for busy realtors.",
+      "title": "Sign Installs for Busy Realtors",
       "description": "<p>ION Print & Promo provides trusted real estate sign installation and take-down services for realtors, agents and brokerages. We help wiith:</p><ul><li>Real estate sign installation</li><li>Sign take-downs</li><li>Custom toppers & sign printing</li><li>Service routes across Barrie & Simcoe County</li></ul>",
       "imageAlt": "Sign post installation in front yard",
       "imagePosition": "right",
@@ -45,7 +45,7 @@
     },
     {
       "id": "printing",
-      "title": "Real estate printing.",
+      "title": "Real Estate Printing",
       "description": "<p>We print all sizes of real estate signs, custom toppers, sold signs, open house signs, directional signs and A-frames designed to stand up to the elements! We use tough coroplast and laminate it for extra durability.</p><p>We also support agents and brokers with everyday print materials to market their listings and build their business.</p><p>This includes feature sheets, business cards, postcards, door hangers, presentation folders and custom brokerage materials.</p>",
       "imageAlt": "Real estate coroplast lawn sign installation",
       "imagePosition": "left",
@@ -55,7 +55,7 @@
     },
     {
       "id": "promo",
-      "title": "Promo products & gifts.",
+      "title": "Promo Products & Gifts",
       "description": "<p>Print & Promo helps sales agents and brokers create useful branded promo products and thoughtful client gifts that keep your name in front of buyers, sellers and neighbours.</p><ul><li>Branded pens, notepads & magnets</li><li>Closing gifts & thank-you items</li><li>Open house giveaways</li><li>Key tags & home-related promo items</li><li>Brokerage-branded merchandise</li></ul>",
       "imageAlt": "Sign post installation in front yard",
       "imagePosition": "right",
@@ -66,7 +66,7 @@
   ],
   "installMapCta": {
     "eyebrow": "Installation Pricing",
-    "title": "Are you in our service area?",
+    "title": "Are You in Our Service Area?",
     "description": "Enter your address to see if an install surcharge applies to your location."
   },
   "installMap": {

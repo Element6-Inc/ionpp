@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Health & Home Essentials | ION Print & Promo",
+    "description": "Custom health, wellness & handy home promo items including fitness gear, blankets & kitchen gifts. Practical branded products that make great gifts."
+  },
+  "hero": {
+    "title": "Health & Home",
+    "imageAlt": "Custom branded health, wellness, and home lifestyle promo items",
+    "bgColor": "#009E60",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Everyday Comfort, On Brand",
+    "description": "The best promo items don't feel like promo items at all. They feel useful, appreciated & easy to keep.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom branded health and home lifestyle products"
+  },
+  "features": [
+    {
+      "id": "health-wellness",
+      "title": "Health & Wellness Essentials",
+      "description": "<p>Wellness products that work for you! Health-focused promo items are trending hard right now, especially practical, everyday wellness products that support real routines.</p><ul><li>Fitness bands & resistance bands</li><li>First aid kits & bandage cases</li><li>Hand sanitizer & wellness kits</li><li>Stress balls</li><li>Yoga mats & light fitness gear</li></ul><p>Wellness items show your brand cares, and they stay in use.</p>"
+    },
+    {
+      "id": "home-comfort",
+      "title": "Home Comfort & Lifestyle Items",
+      "description": "<p>Home items are very popular for client and realtor gifting, as well as for your organization's branded holiday gifts. This is where promo gets powerful; items people use at home stick around longer and feel more luxurious.</p><ul><li>Blankets & throws</li><li>Cutting boards & charcuterie boards</li><li>Coasters & drinkware</li><li>BBQ tools & kitchen sets</li></ul><p>Pair your home comfort items with custom drinkware for a thoughtful gift package that feels practical, polished & easy to enjoy.</p>"
+    },
+    {
+      "id": "lifestyle-extras",
+      "title": "Lifestyle Extras",
+      "description": "<p>Simple. Useful. Effective. We've been in the promo business a long time, and these practical items are always in demand.</p><ul><li>Lip balm & personal care items</li><li>Travel kits & comfort items</li><li>Pet items, including collars, bandanas & bowls</li><li>Lunch containers</li><li>Candles & home fragrance items</li></ul><p>Naturally, we included items popular with pet-lovers too. Get them branded or not — it's up to you.</p>"
+    }
+  ],
+  "ctaKey": "random-promo"
+}

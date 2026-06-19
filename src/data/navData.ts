@@ -26,15 +26,6 @@ export interface FooterLink {
 // ===========================================
 
 export const navigationItems: NavItem[] = [
-  {
-    type: "link",
-    data: {
-      label: "Printing",
-      footerLabel: "Printing Services",
-      href: "/printing",
-    } as NavLink,
-  },
-  // TODO: restore dropdown when print sub-pages are ready
   // {
   //   type: "dropdown",
   //   data: {
@@ -43,9 +34,41 @@ export const navigationItems: NavItem[] = [
   //     href: "/printing",
   //     children: [
   //       { label: "Printing Services", href: "/printing" },
+  //       { label: "Business Cards", href: "/printing/business-cards" },
   //       { label: "Booklets & Manuals", href: "/printing/booklets-manuals" },
-  //       { label: "Rack Cards & Postcards", href: "/printing/rack-cards-postcards" },
+  //       { label: "Brochures & Flyers", href: "/printing/brochures-flyers" },
+  //       { label: "Event & Party Printing", href: "/printing/event-printing" },
+  //       { label: "Labels & Stickers", href: "/printing/labels-stickers" },
+  //       { label: "NCR Forms & Cheques", href: "/printing/ncr-cheques" },
   //       { label: "Office Stationery", href: "/printing/office-stationery" },
+  //       { label: "Postcards & Rack Cards", href: "/printing/rack-cards-postcards" },
+  //     ],
+  //   } as NavDropdown,
+  // },
+  {
+    type: "link",
+    data: {
+      label: "Printing",
+      footerLabel: "Printing Services",
+      href: "/printing",
+    } as NavLink,
+  },
+  // {
+  //   type: "dropdown",
+  //   data: {
+  //     label: "Signs",
+  //     footerLabel: "Sign Services",
+  //     href: "/signs",
+  //     children: [
+  //       { label: "Sign Services", href: "/signs" },
+  //       { label: "Banners & Awnings", href: "/signs/banners-awnings" },
+  //       { label: "Business & Storefront", href: "/signs/business-storefronts" },
+  //       { label: "Flags & Pole Banners", href: "/signs/flags-pole-banners" },
+  //       { label: "Graphics & Murals", href: "/signs/graphics-murals" },
+  //       { label: "Lawn & Event Signs", href: "/signs/lawn-event-signs" },
+  //       { label: "LED & Illuminated Signs", href: "/signs/led-illuminated-signs" },
+  //       { label: "Portable Signs", href: "/signs/portable-signs" },
+  //       { label: "Wayfinding Signs", href: "/signs/wayfinding-signs" },
   //     ],
   //   } as NavDropdown,
   // },
@@ -57,6 +80,27 @@ export const navigationItems: NavItem[] = [
       href: "/signs",
     } as NavLink,
   },
+  // {
+  //   type: "dropdown",
+  //   data: {
+  //     label: "Promo",
+  //     footerLabel: "Promotional Products",
+  //     href: "/promo-products",
+  //     children: [
+  //       { label: "Promo Products", href: "/promo-products" },
+  //       { label: "Apparel & Team Wear", href: "/promo/apparel-team-wear" },
+  //       { label: "Awards & Trophies", href: "/promo/awards-trophies" },
+  //       { label: "Bags & Totes", href: "/promo/bags-totes" },
+  //       { label: "Drinkware", href: "/promo/drinkware" },
+  //       { label: "Events & Giveaways", href: "/promo/events-giveaways" },
+  //       { label: "Caps & Hats", href: "/promo/headwear" },
+  //       { label: "Health & Home", href: "/promo/health-home" },
+  //       { label: "Golf & Outdoor", href: "/promo/golf-outdoor" },
+  //       { label: "Pens & Office Essentials", href: "/promo/office-essentials" },
+  //       { label: "Tech & Accessories", href: "/promo/tech-accessories" },
+  //     ],
+  //   } as NavDropdown,
+  // },
   {
     type: "link",
     data: {

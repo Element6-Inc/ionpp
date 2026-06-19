@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Business Cards | ION Print & Promo",
+    "description": "Trust in ION Print & Promo for low-priced business cards to get you noticed. We design and print a wide variety in-house for high-quality results and service."
+  },
+  "hero": {
+    "title": "Business Cards",
+    "imageAlt": "Professional business card printing services",
+    "bgColor": "#1164B4",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Make A Great First Impression",
+    "description": "Business cards still matter. They're quick, personal, and memorable, and say a lot about you and your brand.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Professional business card printing"
+  },
+  "features": [
+    {
+      "id": "styles",
+      "title": "Styles For Every Business & Budget",
+      "description": "<p>At ION Print & Promo, we design and print business cards that help Simcoe County businesses, teams, non-profits, and organizations stand out with confidence.</p><p>We offer a wide range of options to match your brand, industry, and budget, including:</p><ul><li>Standard matte & gloss cards</li><li>Premium thick stock</li><li>Soft-touch finishes</li><li>Rounded corners</li><li>Eco-friendly paper options</li><li>Vertical, square, & custom sizes</li></ul><p>From clean and minimal to bold and creative, we'll help you choose the right look for how you want to be remembered.</p>"
+    },
+    {
+      "id": "finishes",
+      "title": "Elevated Finishes: Raised UV & Spot UV",
+      "description": "<p>Want your card to really stand out? Raised UV and Spot UV finishes add texture and shine exactly where you want it, such as on your logo, name, or key design elements.</p><p>These finishes help create a tactile, high-end feel while drawing attention to your branding and making your card more memorable.</p><p>It's a subtle upgrade that makes a big impact, and is priced less than you'd think!</p>"
+    },
+    {
+      "id": "teams",
+      "title": "Better Pricing For Bigger Teams & Larger Orders",
+      "description": "<p>If you're ordering for a team, multiple departments, or ongoing staff changes, we make it cost-effective and simple.</p><p>For larger orders and team card programs, we can help with:</p><ul><li>Volume discounts</li><li>Consistent branding</li><li>Easy reorders</li><li>Fast turnaround</li></ul><p>We also deliver locally in the Barrie area and offer convenient shipping to all other locations.</p>"
+    }
+  ],
+  "ctaKey": "random-print"
+}

@@ -1,0 +1,38 @@
+{
+  "site": {
+    "title": "Large Format Graphics & Murals | ION Print & Promo",
+    "description": "Wall murals, window graphics & floor decals for offices, storefronts & public spaces. Custom large format graphics designed, printed & installed by experienced local professionals."
+  },
+  "hero": {
+    "title": "Graphics & Murals",
+    "imageAlt": "Custom wall murals and large format graphics",
+    "bgColor": "#ff7f50",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Transform Your Space",
+    "description": "Transform your space with fabulous decals & mural designs. From full wall murals to subtle window & floor decals, we help you create environments that look polished, on-brand & easy to navigate."
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom large format wall mural installation"
+  },
+  "features": [
+    {
+      "id": "wall-murals",
+      "title": "Wall Murals, Decals & Office Branding",
+      "description": "<p>Make your walls work for you. Whether it's a bold feature wall or clean, consistent branding throughout your space, wall graphics create impact the moment someone walks in.</p><ul><li>Custom wall murals for full coverage or feature walls</li><li>Wall decals & vinyl lettering</li><li>Office branding graphics & logo walls</li><li>Motivational or informational wall designs</li></ul><p>Let us help you define your environment with style. We print everything in-house at our Barrie location.</p>"
+    },
+    {
+      "id": "window-graphics",
+      "title": "Window Graphics & Storefront Visibility",
+      "description": "<p>Your windows are valuable space! Use them to increase visibility, get found, display business hours, add privacy & reduce the impact of direct sunlight without making permanent changes.</p><ul><li>Window decals & full window graphics</li><li>Perforated window film to see out, not in</li><li>Frosted & privacy vinyl</li><li>Sun-reducing films to help cut glare & heat</li><li>Seasonal, holiday or promotional window signage</li></ul><p>We design, print & install window graphics that help your storefront, office or public space look polished & professional.</p>"
+    },
+    {
+      "id": "floor-graphics",
+      "title": "Floor Graphics & Wayfinding",
+      "description": "<p>Floor graphics are a smart, often overlooked way to guide customers & communicate key messages in busy spaces.</p><ul><li>Directional & wayfinding floor decals</li><li>Safety messaging & instructional graphics</li><li>Branded floor graphics for events & retail spaces</li></ul><p>Designed with durability & slip-resistance in mind, these graphics hold up in high-traffic areas while staying clear & easy to read.</p>"
+    }
+  ],
+  "ctaKey": "contact"
+}

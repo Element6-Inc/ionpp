@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Drinkware | ION Print & Promo",
+    "description": "Custom drinkware with your logo to boost your brand. Water bottles, mugs, insulated travel cups & glassware for teams, offices, families, non-profits, worksites & more."
+  },
+  "hero": {
+    "title": "Drinkware",
+    "imageAlt": "Custom branded drinkware, water bottles, mugs, and glassware",
+    "bgColor": "#009E60",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Raise Your Brand",
+    "description": "Everyone uses drinkware, so why not put your brand on it? Put your logo on the items people carry, sip & use all day, every day.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom branded drinkware and water bottles"
+  },
+  "features": [
+    {
+      "id": "water-bottles",
+      "title": "Water Bottles & Travel Cups",
+      "description": "<p>Sip Happens. Make It Branded. Water bottles & insulated travel cups are SO HOT right now! They are one of the most used items for people of all ages, not just for sports teams or athletes anymore.</p><ul><li>Team water bottles & sports bottles</li><li>Insulated bottles, including Stanley® & Bubba® styles</li><li>Travel mugs & commuter cups</li><li>Durable everyday cups, stadium cups & more</li></ul><p>Pair your water bottles with backpacks or branded lunch bags for a useful, everyday promo package. Order today — we are your local promo shop here to boost your brand.</p>"
+    },
+    {
+      "id": "coffee-mugs",
+      "title": "Coffee Cups & Mugs",
+      "description": "<p>Coffee. Tea. Matcha. Repeat. These are the items people reach for first thing in the morning, and all day long.</p><ul><li>Ceramic coffee mugs & office cups</li><li>Stainless steel & enamel camping mugs</li><li>Insulated & durable drinkware</li></ul><p>We've got a great selection of stylish, new mugs in various shapes, colours & sizes to fuel your brand. Your brand shows up in every coffee break, every meeting, every refill!</p>"
+    },
+    {
+      "id": "glassware-barware",
+      "title": "Glassware, Barware & Gift Sets",
+      "description": "<p>When the goal is to impress, you can't go wrong with elegant glassware, barware & crystal drinkware. Get it etched with your logo, initials, special dates & more.</p><ul><li>Beer glasses, steins & pint glasses</li><li>Wine & stemless glassware</li><li>Barware & custom sets</li><li>Gift-ready packaging</li></ul><p>High-quality drinkware gets kept, reused & remembered long after the special moment.</p>"
+    }
+  ],
+  "ctaKey": "random-promo"
+}

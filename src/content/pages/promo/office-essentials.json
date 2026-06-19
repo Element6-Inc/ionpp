@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Pens & Office Essentials | ION Print & Promo",
+    "description": "Order custom branded pens, office essentials, giveaways & notebooks. High-use promo products for businesses, teams & offices. Practical, affordable & always in use."
+  },
+  "hero": {
+    "title": "Pens & Office Essentials",
+    "imageAlt": "Custom branded pens, notebooks, and office essentials",
+    "bgColor": "#009E60",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Everyday Items. Amazing Exposure",
+    "description": "Pens & office essentials are used every day on desks, in meetings & across teams, making them some of the most consistent & reliable branded items you can offer.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom branded pens and office essentials"
+  },
+  "features": [
+    {
+      "id": "pens",
+      "title": "Make Your Mark, Literally",
+      "description": "<p>Custom branded pens are highly reliable promo items. They are low cost, high reach & constant visibility! The more you order, the more you save.</p><ul><li>Ballpoint pens</li><li>Gel pens</li><li>Stylus pens</li><li>Executive pens</li><li>Bulk giveaway pens</li></ul><p>We have an incredible selection of pens to choose from for all budgets.</p>"
+    },
+    {
+      "id": "office-giveaways",
+      "title": "Practical Office Giveaways",
+      "description": "<p>We've got your office MVPs! These workplace promo items aren't flashy — just effective. Perfect for onboarding, client-facing teams, giveaways, tradeshows & swag bags.</p><ul><li>Keychains</li><li>Stress balls</li><li>Lanyards & badge holders</li><li>Clipboards</li><li>Mousepads</li></ul><p>These useful items stay in circulation longer, and so does your brand.</p>"
+    },
+    {
+      "id": "notebooks",
+      "title": "Custom Notebooks & More",
+      "description": "<p>Bring everything together with custom printed office materials that match your brand & other promo items. Nothing pairs better with a great pen than a classy notebook!</p><ul><li>Notebooks & journals</li><li>Notepads & memo pads</li><li>Calendars & planners</li><li>Custom stationery, including letterhead & envelopes</li></ul><p>Handled in-house for consistency, quality & one-stop-shop convenience.</p>"
+    }
+  ],
+  "ctaKey": "random-promo"
+}

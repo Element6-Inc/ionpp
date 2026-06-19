@@ -1,0 +1,38 @@
+{
+  "site": {
+    "title": "LED & Illuminated Signs | ION Print & Promo",
+    "description": "Custom LED & illuminated signs for storefronts, buildings & outdoor spaces. Energy-efficient, high-visibility signage designed & installed by experienced local professionals."
+  },
+  "hero": {
+    "title": "LED Signs",
+    "imageAlt": "Custom LED and illuminated signs for businesses",
+    "bgColor": "#ff7f50",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Shine A Light",
+    "description": "Shine a light on your organization! LED & illuminated signs help your business stay visible & look great, even after the sun goes down."
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom LED and illuminated storefront signage"
+  },
+  "features": [
+    {
+      "id": "led-digital",
+      "title": "LED Signs & Digital Displays",
+      "description": "<p>Need flexibility & the ability to update your message? LED & digital signs give you the power to change content quickly & keep things current.</p><ul><li>Promotions & daily specials</li><li>Schools, community centres & businesses</li><li>Event messaging & announcements</li><li>High-traffic roadside visibility</li></ul><p>We'll help you choose the right size, resolution & placement to maximize impact.</p>"
+    },
+    {
+      "id": "channel-letters",
+      "title": "Channel Letters & Backlit Signage",
+      "description": "<p>For a clean, high-end look, illuminated channel letters & backlit signs are a popular choice for storefronts & commercial buildings.</p><ul><li>LED channel letters, including front-lit & halo-lit</li><li>Backlit cabinet signs</li><li>Illuminated logos & branding elements</li><li>Building-mounted illuminated signage</li></ul><p>These signs offer strong visibility, excellent readability & a polished appearance that reflects your brand.</p>"
+    },
+    {
+      "id": "efficient-durable",
+      "title": "Efficient, Durable & Eye-Catching",
+      "description": "<p>Modern LED signage is built to last. We make the process easy from start to finish, giving you energy-efficient performance along with a streamlined experience handled by one team.</p><ul><li>Lower energy consumption & operating costs</li><li>Long lifespan with minimal maintenance</li><li>Consistent brightness & clarity</li></ul><p>From design & layout to material selection, fabrication, wiring & professional installation, we take care of the details so your sign looks great & works the way it should.</p>"
+    }
+  ],
+  "ctaKey": "contact"
+}

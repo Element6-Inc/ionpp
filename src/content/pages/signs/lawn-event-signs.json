@@ -1,0 +1,38 @@
+{
+  "site": {
+    "title": "Outdoor, Lawn & Event Signs | ION Print & Promo",
+    "description": "Custom lawn signs, coroplast signs & event signage printed in-house with flatbed technology. Fast turnaround, durable materials & high-quality results for every occasion."
+  },
+  "hero": {
+    "title": "Lawn & Event Signs",
+    "imageAlt": "Custom lawn signs and event signage",
+    "bgColor": "#ff7f50",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Quick, Reliable & Built To Last",
+    "description": "When you need signage that's quick, reliable & built to handle Canadian weather, our signs deliver. With our in-house flatbed printer, we produce high-quality coroplast & rigid signs faster, with sharp detail & consistent colour."
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom coroplast lawn signs and event signage"
+  },
+  "features": [
+    {
+      "id": "lawn-signs",
+      "title": "Coroplast Lawn Signs That Get Noticed",
+      "description": "<p>Coroplast signs are lightweight, durable & perfect for outdoor use in all kinds of weather. Available in a range of sizes with optional stakes, these signs are easy to install or mount & built to last.</p><ul><li>Lawn signs for businesses & services</li><li>Real estate & open house signage</li><li>Elections & community campaign signs</li><li>Contractor & job site signage</li></ul><p>For Simcoe County, Muskoka & GTA events, job sites, real estate & more, we get the job done.</p>"
+    },
+    {
+      "id": "event-signs",
+      "title": "Event Signs For Every Occasion",
+      "description": "<p>From small gatherings to large community events, good signage helps everything run smoothly. We print all kinds of helpful signs that are easy to read, easy to place & built for indoor or outdoor use.</p><ul><li>Directional & wayfinding signage</li><li>Golf tournament & sponsor hole signs or boards</li><li>Festival & wedding event signage</li><li>Parking & entrance signs</li></ul><p>From setup to guest flow, the right event signs make it easier for everyone to know where to go.</p>"
+    },
+    {
+      "id": "flatbed-printing",
+      "title": "Flatbed Printing = Fast, Flexible, High Quality",
+      "description": "<p>Our new, in-house flatbed printer allows us to print directly onto rigid materials with speed & precision. That means fast turnaround times & more control over quality.</p><ul><li>Coroplast, also known as corrugated plastic</li><li>PVC & foam board</li><li>Aluminum & rigid panels</li><li>Wood & other specialty substrates</li></ul><p>With ION Print & Promo, you get consistent, professional results & friendly, local service.</p>"
+    }
+  ],
+  "ctaKey": "contact"
+}

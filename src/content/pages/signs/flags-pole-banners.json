@@ -1,0 +1,38 @@
+{
+  "site": {
+    "title": "Flags & Pole Banners | ION Print & Promo",
+    "description": "Feather flags, teardrop flags, rectangle flags & pole banners for businesses & events. High-impact outdoor signage designed to attract attention."
+  },
+  "hero": {
+    "title": "Flags & Pole Banners",
+    "imageAlt": "Custom flags and pole banners for businesses and events",
+    "bgColor": "#ff7f50",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Simple, Effective & Hard To Miss",
+    "description": "If customers don't see you, they won't find you. Flags & pole signage are powerful marketing tools that increase visibility, attract attention & help your business or organization stand out."
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom feather flags and pole banners outdoors"
+  },
+  "features": [
+    {
+      "id": "outdoor-flags",
+      "title": "Outdoor Flags & Signs",
+      "description": "<p>Flags are a great, eye-catching way to promote your business, event or location! Ideal for storefronts, roadside visibility, car lots, events & seasonal promotions.</p><ul><li>Feather flags</li><li>Teardrop flags</li><li>Rectangle flags</li><li>Custom branded flags</li><li>Portable flag systems with weighted bases</li></ul><p>They are bright, fun, easy to use & hard to miss.</p>"
+    },
+    {
+      "id": "pole-banners",
+      "title": "Light Post Banners & Pole Signage",
+      "description": "<p>Turn every pole or light post into a promotion! Light post banners, also known as pole banners, are a high-impact way to promote your brand, event or message across streets, campuses & public spaces.</p><ul><li>Light post banners & pole banners</li><li>Double-sided banner options</li><li>Street & community signage</li><li>Seasonal & event banner programs</li></ul><p>These durable signs are perfect for municipalities, schools, malls, BIAs & organizations looking to create consistent, visible messaging across a larger area.</p>"
+    },
+    {
+      "id": "custom-specialty",
+      "title": "Custom & Specialty Signage",
+      "description": "<p>If you can picture it, we can build it. Not every sign fits a standard category. When you need something unique, the experts here at ION Print & Promo create custom signage solutions.</p><ul><li>Unique installs & one-off builds</li><li>Branded display structures</li><li>Custom-mounted signage</li><li>Creative large format applications</li></ul><p>Built in-house with quality materials & over 20 years of experience behind every project, we'll help bring your custom signage idea to life.</p>"
+    }
+  ],
+  "ctaKey": "contact"
+}

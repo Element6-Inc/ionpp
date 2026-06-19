@@ -1,0 +1,44 @@
+{
+  "site": {
+    "title": "Tech & Accessories | ION Print & Promo",
+    "description": "Get customized tech accessories showcasing your logo! Chargers, power banks, phone gadgets, Bluetooth speakers, USB, lighting & more to power up your brand."
+  },
+  "hero": {
+    "title": "Tech & Accessories",
+    "imageAlt": "Custom branded tech accessories, chargers, and gadgets",
+    "bgColor": "#009E60",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Power Up Your Brand",
+    "description": "Great tech items = amazing exposure. Plug into ION's power with tech gadgets, chargers & handy everyday items that keep your brand fully charged.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom branded tech accessories and gadgets"
+  },
+  "features": [
+    {
+      "id": "phone-charging",
+      "title": "Phone & Charging Accessories",
+      "description": "<p>With great power comes great visibility! Phones & chargers are always top of mind, so why not get your logo on there? It's a win-win when you have great tech.</p><ul><li>Power banks, including wireless, magnetic & multi-device options</li><li>Wireless charging pads & stands</li><li>Phone grips, including PopSockets® & holders</li><li>Phone wallets & stands</li></ul><p>These are the kinds of useful promo items that are always in hand & always on display.</p>"
+    },
+    {
+      "id": "audio-headphones",
+      "title": "Audio & Headphones",
+      "description": "<p>Turn up the volume on your marketing with modern, branded promo items that people love. These audio products are high-retention items used at home, work, school & on the go.</p><ul><li>Bluetooth, wireless & floating speakers</li><li>Wireless & corded earbuds</li><li>Over-ear & on-ear headphones</li><li>Compact desk speakers</li></ul><p>When people use them often, your brand stays close by.</p>"
+    },
+    {
+      "id": "lighting",
+      "title": "Lighting",
+      "description": "<p>Light up your brand with practical lights that really perform! These are simple, durable light solutions that get used in real situations, whether on the job, outdoors, or at home.</p><ul><li>Flashlights</li><li>Outdoor lamps & lanterns</li><li>Keychain lights</li><li>Desk & portable LED lights</li><li>Emergency & utility lighting</li></ul><p>They're practical, reliable & easy to keep within reach.</p>"
+    },
+    {
+      "id": "office-tech",
+      "title": "Office & Everyday Tech",
+      "description": "<p>These are the everyday tech add-ons that round out your promo efforts & keep your brand in circulation. Check out these popular home & office accessories.</p><ul><li>Mousepads</li><li>USB drives</li><li>Webcam covers & screen cleaners</li><li>Bluetooth trackers</li><li>Cable organizers</li></ul><p>Low-cost, high-use items like these stay on desks & in daily rotation.</p>"
+    }
+  ],
+  "ctaKey": "random-promo"
+}

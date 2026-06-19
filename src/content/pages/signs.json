@@ -10,14 +10,14 @@
     "image": "hero"
   },
   "centreText": {
-    "title": "Built to stand out",
+    "title": "Built to Stand Out",
     "description": "We're your go-to print shop for custom signs in all sizes and formats, built for visibility and durability. We can help you get started with expert consultation and design support too.",
     "icon": "icon"
   },
   "features": [
     {
       "id": "intro",
-      "title": "Signs are our speciality!",
+      "title": "Signs Are Our Speciality!",
       "description": "<p>Get seen and make your mark. ION Print & Promo (formerly Gibson Digital Print) offers a full range of custom signs from:</p><ul><li>A-frames &amp; coroplast lawn signs</li><li>Large storefront signs</li><li>LED signs</li><li>Pole banners &amp; flags</li><li>Pylon signs</li><li>Vinyl decals</li></ul><p>Need to go big? We have large format and flat-bed printers on-site to get those big jobs done right.</p>",
       "imageAlt": "Windflag outside concert venue",
       "imagePosition": "left",
@@ -25,7 +25,7 @@
     },
     {
       "id": "signs",
-      "title": "Signs built for every season.",
+      "title": "Signs Built for Every Season",
       "description": "<p>Outdoor signage works around the clock, so it needs to be bold, bright, and built for Canadian weather.</p><p>For hot summers and harsh winters, we produce durable signs and handle professional installation.</p><p>For added protection and longevity, most large format and outdoor signs are finished with a durable laminate coating.</p>",
       "imageAlt": "Custom printed materials with specialty finishes",
       "imagePosition": "right",

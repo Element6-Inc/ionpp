@@ -10,8 +10,8 @@ const feature = z.object({
   id: z.string(),
   title: z.string(),
   description: z.string(),
-  imageAlt: z.string(),
-  imagePosition: z.enum(["left", "right"]),
+  imageAlt: z.string().optional(),
+  imagePosition: z.enum(["left", "right"]).optional(),
   image: z.string().optional(),
   buttonLink: z.string().optional(),
   buttonText: z.string().optional(),
@@ -115,6 +115,8 @@ const pages = defineCollection({
       })
       .optional(),
 
+    // Inline CTA or a key referencing src/data/ctas.ts
+    ctaKey: z.string().optional(),
     cta: z
       .object({
         heading: z.string(),
@@ -167,6 +169,17 @@ const pages = defineCollection({
         secondaryButton: z.object({ label: z.string(), href: z.string() }),
       })
       .optional(),
+
+    // InnerServicePage — feature image shown between centre text and article
+    featureImage: z
+      .object({
+        image: z.string(),
+        imageAlt: z.string(),
+      })
+      .optional(),
+
+    // InnerServicePage — animated icon for centre text
+    animatedIcon: z.string().optional(),
 
     // InnerServicePage (booklets, sub-pages)
     featureNav: z.array(featureNavItem).optional(),

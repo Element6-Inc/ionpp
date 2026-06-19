@@ -1,0 +1,44 @@
+{
+  "site": {
+    "title": "Event Printing | ION Print & Promo",
+    "description": "Custom event printing for weddings, parties, fundraisers, celebrations of life & community festivals in the GTA, Simcoe County & Muskoka. "
+  },
+  "hero": {
+    "title": "Event & Party Printing",
+    "imageAlt": "Professional event and party printing services",
+    "bgColor": "#1164B4",
+    "image": "hero"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Event and party printing services"
+  },
+  "centreText": {
+    "title": "For Life's Biggest Moments",
+    "description": "Your events deserve thoughtful, professional printing that reflects the moment. Whether you're celebrating, fundraising, remembering, or gathering people together, we are your one-stop print shop.",
+    "icon": "icon"
+  },
+  "features": [
+    {
+      "id": "weddings",
+      "title": "Weddings & Engagements",
+      "description": "<p>From timeless elegance to bold and modern flair, your wedding prints should match your style. Whatever your theme, we'll help you design and print pieces that feel unmistakably you.</p><p>For weddings, engagements, stag and does, and special celebrations, we can create coordinated pieces such as:</p><ul><li>Save-the-dates</li><li>Invitations & RSVPs</li><li>Seating charts</li><li>Welcome signs</li><li>Stag & doe tickets</li></ul>"
+    },
+    {
+      "id": "funerals",
+      "title": "Funerals & Celebrations Of Life",
+      "description": "<p>During difficult times, you can trust us to handle the details and honour your loved one with special care.</p><p>We print thoughtful memorial pieces that are respectful, personal, and carefully prepared, including:</p><ul><li>Funeral programs</li><li>Celebration of life handouts</li><li>Photo boards</li><li>Memorial cards</li><li>Guest book inserts</li></ul><p>We've worked with families and funeral homes for over 20 years, ensuring everything feels respectful, timely, and exactly as envisioned.</p>"
+    },
+    {
+      "id": "celebrations",
+      "title": "For All The Reasons To Celebrate",
+      "description": "<p>From milestone events like birthdays, baby showers, and retirements to festivals, fundraisers, and family celebrations, we help add a personal touch with cleverly crafted, quality prints.</p><p>For events big and small, we can help create printed pieces that keep everything organized, polished, and memorable, such as:</p><ul><li>Invitations & thank-you cards</li><li>Tickets & table cards</li><li>Programs & schedules</li><li>Menus & drink lists</li><li>Seating charts</li></ul><p>We'll help you choose the right format and finish to make your event feel complete.</p>"
+    },
+    {
+      "id": "golf",
+      "title": "Golf Tournaments: From Tee-Off To Trophies",
+      "description": "<p>For corporate tournaments, charity fundraisers, or club events, our one-stop print and promo services are the winning combo that keeps your tournament on par.</p><p>We can help with the printed pieces needed before, during, and after your tournament, including:</p><ul><li>Registration forms & packages</li><li>Scorecards & cart signs</li><li>Hole sponsor signs</li><li>Banners & award boards</li><li>Trophies & prizes</li></ul><p>For a more complete tournament package, we can also help with custom branded golf balls, team shirts, towels, sponsor giveaways, swag bags, and more. Stop into our Barrie showroom to view our selection.</p>"
+    }
+  ],
+  "ctaKey": "random-print"
+}

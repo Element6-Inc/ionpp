@@ -1,0 +1,14 @@
+---
+import InnerServicePage from "../../layouts/InnerServicePage.astro";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("pages", "promo/tech-accessories");
+const content = entry!.data;
+
+import hero          from "../../assets/heros/promotional.webp";
+import icon          from "../../assets/icons/promo.png";
+import feature1      from "../../assets/features/promo/promo-products.webp";
+import animatedIcon  from "../../assets/icons/animated/promo.gif";
+---
+
+<InnerServicePage content={content} imageMap={{ hero, icon, feature1 }} animatedIcon={animatedIcon} />

@@ -1,0 +1,36 @@
+{
+  "site": {
+    "title": "Business & Storefront | ION Print & Promo",
+    "description": "Custom business & storefront signs including fascia signs, channel letters & building signage. Designed, built, mounted or installed with over 20 years of experience in Barrie & beyond."
+  },
+  "hero": {
+    "title": "Business & Storefront",
+    "imageAlt": "Custom business and storefront signage",
+    "bgColor": "#ff7f50",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Built For Your Business",
+    "description": "Whether you're opening a new location, rebranding, or upgrading your current sign, we'll find the right solution for your space, visibility & budget.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom storefront signage installation"
+  },
+  "features": [
+    {
+      "id": "storefront-signs",
+      "title": "Custom Business & Storefront Signs",
+      "description": "<p>Clear signage turns drive-bys into walk-ins, and we make sure you get seen. From storefront signs to building-mounted options, we produce signage that helps your business look professional & easy to find.</p><ul><li>Fascia signs</li><li>Storefront signage</li><li>Building-mounted signs</li><li>Channel letters</li></ul><p>We are here to help you choose the right design, size, materials & finish for your location.</p>"
+    },
+    {
+      "id": "concept-to-install",
+      "title": "From Concept To Installation",
+      "description": "<p>We keep the process simple & efficient. From initial concept & mockups to installation, you'll know exactly what to expect at every step.</p><ul><li>Design & layout</li><li>Material selection</li><li>Production & fabrication</li><li>Professional installation or mounting</li></ul><p>Need additional signage or printed materials to match? We can help with that too. We print almost everything right here at our Barrie location, offering you one-stop print & promo services for over 20 years.</p>",
+      "buttonLink": "/contact",
+      "buttonText": "Get In Touch"
+    }
+  ],
+  "ctaKey": "contact"
+}

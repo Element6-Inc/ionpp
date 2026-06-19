@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Apparel & Team Wea | ION Print & Promo",
+    "description": "Custom apparel, t-shirts, uniforms, aprons, sportswear, jerseys, safety wear & more in Barrie, Muskoka, and the GTA. Fast turnaround, competitive pricing, and high-quality branding."
+  },
+  "hero": {
+    "title": "Custom Apparel",
+    "imageAlt": "Custom apparel and team wear printing services",
+    "bgColor": "#009E60",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Wear Your Brand",
+    "description": "Shop our selection of customizable clothing, workwear, team gear, and much more. Available in a range of styles, sizes, and colours, with branding options to match your business and budget.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom branded apparel and team wear"
+  },
+  "features": [
+    {
+      "id": "clothing-jackets",
+      "title": "Clothing & Jackets",
+      "description": "<p>Outfit your staff, volunteers, or team with amazing branded clothing that looks sharp, wears well, and keeps your brand top of mind.</p><ul><li>T-shirts, short & long sleeve</li><li>Hoodies & sweatshirts</li><li>Quarter zips & pullovers</li><li>Jackets & outerwear</li></ul><p>Visit our showroom at <a href=\"https://maps.app.goo.gl/LQm8o2c7fpogGqs69\" target=\"blank\">178 Tiffin St. in Barrie</a> to check out colours, sizes, and styles.</p>"
+    },
+    {
+      "id": "uniforms-safety",
+      "title": "Uniforms & Safety Wear",
+      "description": "<p>We've got workwear made from durable materials and CSA-compliant options available. Built for Canadian conditions and hardworking crews.</p><ul><li>High-visibility safety vests</li><li>Reflective jackets & outerwear</li><li>Branded uniforms, vests & aprons</li><li>Construction & industrial workwear</li></ul><p>Our branded uniforms and safety wear help your team look professional while staying visible and ready for the job.</p>"
+    },
+    {
+      "id": "team-sports",
+      "title": "Team Gear & Sports Apparel",
+      "description": "<p>Proudly outfitting Simcoe County, Muskoka, and GTA sports teams and clubs with customized jerseys, practice gear, and fan apparel.</p><ul><li>Team jerseys & practice shirts</li><li>Hoodies & warm-up apparel</li><li>Hats, scarves & fun fan merch</li><li>Tournament & event swag</li></ul><p>We are the outfitters trusted by Barrie Soccer, Ontario Soccer, and more.</p>"
+    }
+  ],
+  "ctaKey": "random-promo"
+}

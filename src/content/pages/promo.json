@@ -10,14 +10,14 @@
     "image": "hero"
   },
   "centreText": {
-    "title": "Everyday products. Extraordinary reach.",
+    "title": "Everyday Products. Extraordinary Reach.",
     "description": "Discover our custom promotional products, branded swag, corporate gifts, apparel, giveaways, and popular items to boost any event! We help businesses and organizations across Simcoe County, Muskoka and the GTA get noticed.",
     "icon": "icon"
   },
   "features": [
     {
       "id": "intro",
-      "title": "Why promotional products work.",
+      "title": "Why Promotional Products Work",
       "description": "<p>Branded products are one of the most effective tools for marketing, advertising, long-term brand visibility and event exposure.</p><p>Whether it's t-shirts, uniforms, hoodies, drinkware, pens, or giveaways, your logo gets <em>repeated</em> exposure and a great return on investment.</p><p>ION Print & Promo helps you find products that fit your audience, budget, and goals.</p>",
       "imageAlt": "Modern digital printing equipment producing high-quality materials",
       "imagePosition": "left",
@@ -25,7 +25,7 @@
     },
     {
       "id": "Visit Us",
-      "title": "Check out our promo showroom!",
+      "title": "Check Out Our Promo Showroom!",
       "description": "<p>Visit our Barrie showroom at <a href=\"https://maps.app.goo.gl/FYf4RoG9u6XX6w4f9\" target=\"blank\">178 Tiffin Street</a> to explore our full range of promo and signage solutions.</p><p>See samples, get inspired, and discover how ION Print & Promo can help power your brand!</p><p>Email <a href=\"mailto:sales@iongroup.ca\">sales@iongroup.ca</a> for more information or click below to visit our online promo store.</p>",
       "imageAlt": "Custom printed materials with specialty finishes",
       "imagePosition": "right",

@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "ION Print & Promo | Labels & Stickers",
+    "description": "Custom labels, stickers, and decals for businesses, non-profits, and events in Simcoe County, Muskoka & GTA. For durable, professional, and on-brand printed products, trust ION Print & Promo."
+  },
+  "hero": {
+    "title": "Labels, Stickers & Decals",
+    "imageAlt": "Custom label, sticker and decal printing",
+    "bgColor": "#1164B4",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Custom Labels That Stick",
+    "description": "At ION Print & Promo, we print high-quality, durable custom labels, decals, and stickers of all sizes, including waterproof, high or low adhesion, roll labels, vinyl, and more.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom label, sticker and decal printing"
+  },
+  "features": [
+    {
+      "id": "product-labels",
+      "title": "Product & Packaging Labels",
+      "description": "<p>From short-run or one-time labels to consistent production labels for growing distribution, we'll guide you on materials, finishes, and durability so your product looks perfect.</p><p>For simple black and white runs or full-colour, branded designs, we help your products look polished and consistent with options such as:</p><ul><li>Product labels</li><li>Compliance labels</li><li>Barcodes & SKUs</li><li>Limited-edition & seasonal labels</li></ul>"
+    },
+    {
+      "id": "job-site",
+      "title": "Job Site & Operational Stickers",
+      "description": "<p>Built for construction sites and busy workplaces, our labels, stickers, decals, and magnets help keep your operations running smoothly. With fast turnaround times and durable materials, we can help create practical pieces for everyday job site and workplace use.</p><p>Common options include:</p><ul><li>Hard hat stickers</li><li>Equipment & tool decals</li><li>Safety & compliance stickers</li><li>Warehouse & bin identification</li><li>Temporary vehicle magnets with job numbers</li></ul>"
+    },
+    {
+      "id": "events",
+      "title": "Event, Festival & Team Stickers",
+      "description": "<p>Stickers are more popular than ever. They are affordable, fun, and highly visible, making them perfect for increased community engagement.</p><p>We print stickers for organizations, schools, teams, and events, including:</p><ul><li>Fundraisers & charity events</li><li>Festivals & community celebrations</li><li>Schools & student initiatives</li><li>Sports teams & clubs</li></ul>"
+    }
+  ],
+  "ctaKey": "random-print"
+}

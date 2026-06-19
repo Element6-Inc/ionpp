@@ -1,0 +1,38 @@
+{
+  "site": {
+    "title": "Sidewalk & Portable Signs | ION Print & Promo",
+    "description": "A-frame signs, sidewalk signs, roll-up banners, media walls & portable displays for storefronts, trade shows & events. Easy to set up, easy to move."
+  },
+  "hero": {
+    "title": "Portable Signs",
+    "imageAlt": "Portable sidewalk signs and A-frame displays",
+    "bgColor": "#ff7f50",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Right Place, Right Time",
+    "description": "When you need signs that are flexible, visible, and easy to update, portable signs are the answer."
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom A-frame sidewalk signs and portable displays"
+  },
+  "features": [
+    {
+      "id": "aframe-sidewalk",
+      "title": "A-Frame & Sidewalk Signs",
+      "description": "<p>Classic sidewalk signs that get seen! A-frame signs, also known as sandwich boards, are one of the most effective ways to drive foot traffic. Place them outside your business, on sidewalks or near entrances to highlight promotions, menus or key messages.</p><ul><li>Standard A-frame signs</li><li>Metal-framed sidewalk signs</li><li>Interchangeable sign panels</li><li>Custom printed inserts</li></ul><p>Easy to move & easy to update, they're a must-have for retail, restaurants & service businesses. We work with businesses & organizations across Barrie, Muskoka & the GTA to design & print durable, professional signage.</p>"
+    },
+    {
+      "id": "portable-displays",
+      "title": "Portable Displays & Banners",
+      "description": "<p>Professional displays for events & promotions! Portable banners & display signs are ideal when you need something easy to transport. Lightweight & easy to set up, these displays are perfect for trade shows, weddings, lobbies, pop-ups & community events.</p><ul><li>Retractable roll-up banner stands</li><li>Pull-up banners with carrying cases</li><li>X-frame banner stands</li><li>Telescopic banner stands</li><li>Counter & tabletop displays</li><li>Foam board, coroplast or mounted presentation signs</li></ul><p>As a local sign & print shop with over 20 years of experience, ION Print & Promo makes sure your display looks professional, travels well & is ready when you need it.</p>"
+    },
+    {
+      "id": "popup-media-walls",
+      "title": "Pop-Up Displays & Media Walls",
+      "description": "<p>Enjoy high-impact displays for events & branded spaces! Grab attention, create a backdrop & make your space look professional, fast.</p><ul><li>Businesses at trade shows & conferences</li><li>Non-profits & community groups at events</li><li>Schools & organizations for presentations</li><li>Sponsors & vendors creating branded backdrops</li></ul><p>Often called pop-up displays, backdrop systems or media walls, they're built to stand out in busy environments.</p><ul><li>Pop-up backdrop walls</li><li>Fabric tension displays</li><li>Step-and-repeat media walls</li><li>Collapsible display systems</li><li>Portable branded backdrops</li><li>Graphic design support</li></ul><p>From sidewalk signs to portable displays, we help you create signage that is easy to move, easy to use & built to get noticed.</p>"
+    }
+  ],
+  "ctaKey": "contact"
+}

@@ -1,0 +1,38 @@
+{
+  "site": {
+    "title": "Wayfinding & Directional Signs | ION Print & Promo",
+    "description": "For your busy facility, campus, event or outdoor space, get clear wayfinding & directional signs & decals from ION Print & Promo."
+  },
+  "hero": {
+    "title": "Wayfinding Signs",
+    "imageAlt": "Custom wayfinding and directional signage",
+    "bgColor": "#ff7f50",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Clear Signs, Better Flow",
+    "description": "Clear wayfinding gets visitors where they need to go. It reduces confusion, improves flow & creates a more professional experience for everyone entering your space."
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom wayfinding and directional signs"
+  },
+  "features": [
+    {
+      "id": "interior-wayfinding",
+      "title": "Interior Wayfinding & Room Identification",
+      "description": "<p>Help visitors find their way with ease! We create clean, easy-to-read signage that keeps buildings organized & easy to navigate. Ideal for offices, schools, healthcare facilities, community spaces & more.</p><ul><li>Directional signs & arrows</li><li>Room identification signs</li><li>Office & department signage</li><li>Washroom & accessibility signage</li><li>Floor & wall decals</li></ul><p>With ION Print & Promo, you can expect fast production times, durable materials, clean professional designs & friendly, local service.</p>"
+    },
+    {
+      "id": "high-traffic",
+      "title": "Smarter Wayfinding For High-Traffic Spaces",
+      "description": "<p>When the space is big, visitors can get really lost! For larger properties, signage needs to work as a system, not just individual signs. We help create consistent wayfinding across all types of spaces, indoor & out.</p><ul><li>Coordinated wayfinding systems</li><li>Building directories & navigation signage</li><li>Campus & multi-area signage plans</li><li>ADA & compliance signage</li></ul><p>Clear systems improve flow, reduce confusion & create a more professional experience.</p>"
+    },
+    {
+      "id": "outdoor-directional",
+      "title": "Outdoor Directional & Event Signage",
+      "description": "<p>Guide traffic, parking & event flow with great signage. Outdoor signs play a key role in guiding visitors before they even enter your space.</p><ul><li>Parking & entrance signs</li><li>Directional arrows & site signage</li><li>Event, golf & festival wayfinding</li><li>Temporary coroplast signs</li></ul><p>We produce durable signage designed for visibility in all conditions, including our Canadian winters.</p>"
+    }
+  ],
+  "ctaKey": "contact"
+}

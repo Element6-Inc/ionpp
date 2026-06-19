@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Golf & Outdoor | ION Print & Promo",
+    "description": "Custom golf & fun outdoor promo products! Golf balls, towels, umbrellas, frisbees & event gear. Perfect for tournaments, staff events & organizations."
+  },
+  "hero": {
+    "title": "Golf & Outdoor",
+    "imageAlt": "Custom branded golf and outdoor promotional products",
+    "bgColor": "#009E60",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Built For Events & Everyday Use",
+    "description": "Built for tournaments, events, gifting & everyday use, these home & outdoor promo products help your brand stand out.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom branded golf and outdoor promo products"
+  },
+  "features": [
+    {
+      "id": "golf-tournaments",
+      "title": "Golf & Tournaments",
+      "description": "<p>Golf tournaments & custom golf-themed gifts help your organization win big. Whether it's a charity fundraiser, annual event, staff day or a weekend round with friends, golf gear drives your brand further.</p><ul><li>Custom branded golf balls</li><li>Golf towels & accessories</li><li>Divot tools & ball markers</li><li>Golf umbrellas</li><li>Branded golf shirts & hats</li><li>Tournament prizes & sponsor packages</li></ul><p>Premium golf products create stronger event experiences & higher-value brand impressions.</p>"
+    },
+    {
+      "id": "outdoor-gear",
+      "title": "Outdoor Gear",
+      "description": "<p>Order these popular, customizable outdoor items for your camps, schools, churches or community programs. Simple, practical & highly reused — exactly what you need to create great experiences.</p><ul><li>Frisbees & outdoor games</li><li>Sunglasses & summer accessories</li><li>Drawstring bags & totes</li><li>Picnic, lunch & camping gear</li></ul><p>Pair with apparel & drinkware for full event kits that are fun, useful & easy to hand out.</p>"
+    },
+    {
+      "id": "home-comfort",
+      "title": "Home & Comfort",
+      "description": "<p>Better gifts = better branding. Home, comfort & lifestyle swag is exactly what you need for client, staff & holiday gifts.</p><ul><li>Blankets & throws</li><li>Cutting boards & charcuterie boards</li><li>Coasters & premium drinkware</li><li>BBQ tools & kitchen gift sets</li><li>Travel kits & comfort items</li><li>Pet accessories, including bandanas, bowls & collars</li><li>Lip balm, lunch containers, candles & more</li></ul><p>These items are popular with realtors, businesses, non-profits & community organizations looking for something practical, meaningful & memorable.</p>"
+    }
+  ],
+  "ctaKey": "random-promo"
+}

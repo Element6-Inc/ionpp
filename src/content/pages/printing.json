@@ -10,14 +10,14 @@
     "image": "hero"
   },
   "centreText": {
-    "title": "Print that means business",
+    "title": "Print That Means Business",
     "description": "Our printing services help keep your business moving and get the job done – with quality printing, great pricing and friendly customer care. There is no job too big or small. ",
     "icon": "icon"
   },
   "features": [
     {
       "id": "intro",
-      "title": "Professional printing starts here.",
+      "title": "Professional Printing Starts Here",
       "description": "<p>Printed materials remain one of the most effective tools for marketing, communication, operations, and brand visibility.</p><p>Strong print design and quality production help businesses stand out, stay organized, and create a more professional customer experience.</p><p>From sales materials and office essentials to event printing and branded packaging, professionally printed materials help reinforce your brand in ways digital advertising alone cannot.</p>",
       "imageAlt": "Modern digital printing equipment producing high-quality materials",
       "imagePosition": "left",
@@ -25,7 +25,7 @@
     },
     {
       "id": "local printing",
-      "title": "Local Printing. Real People.",
+      "title": "Local Printing. Real People",
       "description": "<p>With 20+ years serving Simcoe County, ION Print & Promo (formerly Gibson Digital Print) provides professional printing, signage, promo products and installation services with an impressive selection of:<p><ul><li>Commercial digital printers</li><li>Large format equipment</li><li>Flatbed printers</li><li>Finishing equipment & more</li></ul></p><p>Whether you need help choosing materials, preparing artwork, or finding the right print solution, we're here to help make the process easy.</p>",
       "imageAlt": "Custom printed materials with specialty finishes",
       "imagePosition": "right",

@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Banners & Awnings | ION Print & Promo",
+    "description": "Custom vinyl banners, fence signs & awnings for businesses, events, sports fields & job sites. Durable outdoor signs designed to stand out & last."
+  },
+  "hero": {
+    "title": "Banners & Awnings",
+    "imageAlt": "Custom vinyl banners and awning signage",
+    "bgColor": "#ff7f50",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Durable Signs That Get Seen",
+    "description": "Whether you need something temporary or long-term, we produce large format signage that's durable, highly visible & built to promote your business, team, event or project.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom vinyl banner installation"
+  },
+  "features": [
+    {
+      "id": "vinyl-banners",
+      "title": "Vinyl Banners, Fence & Site Signage",
+      "description": "<p>From sports fields to job sites, we create high-quality banners & large format signs that are built for real-world use.</p><ul><li>Vinyl banners for sales, events & promotions</li><li>Fence banners for schools, sports fields, soccer fields & baseball diamonds</li><li>Construction site signage with company branding & job details</li><li>Mesh banners for windy areas & long fence runs</li><li>Indoor & outdoor event signage</li></ul><p>We customize every detail, including reinforced edges, grommets & custom sizing to suit your space.</p>"
+    },
+    {
+      "id": "awnings",
+      "title": "Custom Awnings That Get Seen",
+      "description": "<p>Awnings do so much more than provide shade! They act as important signage for your business or building, while enhancing your visibility.</p><ul><li>Showcase your business name & logo</li><li>Add visibility from the street</li><li>Provide practical coverage for entrances & windows</li></ul><p>Available in a range of styles & materials, our awnings are made to handle Canadian weather while keeping your space looking clean & professional.</p>"
+    },
+    {
+      "id": "durability",
+      "title": "Built For Durability & High Visibility",
+      "description": "<p>Outdoor signage needs to perform AND get your business or organization noticed! We produce signs that are made to last & designed to be seen from a distance.</p><ul><li>Location & exposure to weather</li><li>Short-term vs. long-term use</li><li>Installation method & mounting surfaces</li></ul><p>Want really, REALLY big? We do that too. We'll help you choose the right solution for your space, your message & how your sign will be used.</p>"
+    }
+  ],
+  "ctaKey": "contact"
+}

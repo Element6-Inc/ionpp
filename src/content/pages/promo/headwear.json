@@ -1,0 +1,34 @@
+{
+  "site": {
+    "title": "Caps & Hats | ION Print & Promo",
+    "description": "Order custom caps, ball hats & toques from your local print & promo shop. Fast turnaround, quality embroidery & branded headwear that gets noticed year-round."
+  },
+  "hero": {
+    "title": "Caps & Hats",
+    "imageAlt": "Custom branded caps, hats, and headwear",
+    "bgColor": "#009E60",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Top It Off Right",
+    "description": "Put your brand front & centre with headwear that gets seen! Clean logos, strong visibility & amazing local service for businesses & teams across Barrie, Muskoka & the GTA.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom branded caps and hats"
+  },
+  "features": [
+    {
+      "id": "ball-caps",
+      "title": "Ball Caps, Toques & Everyday Headwear",
+      "description": "<p>Your Logo. Everywhere! Branded headwear is one of the most visible promo items you can invest in, and it gets seen all across your community & beyond.</p><ul><li>Baseball caps, snapbacks & bucket hats</li><li>Toques, wool hats, knit hats & beanies</li><li>Trucker hats & fitted styles</li><li>Sun hats</li></ul><p>Choose from a wide selection of embroidery & decoration options to promote your brand with style.</p>"
+    },
+    {
+      "id": "work-caps",
+      "title": "Work Caps, Hard Hats & Specialty Headwear",
+      "description": "<p>Built for the Job! We have a great selection of durable, compliant options with branding that holds up in real working conditions.</p><ul><li>Hard hats & safety headwear</li><li>Branded work caps</li><li>High-visibility options</li><li>Specialty hats & visors</li></ul><p>Keep your crew visible, protected & clearly identified on every job site. Complete your order with safety apparel & job site signage.</p>"
+    }
+  ],
+  "ctaKey": "random-promo"
+}

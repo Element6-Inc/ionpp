@@ -149,9 +149,7 @@
             "required": [
               "id",
               "title",
-              "description",
-              "imageAlt",
-              "imagePosition"
+              "description"
             ],
             "additionalProperties": false
           }
@@ -235,6 +233,9 @@
             "socialLinks"
           ],
           "additionalProperties": false
+        },
+        "ctaKey": {
+          "type": "string"
         },
         "cta": {
           "type": "object",
@@ -452,6 +453,25 @@
             "secondaryButton"
           ],
           "additionalProperties": false
+        },
+        "featureImage": {
+          "type": "object",
+          "properties": {
+            "image": {
+              "type": "string"
+            },
+            "imageAlt": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "image",
+            "imageAlt"
+          ],
+          "additionalProperties": false
+        },
+        "animatedIcon": {
+          "type": "string"
         },
         "featureNav": {
           "type": "array",

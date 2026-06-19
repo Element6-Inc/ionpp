@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Bags & Totes | ION Print & Promo",
+    "description": "Custom bags, totes, backpacks, laptop bags & cooler bags for businesses, teams & events across Barrie, Muskoka & the GTA."
+  },
+  "hero": {
+    "title": "Bags & Totes",
+    "imageAlt": "Custom branded bags, totes, and backpacks",
+    "bgColor": "#009E60",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Carry Your Brand Further",
+    "description": "Put your logo into circulation with bags people actually keep & reuse. Built for real-life use, from work & events to tradeshows, travel & giveaways.",
+    "icon": "icon"
+  },
+  "featureImage": {
+    "image": "feature1",
+    "imageAlt": "Custom branded bags and totes"
+  },
+  "features": [
+    {
+      "id": "everyday-bags",
+      "title": "Everyday Bags That Stay In Circulation",
+      "description": "<p>Bags only work if people use them. We focus on styles that stay in rotation & get seen everywhere, with practical options that work well for conferences, retail, gifts, events, teams & everyday use.</p><ul><li>Durable tote bags for conferences, trade shows, retail & gifts</li><li>Drawstring backpacks for events, teams & quick giveaways</li><li>Laptop bags & work totes</li><li>Utility & organizer bags</li></ul><p>Pair them with notebooks, pens & drinkware to complete your welcome or event kits.</p>"
+    },
+    {
+      "id": "backpacks-travel",
+      "title": "Backpacks & Travel-Ready Gear",
+      "description": "<p>Backpacks & travel bags are so popular, and offer long-term visibility when customized with your logo or company name. Perfect for work, travel & daily use, they are useful pieces people are more likely to keep.</p><ul><li>Branded backpacks for office, school & team use</li><li>Travel & commuter bags</li><li>Tech-friendly backpacks with compartments</li><li>Drawstring bags & gym bags</li></ul><p>Our drawstring backpacks are super popular with kids & teens too. Visit our showroom at <a href=\"https://maps.app.goo.gl/LQm8o2c7fpogGqs69\" target=\"blank\">178 Tiffin St. in Barrie</a> to view our selection.</p>"
+    },
+    {
+      "id": "cooler-bags",
+      "title": "Cooler Bags & More",
+      "description": "<p>Customized cooler bags & specialty carriers are high-retention items, popular for job sites, road trips, beach days, cottaging, BBQs & weekends away.</p><ul><li>Insulated cooler bags</li><li>Lunch bags & meal carriers</li><li>Event & tournament bags</li><li>Utility bags for crews & teams</li></ul><p>These make practical, thoughtful gifts & giveaways that don't get left behind.</p>"
+    }
+  ],
+  "ctaKey": "random-promo"
+}
