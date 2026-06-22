@@ -12,11 +12,14 @@ interface Props {
   heading?: string;
   allowMultiple?: boolean;
   bg?: string; // optional background override, defaults to "bg-slate-50"
+  loadMoreAt?: number; // show this many items initially, hide the rest behind a button
 }
 
-const { items, heading, allowMultiple = false, bg = "bg-slate-50" } = Astro.props;
+const { items, heading, allowMultiple = false, bg = "bg-slate-50", loadMoreAt } = Astro.props;
 
 if (!items || items.length === 0) return;
+
+const showLoadMore = loadMoreAt !== undefined && items.length > loadMoreAt;
 ---
 
 <section class={`${bg} py-14 sm:pb-32`}>
@@ -24,6 +27,44 @@ if (!items || items.length === 0) return;
     {heading && (
       <h3 class="mb-10 text-center text-sky-500!">{heading}</h3>
     )}
-    <Accordion items={items} allowMultiple={allowMultiple} />
+    <div data-faq-wrapper>
+      <Accordion items={items} allowMultiple={allowMultiple} />
+    </div>
+    {showLoadMore && (
+      <div class="mt-8 text-center" data-load-more-container>
+        <button type="button" data-load-more-btn class="btn btn-secondary">
+          Show More Questions
+        </button>
+      </div>
+    )}
   </div>
 </section>
+
+{showLoadMore && (
+  <script define:vars={{ loadMoreAt }}>
+    function initFaqLoadMore() {
+      const wrapper = document.querySelector('[data-faq-wrapper]');
+      const btn = document.querySelector('[data-load-more-btn]');
+      const container = document.querySelector('[data-load-more-container]');
+      if (!wrapper || !btn || !container) return;
+      if (btn.dataset.loadMoreReady) return;
+      btn.dataset.loadMoreReady = 'true';
+
+      const allItems = wrapper.querySelectorAll('[data-accordion-item]');
+
+      allItems.forEach((item, index) => {
+        if (index >= loadMoreAt) {
+          item.hidden = true;
+        }
+      });
+
+      btn.addEventListener('click', () => {
+        allItems.forEach((item) => { item.hidden = false; });
+        container.remove();
+      });
+    }
+
+    initFaqLoadMore();
+    document.addEventListener('astro:page-load', initFaqLoadMore);
+  </script>
+)}

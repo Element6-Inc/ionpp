@@ -1189,7 +1189,7 @@ li {
 }
 
 .cta-heading {
-  @apply text-balance my-0;
+  @apply max-w-2xl my-0;
   color: var(--color-white);
   font-weight: var(--font-weight-semibold);
 }

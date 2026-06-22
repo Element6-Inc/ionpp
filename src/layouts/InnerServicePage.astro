@@ -4,7 +4,7 @@ import SmallHero from "../components/hero/HeroSmall.astro";
 import CentreText from "../components/content/CentreText.astro";
 import CTA from "../components/content/CTA.astro";
 import { Image } from "astro:assets";
-import { ctas, randomCtaPool, randomPrintCtaPool, randomPromoCtaPool } from "../data/ctas";
+import { ctas, randomCtaPool, randomPrintCtaPool, randomPromoCtaPool, randomSignsCtaPool } from "../data/ctas";
 
 interface Props {
   content: any;
@@ -23,10 +23,12 @@ const featureImage = content.featureImage;
 const isRandom       = content.ctaKey === "random";
 const isRandomPrint  = content.ctaKey === "random-print";
 const isRandomPromo  = content.ctaKey === "random-promo";
+const isRandomSigns  = content.ctaKey === "random-signs";
 const activePool     = isRandomPrint ? randomPrintCtaPool
                      : isRandomPromo ? randomPromoCtaPool
+                     : isRandomSigns ? randomSignsCtaPool
                      : randomCtaPool;
-const cta = (isRandom || isRandomPrint || isRandomPromo)
+const cta = (isRandom || isRandomPrint || isRandomPromo || isRandomSigns)
   ? activePool[0]                           // fallback for no-JS / build output
   : content.ctaKey
     ? ctas[content.ctaKey]
@@ -108,7 +110,7 @@ const cta = (isRandom || isRandomPrint || isRandomPromo)
 
   <!-- CTA -->
   {cta && (
-    <div data-random-cta={(isRandom || isRandomPrint || isRandomPromo) ? JSON.stringify(activePool) : null}>
+    <div id="cta-wrapper">
       <CTA
         heading={cta.heading}
         button={cta.button}
@@ -117,19 +119,24 @@ const cta = (isRandom || isRandomPrint || isRandomPromo)
     </div>
   )}
 
-  {(isRandom || isRandomPrint || isRandomPromo) && (
-    <script is:inline>
+  {(isRandom || isRandomPrint || isRandomPromo || isRandomSigns) && (
+    <script is:inline set:html={`
       (function () {
-        const wrapper = document.querySelector("[data-random-cta]");
-        if (!wrapper) return;
-        const pool = JSON.parse(wrapper.getAttribute("data-random-cta"));
-        const pick = pool[Math.floor(Math.random() * pool.length)];
-        const heading = wrapper.querySelector(".cta-heading");
-        const btn = wrapper.querySelector(".btn-cta-white");
-        if (heading) heading.textContent = pick.heading;
-        if (btn) { btn.textContent = pick.button; btn.setAttribute("href", pick.link); }
+        function randomizeCta() {
+          var pool = ${JSON.stringify(activePool)};
+          var currentPath = window.location.pathname.replace(/\\/$/, "");
+          var filtered = pool.filter(function(item) { return item && item.link.replace(/\\/$/, "") !== currentPath; });
+          var available = filtered.length ? filtered : pool.filter(Boolean);
+          var pick = available[Math.floor(Math.random() * available.length)];
+          if (!pick) return;
+          var heading = document.querySelector("#cta-wrapper .cta-heading");
+          var btn = document.querySelector("#cta-wrapper .btn-cta-white");
+          if (heading) heading.textContent = pick.heading;
+          if (btn) { btn.textContent = pick.button; btn.setAttribute("href", pick.link); }
+        }
+        document.addEventListener("astro:page-load", randomizeCta);
       })();
-    </script>
+    `} />
   )}
 
 </Layout>

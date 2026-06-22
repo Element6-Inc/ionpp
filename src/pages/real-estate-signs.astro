@@ -89,7 +89,7 @@ const installMap = content.installMap;
   <!-- {false && mapToken && installMap && <ServiceAreaModal token={mapToken} installMap={installMap} />} -->
 
   <!-- ACCORDION -->
-  <AccordionSection items={accordions} heading={content.accordionHeading} />
+  <AccordionSection items={accordions} heading={content.accordionHeading} loadMoreAt={5} />
 
   <!-- CTA -->
   {content.cta && (

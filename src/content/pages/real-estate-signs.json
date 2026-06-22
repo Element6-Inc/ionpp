@@ -30,7 +30,7 @@
     {
       "id": "signs",
       "title": "Backed by Experience",
-      "description": "<p>We have over 20 years of experience through our partnership with Cardinal Signs, formerly Gibson Digital Print.</p><p>We handle everything from durable coroplast printing and sturdy wooden posts, to custom sign toppers, full installation and take-down so your listings and properties get the visibility they need.</p><p><p>Be sure to check back for our FAQs <strong>(coming soon)</strong> for all the details and how to get signed up! </p></p>",
+      "description": "<p>We have over 20 years of experience through our partnership with Cardinal Signs, formerly Gibson Digital Print.</p><p>We handle everything from durable coroplast printing and sturdy wooden posts, to custom sign toppers, full installation and take-down so your listings and properties get the visibility they need.</p><p><p>Check out our FAQs below for all the details and how to get signed up!</p></p>",
       "imageAlt": "Real estate coroplast lawn sign installation",
       "imagePosition": "left",
       "image": "feature1"
@@ -111,32 +111,82 @@
       "outsideSub": "Contact us for more information and pricing."
     }
   },
-  "accordionHeading": "Frequently Asked Questions Coming Soon!",
-  "_accordions": [
+  "accordionHeading": "Frequently Asked Questions",
+  "accordions": [
     {
-      "id": "turnaround",
-      "title": "How fast can you turn around sign orders?",
-      "content": "Most standard coroplast and aluminum signs are ready within 2–3 business days. Rush turnarounds are available — contact us to discuss your timeline."
+      "id": "sign-up",
+      "title": "How do I sign up for real estate sign installation service?",
+      "content": "Email <a href=\"mailto:kelly@iongroup.ca\">kelly@iongroup.ca</a> or call 705-739-1969 to get set up in our system, then email <a href=\"mailto:signs@iongroup.ca\">signs@iongroup.ca</a> with your install details. Payment is required in advance before your very first install — after that, we invoice you once the install is complete."
     },
     {
-      "id": "install-time",
-      "title": "How quickly can you install after printing?",
-      "content": "We typically schedule installation within 1–2 business days of sign completion. We'll confirm a time that works with your listing schedule."
+      "id": "who-to-email",
+      "title": "Who do I email to request an install or take-down?",
+      "content": "Email our coordinator Greg at <a href=\"mailto:signs@iongroup.ca\">signs@iongroup.ca</a>. Greg checks install requests before 7 am, Monday–Friday, and schedules as soon as possible. Same-day installs within Barrie may be possible but are never guaranteed."
     },
     {
-      "id": "removal",
-      "title": "Do you handle sign removal after a sale?",
-      "content": "Yes. Once your listing closes, just give us a call or send an email and we'll arrange prompt removal. We can also set up automatic removal scheduling if you prefer."
+      "id": "install-info",
+      "title": "What information should I include in my install request?",
+      "content": "<ol><li>The address of the install, including the postal code.</li><li>Any sign toppers you may need, such as \"Coming Soon\" or \"10 Acres\" (custom sign topper printing is extra and requires 2 business days).</li><li>Please note that our installer must follow local by-laws and may have limited options for sign post placement.</li><li>Make sure your for sale sign is at our Barrie location before the installation date.</li></ol>"
     },
     {
-      "id": "brokerage",
-      "title": "Can you set up a program for our whole brokerage?",
-      "content": "Absolutely. We work with brokerages to create templated sign programs so every agent's materials are on-brand and easy to order. Reach out to discuss volume pricing and setup."
+      "id": "leave-sign",
+      "title": "Can I leave my sign at the listing property for the installer?",
+      "content": "No. All signs must be at our Barrie office at least one day before the installation. For the safety of our installer, signs cannot be left in garages, sheds, porches, or anywhere at the property — only signs brought to or stored at our Barrie office can be installed."
     },
     {
-      "id": "riders",
-      "title": "What rider panels do you offer?",
-      "content": "We print standard riders (Sold, Open House, Price Reduced, For Lease, etc.) as well as fully custom riders with agent names, phone numbers, or brokerage branding."
+      "id": "regions",
+      "title": "What regions do you cover for real estate sign installs?",
+      "content": "We service Barrie, Orillia, Oro, Severn, Midland, Penetanguishene, Wasaga Beach, Angus, Springwater, and Innisfil."
+    },
+    {
+      "id": "cost",
+      "title": "How much does a real estate sign install cost?",
+      "content": "Within Barrie, standard installs are $60. After that, the price increases based on distance from Barrie. There is currently a diesel fuel surcharge of $5 per install while fuel prices remain high."
+    },
+    {
+      "id": "takedown-included",
+      "title": "Is the take-down included in the install price?",
+      "content": "Yes!"
+    },
+    {
+      "id": "install-notice",
+      "title": "How much notice do you need for an installation?",
+      "content": "Installs within Barrie can often be accommodated the same or next business day if we receive your email request before 7 am. Otherwise, 3–5 business days is recommended. You will be notified by email when your sign is scheduled. If you don't have a sign yet, call us and we can print one for you — starting at $75 for a double-sided, laminated, durable sign. Please note that installs only happen Monday–Friday. We are closed weekends and holidays."
+    },
+    {
+      "id": "takedown-notice",
+      "title": "How much notice do you need for a take-down before closing?",
+      "content": "Please give us 8–10 business days for the sign take-down to be scheduled."
+    },
+    {
+      "id": "install-days",
+      "title": "What days are installs completed in different service areas?",
+      "content": "<ul><li><strong>Within Barrie:</strong> Monday–Friday</li><li><strong>Oro, Orillia, Severn, Midland & areas north of Barrie:</strong> Monday, Wednesday and/or Friday</li><li><strong>Angus, Innisfil & south of Barrie:</strong> Tuesday and Thursday</li></ul>"
+    },
+    {
+      "id": "storage",
+      "title": "Do you store real estate signs and posts?",
+      "content": "Yes. There is an initial storage fee of $25. If you print your signs with us, we will waive the storage fee."
+    },
+    {
+      "id": "sold-toppers",
+      "title": "Do you put the SOLD toppers on the signs?",
+      "content": "No. However, we do have complimentary SOLD sign toppers exclusively for our installation clients. Pick them up at no charge from our 178 Tiffin St. location. When we remove the sign, we return the topper to our inventory."
+    },
+    {
+      "id": "order-materials",
+      "title": "Can I order new signs, toppers or realtor print materials through ION Print & Promo?",
+      "content": "Yes! We are your one-stop shop for all printing — feature sheets, open house signs, business cards, and more to grow your realty business and promote your listings."
+    },
+    {
+      "id": "payment",
+      "title": "How do I pay for sign installations?",
+      "content": "You can e-transfer or pay online by credit card. Your invoice will include the necessary instructions."
+    },
+    {
+      "id": "weather",
+      "title": "Do you install signs in inclement weather?",
+      "content": "We do our best, but the safety of our installer is always the priority."
     }
   ],
   "cta": {

@@ -64,6 +64,11 @@
         "id": "dooley",
         "file": "dooley.svg",
         "alt": "Dooley"
+      },
+            {
+        "id": "klassic",
+        "file": "klassic.svg",
+        "alt": "Klassic"
       }
     ]
   }
