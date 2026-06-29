@@ -16,8 +16,18 @@ const { content, imageMap, animatedIcon } = Astro.props;
 
 const features = content.features ?? [];
 
-// Top-level feature image — shown between centre text and article
-const featureImage = content.featureImage;
+// Feature carousel — supports 1–3 images.
+// Accepts featureImages (array) or falls back to the legacy featureImage (single).
+const rawFeatureImages: { image: string; imageAlt: string }[] =
+  Array.isArray(content.featureImages)
+    ? content.featureImages.slice(0, 3)
+    : content.featureImage
+      ? [content.featureImage]
+      : [];
+
+// Keep only entries whose image key is present in imageMap.
+const featureImages = rawFeatureImages.filter((f) => imageMap[f.image]);
+const showDots = featureImages.length > 1;
 
 // CTA — resolved from key, random pool, or inline definition
 const isRandom       = content.ctaKey === "random";
@@ -57,20 +67,63 @@ const cta = (isRandom || isRandomPrint || isRandomPromo || isRandomSigns)
     )}
   </section>
 
-  <!-- FEATURE IMAGE — replaces tab nav, same overlap position -->
-  {featureImage && imageMap[featureImage.image] && (
+  <!-- FEATURE IMAGE / CAROUSEL — replaces tab nav, same overlap position -->
+  {featureImages.length === 1 && (
     <section class="inner-svc-img">
       <div class="inner-svc-img__wrap">
         <Image
-          src={imageMap[featureImage.image]}
-          alt={featureImage.imageAlt}
+          src={imageMap[featureImages[0].image]}
+          alt={featureImages[0].imageAlt}
           width={1400}
-          height={900}
+          height={600}
+          quality={90}
           sizes="(max-width: 768px) 100vw, 896px"
           class="inner-svc-img__img"
           loading="eager"
           decoding="async"
         />
+      </div>
+    </section>
+  )}
+
+  {featureImages.length > 1 && (
+    <section class="inner-svc-img">
+      <div class="inner-svc-carousel__wrap">
+        <!-- Slide track -->
+        <div class="inner-svc-carousel__track" aria-live="polite" aria-atomic="true">
+          {featureImages.map((f, i) => (
+            <div
+              class={`inner-svc-carousel__slide${i === 0 ? " active" : ""}`}
+              data-index={i}
+              aria-hidden={i !== 0}
+            >
+              <Image
+                src={imageMap[f.image]}
+                alt={f.imageAlt}
+                width={1400}
+                height={600}
+                quality={90}
+                sizes="(max-width: 768px) 100vw, 896px"
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
+              />
+            </div>
+          ))}
+        </div>
+
+        <!-- Overlay dots -->
+        {showDots && (
+          <nav class="inner-svc-carousel__dots" aria-label="Feature image navigation">
+            {featureImages.map((f, i) => (
+              <button
+                class={`inner-svc-carousel__dot${i === 0 ? " active" : ""}`}
+                data-index={i}
+                aria-label={`Show image ${i + 1}`}
+                aria-current={i === 0}
+              />
+            ))}
+          </nav>
+        )}
       </div>
     </section>
   )}

@@ -178,6 +178,17 @@ const pages = defineCollection({
       })
       .optional(),
 
+    // InnerServicePage — carousel of up to 3 feature images
+    featureImages: z
+      .array(
+        z.object({
+          image: z.string(),
+          imageAlt: z.string(),
+        })
+      )
+      .max(3)
+      .optional(),
+
     // InnerServicePage — animated icon for centre text
     animatedIcon: z.string().optional(),
 

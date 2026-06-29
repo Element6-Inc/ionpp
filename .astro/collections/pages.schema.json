@@ -470,6 +470,26 @@
           ],
           "additionalProperties": false
         },
+        "featureImages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "image": {
+                "type": "string"
+              },
+              "imageAlt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "image",
+              "imageAlt"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 3
+        },
         "animatedIcon": {
           "type": "string"
         },

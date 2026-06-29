@@ -108,6 +108,8 @@ function dropdownIsActive(children: NavLink[]): boolean {
                             href={child.href}
                             class="dropdown-item"
                             role="menuitem"
+                            target={child.target}
+                            rel={child.rel}
                             aria-current={isActive(child.href, true) ? "page" : undefined}
                           >
                             <span class="dropdown-item-title">
@@ -231,6 +233,8 @@ function dropdownIsActive(children: NavLink[]): boolean {
                           href={child.href}
                           class="mobile-dropdown-item"
                           data-mobile-link
+                          target={child.target}
+                          rel={child.rel}
                           aria-current={isActive(child.href, true) ? "page" : undefined}
                         >
                           {child.label}

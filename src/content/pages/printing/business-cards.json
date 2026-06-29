@@ -14,10 +14,10 @@
     "description": "Business cards still matter. They're quick, personal, and memorable, and say a lot about you and your brand.",
     "icon": "icon"
   },
-  "featureImage": {
-    "image": "feature1",
-    "imageAlt": "Professional business card printing"
-  },
+  "featureImages": [
+    { "image": "feature1", "imageAlt": "Professional business card printing" },
+    { "image": "feature2", "imageAlt": "Business card design options" }
+  ],
   "features": [
     {
       "id": "styles",

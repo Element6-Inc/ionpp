@@ -9,10 +9,9 @@
     "bgColor": "#1164B4",
     "image": "hero"
   },
-  "featureImage": {
-    "image": "feature1",
-    "imageAlt": "Professional booklet and manual printing services"
-  },
+  "featureImages": [
+    { "image": "feature1", "imageAlt": "Professional business card printing" }
+  ],
   "animatedIcon": "printer.gif",
   "centreText": {
     "title": "Booklets That Make Your Message Clear",

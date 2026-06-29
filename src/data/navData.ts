@@ -2,6 +2,8 @@ export interface NavLink {
   label: string;
   href: string;
   footerLabel?: string;
+  target?: string;
+  rel?: string;
 }
 
 export interface NavDropdown {
@@ -101,14 +103,26 @@ export const navigationItems: NavItem[] = [
   //     ],
   //   } as NavDropdown,
   // },
-  {
-    type: "link",
+    {
+    type: "dropdown",
     data: {
       label: "Promo",
       footerLabel: "Promotional Products",
       href: "/promo-products",
-    } as NavLink,
+      children: [
+        { label: "Promo Products", href: "/promo-products" },
+        { label: "Online Promo Store", href: "https://promo.ionprintandpromo.ca/", target: "_blank", rel: "noopener noreferrer" },
+      ],
+    } as NavDropdown,
   },
+  // {
+  //   type: "link",
+  //   data: {
+  //     label: "Promo",
+  //     footerLabel: "Promotional Products",
+  //     href: "/promo-products",
+  //   } as NavLink,
+  // },
   {
     type: "link",
     data: {

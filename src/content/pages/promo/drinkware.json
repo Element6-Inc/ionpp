@@ -14,10 +14,11 @@
     "description": "Everyone uses drinkware, so why not put your brand on it? Put your logo on the items people carry, sip & use all day, every day.",
     "icon": "icon"
   },
-  "featureImage": {
-    "image": "feature1",
-    "imageAlt": "Custom branded drinkware and water bottles"
-  },
+  "featureImages": [
+    { "image": "feature1", "imageAlt": "Professional business card printing" },
+    { "image": "feature2", "imageAlt": "Business card design options" }
+  ],
+  
   "features": [
     {
       "id": "water-bottles",

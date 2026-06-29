@@ -1285,6 +1285,68 @@ li {
   }
 }
 
+/* Feature image carousel — same outer shell as single image, adds slide track + overlay dots */
+.inner-svc-carousel__wrap {
+  @apply mx-auto max-w-4xl rounded-2xl overflow-hidden relative;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+}
+
+.inner-svc-carousel__track {
+  @apply relative w-full;
+  aspect-ratio: 14 / 9;
+}
+
+@media (min-width: 640px) {
+  .inner-svc-carousel__track {
+    aspect-ratio: 16 / 7;
+  }
+}
+
+.inner-svc-carousel__slide {
+  @apply absolute inset-0 opacity-0 pointer-events-none;
+  transition: opacity 0.5s ease;
+}
+
+.inner-svc-carousel__slide.active {
+  @apply opacity-100 pointer-events-auto;
+}
+
+.inner-svc-carousel__slide img {
+  @apply w-full h-full object-cover block;
+}
+
+/* Dots sit at the bottom of the image, overlaid */
+.inner-svc-carousel__dots {
+  @apply absolute bottom-3 left-0 right-0 flex items-center justify-center gap-1;
+  z-index: 10;
+}
+
+.inner-svc-carousel__dot {
+  /* 24px tap target, 10px visible dot via background-clip */
+  @apply rounded-full border-0 cursor-pointer;
+  width: 24px;
+  height: 24px;
+  padding: 7px;
+  background-clip: content-box;
+  background-color: rgba(255, 255, 255, 0.55);
+  transition: var(--transition-default);
+}
+
+.inner-svc-carousel__dot:hover {
+  background-color: var(--color-primary-light);
+  transform: scale(1.25);
+}
+
+.inner-svc-carousel__dot.active {
+  background-color: #fff;
+  transform: scale(1.25);
+}
+
+.inner-svc-carousel__dot:focus-visible {
+  @apply outline-2 outline-offset-2;
+  outline-color: var(--color-primary);
+}
+
 /* Blog article */
 .panel-blog {
   @apply overflow-hidden py-10;
