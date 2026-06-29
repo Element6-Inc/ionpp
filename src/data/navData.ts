@@ -111,7 +111,7 @@ export const navigationItems: NavItem[] = [
       href: "/promo-products",
       children: [
         { label: "Promo Products", href: "/promo-products" },
-        { label: "Shop Promo", href: "https://promo.ionprintandpromo.ca/", target: "_blank", rel: "noopener noreferrer" },
+        { label: "Shop Promo Products", href: "https://promo.ionprintandpromo.ca/", target: "_blank", rel: "noopener noreferrer" },
       ],
     } as NavDropdown,
   },
