@@ -16,11 +16,11 @@ const { content, imageMap, animatedIcon } = Astro.props;
 
 const features = content.features ?? [];
 
-// Feature carousel — supports 1–3 images.
+// Feature carousel — supports 1–4 images.
 // Accepts featureImages (array) or falls back to the legacy featureImage (single).
 const rawFeatureImages: { image: string; imageAlt: string }[] =
   Array.isArray(content.featureImages)
-    ? content.featureImages.slice(0, 3)
+    ? content.featureImages.slice(0, 4)
     : content.featureImage
       ? [content.featureImage]
       : [];

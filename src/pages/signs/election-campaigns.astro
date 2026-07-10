@@ -1,0 +1,16 @@
+---
+import InnerServicePage from "../../layouts/InnerServicePage.astro";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("pages", "signs/election-campaigns");
+const content = entry!.data;
+
+import hero          from "../../assets/heros/signs/elections.webp";
+import feature1      from "../../assets/features/signs/elections-1.webp";
+import feature2      from "../../assets/features/signs/elections-2.webp";
+import feature3      from "../../assets/features/signs/elections-3.webp";
+import feature4      from "../../assets/features/signs/elections-4.webp";
+import animatedIcon  from "../../assets/icons/animated/election.gif";
+---
+
+<InnerServicePage content={content} imageMap={{ hero, feature1, feature2, feature3, feature4 }} animatedIcon={animatedIcon} />

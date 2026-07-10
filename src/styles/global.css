@@ -1364,7 +1364,7 @@ li {
 
 .panel-blog__section--divided {
   @apply mt-14 pt-14;
-  border-top: 1px solid var(--slate-100);
+  border-top: 1px solid var(--slate-300);
 }
 
 .panel-blog__section-title {

@@ -1,0 +1,65 @@
+{
+  "site": {
+    "title": "ION Print & Promo | Election Campaigns",
+    "description": "Election signs, flyers, postcards, door hangers and campaign promo printed locally by ION Print & Promo. Durable signs, bulk pricing and free Simcoe County delivery on orders over 100 signs."
+  },
+  "hero": {
+    "title": "Election Signs & More",
+    "imageAlt": "Election lawn signs printed by ION Print & Promo",
+    "bgColor": "#ff7f50",
+    "image": "hero"
+  },
+  "centreText": {
+    "title": "Be Campaign Ready!",
+    "description": "Whether you are running for council, mayor, school board trustee or other elected positions, we can help you build a cost-effective campaign package that gets your name and message across the community."
+  },
+  "featureImages": [
+    {
+      "image": "feature1",
+      "imageAlt": "Coroplast election lawn signs printed in-house"
+    },
+    {
+      "image": "feature2",
+      "imageAlt": "Durable outdoor signage built for all conditions"
+    },
+    { "image": "feature3", "imageAlt": "Election campaign signs on display" },
+    {
+      "image": "feature4",
+      "imageAlt": "Election campaign signage in the community"
+    }
+  ],
+  "features": [
+    {
+      "id": "election-signs",
+      "title": "Election Signs Printed Locally",
+      "description": "<p>At ION Print & Promo, we print signs in-house on durable corrugated plastic (coroplast) with weather-resistant inks. Our flatbed printing allows us to print directly to substrate, making us a smart choice for larger orders and competitive bulk pricing.</p><ul><li>16” x 24” (most cost-effective!)</li><li>18” x 24”</li><li>24” x 24”</li><li>24” x 36”</li><li>48” x 48”</li><li>24” x 20” bag signs (min. order of 50)</li></ul><p>Choose from popular election lawn sign sizes, with custom sizes also available. Send us your preferred size and quantity, and our team will be happy to help.</p>",
+      "buttonLink": "/pdf/ionpp-campaign-pricing-brochure-2026.pdf",
+      "buttonText": "View Pricing PDF",
+      "buttonTarget": "_blank"
+    },
+    {
+      "id": "sign-options",
+      "title": "Election Sign Options & Local Support",
+      "description": "<p>Signs can be printed on one or two sides, in one colour or more, with H-stakes and sign hardware available in bulk.</p><ul><li>Printed on one or two sides</li><li>One colour (most cost-effective) or more</li><li>H-stakes & sign hardware available in bulk</li><li>Free sign delivery within Simcoe County on orders over 100 signs</li></ul><p>When timing matters, local printing makes a difference. Avoid out-of-country online order delays and work with your community print team for real, in-person support.</p>"
+    },
+    {
+      "id": "campaign-print",
+      "title": "Campaign Print Essentials",
+      "description": "<p>Reach voters at the door, in mailboxes, at events and around the community. We'll help keep a consistent campaign look across signs, flyers and handouts, so everything feels connected and professional.</p><ul><li>Postcards</li><li>Door hangers</li><li>Flyers</li><li>Business cards</li><li>Campaign banners & flags</li></ul>",
+      "buttonLink": "/printing",
+      "buttonText": "Explore Print"
+    },
+    {
+      "id": "campaign-promo",
+      "title": "Bundle Your Campaign Promo Products",
+      "description": "<p>Build recognition and keep your campaign visible while canvassing, attending events and making appearances. Bundle promo items with your signs and print materials so ordering is easier and you save.</p><ul><li>T-shirts & hats</li><li>Buttons & stickers</li><li>Pens, tote bags & magnets</li><li>Name badges</li><li>Event giveaways</li></ul>",
+      "buttonLink": "/promo-products",
+      "buttonText": "Explore Promo"
+    }
+  ],
+  "cta": {
+    "heading": "Contact ION Print & Promo today",
+    "button": "Contact Us",
+    "link": "/contact"
+  }
+}
