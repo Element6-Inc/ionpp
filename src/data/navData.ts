@@ -74,26 +74,17 @@ export const navigationItems: NavItem[] = [
   //     ],
   //   } as NavDropdown,
   // },
-  // Election Campaigns hidden pending approval — re-add as a dropdown child when ready:
-  // {
-  //   type: "dropdown",
-  //   data: {
-  //     label: "Signs",
-  //     footerLabel: "Sign Services",
-  //     href: "/signs",
-  //     children: [
-  //       { label: "Sign Services", href: "/signs" },
-  //       { label: "Election Campaigns", href: "/signs/election-campaigns" },
-  //     ],
-  //   } as NavDropdown,
-  // },
   {
-    type: "link",
+    type: "dropdown",
     data: {
       label: "Signs",
       footerLabel: "Sign Services",
       href: "/signs",
-    } as NavLink,
+      children: [
+        { label: "Sign Services", href: "/signs" },
+        { label: "Election Campaigns", href: "/signs/election-campaigns" },
+      ],
+    } as NavDropdown,
   },
   // {
   //   type: "dropdown",
