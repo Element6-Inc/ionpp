@@ -217,7 +217,7 @@ const { token, installMap } = Astro.props;
           ${p.km !== null ? `
           <div class="sam-field">
             <p class="sam-label">Travel Distance</p>
-            <p class="sam-badge sam-badge-neutral">${p.km} km from our Barrie office</p>
+            <p class="sam-badge sam-badge-neutral">${p.km} Km From Our Barrie Office</p>
           </div>` : ''}
         </div>
 
@@ -466,7 +466,7 @@ const { token, installMap } = Astro.props;
         fitToPoints(points);
 
         const pricingType = flat
-          ? (flat.name === 'Barrie' ? 'Barrie — No Travel Fee' : 'Flat-rate location')
+          ? (flat.name === 'Barrie' ? 'Barrie — No Travel Fee' : 'Flat-Rate Location')
           : 'Distance-Based Pricing';
 
         setState(renderResult({
