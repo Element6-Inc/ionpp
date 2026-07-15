@@ -466,7 +466,7 @@ const { token, installMap } = Astro.props;
         fitToPoints(points);
 
         const pricingType = flat
-          ? (flat.name === 'Barrie' ? 'No travel fee — Barrie office location' : 'Flat-rate location')
+          ? (flat.name === 'Barrie' ? 'Barrie — No Travel Fee' : 'Flat-rate location')
           : 'Distance-Based Pricing';
 
         setState(renderResult({
