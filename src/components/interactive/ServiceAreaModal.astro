@@ -1,22 +1,24 @@
 ---
-interface Zone {
-  id: string;
-  minKm: number;
-  maxKm: number;
-  surcharge: number;
-  color: string;
+interface FlatRateTown {
+  name: string;
+  match: string[];
+  fee: number;
 }
 interface InstallMap {
   title: string;
   subtitle: string;
-  center: { lat: number; lng: number };
+  office: { label: string; address: string; lat: number; lng: number };
   zoom: number;
-  zones: Zone[];
+  installFee: number;
+  fuelSurcharge: number;
+  perKmRate: number;
+  flatRateTowns: FlatRateTown[];
+  serviceArea: { type: "Polygon"; coordinates: [number, number][][] };
   messages: {
-    free: string;
-    surcharge: string;
+    loading: string;
     outside: string;
-    outsideSub: string;
+    notFound: string;
+    note: string;
   };
 }
 interface Props {
@@ -29,43 +31,63 @@ const { token, installMap } = Astro.props;
 <!-- Modal backdrop -->
 <div
   id="sam-modal"
-  class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+  class="fixed inset-0 z-50 hidden items-center justify-center p-2 sm:p-4"
   style="background: var(--color-bg-overlay);"
 >
   <div
-    class="relative w-full max-w-2xl bg-white rounded-2xl overflow-hidden flex flex-col"
-    style="max-height: 92vh; border: 1px solid var(--color-border-base); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);"
+    class="sam-modal relative w-full bg-white rounded-2xl overflow-hidden flex flex-col"
+    style="max-height: 94vh; border: 1px solid var(--color-border-base); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);"
   >
 
     <!-- Header -->
-    <div class="flex items-start justify-between px-6 pt-6 pb-4">
+    <div class="flex items-start justify-between px-6 sm:px-7 pt-6 pb-4 flex-shrink-0" style="border-bottom: 1px solid var(--color-border-base);">
       <div>
-        <h3 class="text-xl font-bold" style="color: var(--color-primary);">{installMap.title}</h3>
+        <h3 id="sam-title" class="text-lg sm:text-xl font-bold" style="color: var(--color-primary);">{installMap.title}</h3>
         <p class="text-sm mt-1" style="color: var(--color-text-base);">{installMap.subtitle}</p>
       </div>
-      <button id="sam-close" type="button" class="ml-4 flex-shrink-0 mt-0.5 transition-colors" style="color: var(--color-text-placeholder);">
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <button id="sam-close" type="button" aria-label="Close installation pricing map" class="ml-4 flex-shrink-0 mt-0.5 transition-colors" style="color: var(--color-text-placeholder);">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
     </div>
 
-    <!-- Search -->
-    <div class="px-6 pb-4">
-      <div id="sam-geocoder"></div>
+    <!-- Body: single stacked column — search, then map, then results -->
+    <div class="sam-body flex-1 min-h-0 flex flex-col overflow-y-auto">
+
+      <!-- Search -->
+      <div class="relative z-20 px-7 sm:px-8 py-6 flex-shrink-0" style="border-bottom: 1px solid var(--color-border-base);">
+        <div class="flex items-center justify-between gap-3 mb-3">
+          <label for="sam-geocoder-input" class="sam-label">
+            Installation Address
+          </label>
+          <button id="sam-clear" type="button" aria-label="Clear address" title="Clear address" class="hidden transition-colors" style="color: var(--color-primary);">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <div id="sam-geocoder"></div>
+      </div>
+
+      <!-- Map -->
+      <div class="relative flex-shrink-0">
+        <div
+          id="sam-map"
+          data-token={token}
+          data-config={JSON.stringify(installMap)}
+          class="w-full h-80 sm:h-96"
+          role="img"
+          aria-label={`Map showing the Simcoe County service area, our Barrie office, and the installation address once one is selected`}
+        ></div>
+      </div>
+
+      <!-- State / results -->
+      <div class="px-7 sm:px-8 py-6" style="border-top: 1px solid var(--color-border-base);">
+        <div id="sam-state"></div>
+      </div>
+
     </div>
-
-    <!-- Map -->
-    <div
-      id="sam-map"
-      data-token={token}
-      data-config={JSON.stringify({ center: installMap.center, zoom: installMap.zoom, zones: installMap.zones, messages: installMap.messages })}
-      style="height: 340px; flex-shrink: 0;"
-    ></div>
-
-    <!-- Result -->
-    <div id="sam-result" class="hidden px-6 py-4" style="border-top: 1px solid var(--color-border-base);"></div>
-
   </div>
 </div>
 
@@ -75,86 +97,149 @@ const { token, installMap } = Astro.props;
 <script>
   const mapEl = document.getElementById('sam-map') as HTMLElement;
   const config = JSON.parse(mapEl?.dataset.config ?? '{}');
-  const BARRIE = config.center ?? { lat: 44.3894, lng: -79.6903 };
-  const ZONES: { id: string; minKm: number; maxKm: number; surcharge: number; color: string }[] = config.zones ?? [];
+
+  const OFFICE = config.office ?? { label: 'ION Print & Promo', address: '', lat: 44.3894, lng: -79.6903 };
+  const INSTALL_FEE: number = config.installFee ?? 60;
+  const FUEL_SURCHARGE: number = config.fuelSurcharge ?? 5;
+  const PER_KM_RATE: number = config.perKmRate ?? 1;
+  const FLAT_TOWNS: { name: string; match: string[]; fee: number }[] = config.flatRateTowns ?? [];
+  const SERVICE_AREA_RING: [number, number][] = config.serviceArea?.coordinates?.[0] ?? [];
   const MESSAGES = config.messages ?? {};
+  const BRAND_COLOR = '#0ea5e9';
+  const BRAND_COLOR_DARK = '#0284c7';
+  const CUSTOMER_COLOR = '#334155';
 
-  function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number) {
-    const R = 6371, toRad = (x: number) => x * Math.PI / 180;
-    const dLat = toRad(lat2 - lat1), dLng = toRad(lng2 - lng1);
-    const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng/2)**2;
-    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  }
+  // ---------- Geometry helpers ----------
 
-  function circleCoords(lat: number, lng: number, radiusKm: number, steps = 80): [number,number][] {
-    const pts: [number,number][] = [];
-    for (let i = 0; i <= steps; i++) {
-      const a = (i / steps) * 2 * Math.PI;
-      pts.push([
-        lng + (radiusKm / (111.32 * Math.cos(lat * Math.PI / 180))) * Math.sin(a),
-        lat + (radiusKm / 111.32) * Math.cos(a),
-      ]);
+  function pointInRing(lng: number, lat: number, ring: [number, number][]): boolean {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const xi = ring[i][0], yi = ring[i][1];
+      const xj = ring[j][0], yj = ring[j][1];
+      const intersect = ((yi > lat) !== (yj > lat)) &&
+        (lng < (xj - xi) * (lat - yi) / (yj - yi) + xi);
+      if (intersect) inside = !inside;
     }
-    return pts;
+    return inside;
   }
 
-  function donutGeoJSON(lat: number, lng: number, innerKm: number, outerKm: number) {
-    const outer = circleCoords(lat, lng, outerKm);
-    const inner = [...circleCoords(lat, lng, innerKm)].reverse();
-    return { type: 'Feature' as const, geometry: { type: 'Polygon' as const, coordinates: innerKm === 0 ? [outer] : [outer, inner] } };
+  function isInsideServiceArea(lng: number, lat: number): boolean {
+    if (!SERVICE_AREA_RING.length) return false;
+    return pointInRing(lng, lat, SERVICE_AREA_RING);
   }
 
-  function getZone(km: number) {
-    return ZONES.find(z => km > z.minKm && km <= z.maxKm) ?? (km <= 20 ? ZONES[0] : null);
+  function ringBounds(ring: [number, number][]) {
+    let minLng = Infinity, maxLng = -Infinity, minLat = Infinity, maxLat = -Infinity;
+    ring.forEach(([lng, lat]) => {
+      minLng = Math.min(minLng, lng); maxLng = Math.max(maxLng, lng);
+      minLat = Math.min(minLat, lat); maxLat = Math.max(maxLat, lat);
+    });
+    return [[minLng, minLat], [maxLng, maxLat]] as [[number, number], [number, number]];
   }
 
-  async function fetchPlacePolygon(lat: number, lng: number): Promise<any> {
-    try {
-      const res = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=geojson&polygon_geojson=1&zoom=10`,
-        { headers: { 'Accept-Language': 'en' } }
-      );
-      const data = await res.json();
-      return data.features?.[0]?.geometry ?? null;
-    } catch {
-      return null;
+  // ---------- Pricing / matching ----------
+
+  function getComponentTokens(result: any): string[] {
+    const tokens: string[] = [];
+    if (typeof result.text === 'string') tokens.push(result.text);
+    if (typeof result.place_name === 'string') tokens.push(...result.place_name.split(','));
+    (result.context ?? []).forEach((c: any) => { if (typeof c.text === 'string') tokens.push(c.text); });
+    return tokens.map((t: string) => t.toLowerCase().trim()).filter(Boolean);
+  }
+
+  function matchFlatRateTown(tokens: string[]) {
+    for (const town of FLAT_TOWNS) {
+      if (town.match.some((m) => tokens.some((t) => t.includes(m)))) return town;
     }
+    return null;
   }
 
-  function boldFirstPart(placeName: string): string {
-    const idx = placeName.indexOf(',');
-    if (idx === -1) return `<strong>${placeName}</strong>`;
-    return `<strong>${placeName.slice(0, idx)}</strong>${placeName.slice(idx)}`;
+  async function getDrivingRoute(destLng: number, destLat: number, token: string) {
+    const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${OFFICE.lng},${OFFICE.lat};${destLng},${destLat}?geometries=geojson&overview=full&access_token=${token}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('directions request failed');
+    const data = await res.json();
+    const route = data.routes?.[0];
+    if (!route) throw new Error('no route found');
+    return { km: route.distance / 1000, geometry: route.geometry };
   }
 
-  function showResult(distKm: number, placeName: string, map: any, zone: any) {
-    const el = document.getElementById('sam-result');
+  // ---------- Rendering ----------
+
+  function escapeHtml(s: string): string {
+    return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' } as Record<string, string>)[c]);
+  }
+
+  function renderLoading() {
+    return `
+      <div class="sam-loading" role="status" aria-live="polite">
+        <span class="sam-spinner" aria-hidden="true"></span>
+        <span>${MESSAGES.loading ?? 'Checking address and calculating travel fee…'}</span>
+      </div>`;
+  }
+
+  function renderOutside(address: string) {
+    return `
+      <div class="sam-error" role="alert">
+        <p class="sam-error-title">${MESSAGES.outside ?? ''}</p>
+      </div>`;
+  }
+
+  function renderNotFound() {
+    return `
+      <div class="sam-error" role="alert">
+        <p class="sam-error-title">${MESSAGES.notFound ?? ''}</p>
+      </div>`;
+  }
+
+  function renderResult(p: {
+    address: string;
+    pricingType: string;
+    km: number | null;
+    travelFee: number;
+    installFee: number;
+    fuelSurcharge: number;
+    total: number;
+  }) {
+    return `
+      <div class="sam-card" role="status">
+        <div class="sam-form-grid">
+          <div class="sam-field sam-field-full">
+            <p class="sam-label">Installation Address</p>
+            <p class="sam-card-value">${escapeHtml(p.address)}</p>
+          </div>
+
+          <div class="sam-field${p.km === null ? ' sam-field-full' : ''}">
+            <p class="sam-label">Pricing Type</p>
+            <p class="sam-badge sam-badge-primary">${p.pricingType}</p>
+          </div>
+
+          ${p.km !== null ? `
+          <div class="sam-field">
+            <p class="sam-label">One-Way Distance</p>
+            <p class="sam-badge sam-badge-neutral">${p.km} km from our Barrie office</p>
+          </div>` : ''}
+        </div>
+
+        <div class="sam-card-breakdown">
+          <div class="sam-card-row"><span>Installation Fee</span><span>$${Math.round(p.installFee)}</span></div>
+          <div class="sam-card-row"><span>Travel Fee</span><span>$${Math.round(p.travelFee)}</span></div>
+          <div class="sam-card-row"><span>Fuel Surcharge</span><span>$${Math.round(p.fuelSurcharge)}</span></div>
+          <div class="sam-card-row sam-card-total"><span>Total Fee</span><span>$${Math.round(p.total)}</span></div>
+        </div>
+
+        <p class="sam-card-note">${MESSAGES.note ?? ''}</p>
+      </div>`;
+  }
+
+  function setState(html: string, alert = false) {
+    const el = document.getElementById('sam-state');
     if (!el) return;
-
-    const dist = Math.round(distKm);
-    const boldPlace = boldFirstPart(placeName);
-    const contactLink = `<a href="/contact" class="font-medium" style="color:var(--color-text-accent)">Contact us</a>`;
-
-    if (!zone) {
-      el.innerHTML = `
-        <p class="text-lg font-bold" style="color:#94a3b8;">${MESSAGES.outside}</p>
-        <p class="text-sm mt-0.5" style="color:var(--color-text-placeholder);">Your location: ${boldPlace} &middot; ${dist} km from Barrie</p>
-        <p class="text-sm mt-1" style="color:var(--color-text-base);">${contactLink} ${MESSAGES.outsideSub}</p>`;
-    } else {
-      const free = zone.surcharge === 0;
-      el.innerHTML = `
-        <p class="text-lg font-bold" style="color:${zone.color};">
-          ${free ? 'Standard installation rate' : `+$${zone.surcharge} install surcharge`}
-        </p>
-        <p class="text-sm mt-0.5" style="color:var(--color-text-placeholder);">
-          Your location: ${boldPlace} &middot; ${dist} km from Barrie
-        </p>
-        <p class="text-sm mt-1" style="color:var(--color-text-base);">
-          ${free ? MESSAGES.free : `${contactLink} ${MESSAGES.surcharge}`}
-        </p>`;
-    }
-    el.classList.remove('hidden');
+    el.setAttribute('aria-live', alert ? 'assertive' : 'polite');
+    el.innerHTML = html;
   }
+
+  // ---------- Map ----------
 
   function loadScript(src: string): Promise<void> {
     return new Promise((resolve, reject) => {
@@ -166,6 +251,60 @@ const { token, installMap } = Astro.props;
   }
 
   let mapInstance: any = null;
+  let officeMarker: any = null;
+  let customerMarker: any = null;
+  let busy = false;
+
+  function buildOfficeMarkerEl() {
+    const el = document.createElement('div');
+    el.className = 'sam-office-marker';
+    el.innerHTML = `<span class="sam-office-dot"></span><span class="sam-office-label">${escapeHtml(OFFICE.label ?? 'ION Print & Promo')}</span>`;
+    return el;
+  }
+
+  function fitToPoints(points: [number, number][]) {
+    if (!mapInstance || !points.length) return;
+    const mapboxgl = (window as any).mapboxgl;
+    const bounds = new mapboxgl.LngLatBounds(points[0], points[0]);
+    points.forEach((p) => bounds.extend(p));
+    mapInstance.fitBounds(bounds, { padding: 56, maxZoom: 13, duration: 600 });
+  }
+
+  function fitDefaultView() {
+    if (!SERVICE_AREA_RING.length) return;
+    const [sw, ne] = ringBounds(SERVICE_AREA_RING);
+    fitToPoints([sw, ne]);
+  }
+
+  function setRouteData(geometry: any) {
+    const src = mapInstance?.getSource('sam-route');
+    if (!src) return;
+    src.setData(geometry ? { type: 'Feature', geometry } : { type: 'FeatureCollection', features: [] });
+  }
+
+  function placeCustomerMarker(lng: number, lat: number) {
+    const mapboxgl = (window as any).mapboxgl;
+    if (customerMarker) customerMarker.remove();
+    customerMarker = new mapboxgl.Marker({ color: CUSTOMER_COLOR }).setLngLat([lng, lat]).addTo(mapInstance);
+  }
+
+  function removeCustomerMarker() {
+    if (customerMarker) { customerMarker.remove(); customerMarker = null; }
+  }
+
+  function resetAll() {
+    setState('');
+    removeCustomerMarker();
+    setRouteData(null);
+    document.getElementById('sam-clear')?.classList.add('hidden');
+    fitDefaultView();
+  }
+
+  function clearAddress() {
+    const geocoder = (window as any).samGeocoder;
+    geocoder?.clear();
+    resetAll();
+  }
 
   async function openModal() {
     const modal = document.getElementById('sam-modal');
@@ -174,7 +313,7 @@ const { token, installMap } = Astro.props;
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
 
-    if (mapInstance) { mapInstance.resize(); return; }
+    if (mapInstance) { requestAnimationFrame(() => mapInstance.resize()); return; }
 
     const token = (document.getElementById('sam-map') as HTMLElement)?.dataset.token;
     if (!token) return;
@@ -189,58 +328,164 @@ const { token, installMap } = Astro.props;
     mapInstance = new mapboxgl.Map({
       container: 'sam-map',
       style: 'mapbox://styles/mapbox/light-v11',
-      center: [BARRIE.lng, BARRIE.lat],
+      center: [OFFICE.lng, OFFICE.lat],
       zoom: config.zoom ?? 9,
+      pitchWithRotate: false,
+      dragRotate: false,
+      maxPitch: 0,
+      attributionControl: false,
     });
+
+    mapInstance.touchZoomRotate.disableRotation();
+    mapInstance.addControl(new mapboxgl.NavigationControl({ showCompass: false, showZoom: true }), 'top-right');
 
     mapInstance.on('load', () => {
-      [...ZONES].reverse().forEach(z => {
-        mapInstance.addSource(z.id, { type: 'geojson', data: donutGeoJSON(BARRIE.lat, BARRIE.lng, z.minKm, z.maxKm) });
-        mapInstance.addLayer({ id: `${z.id}-fill`, type: 'fill', source: z.id, paint: { 'fill-color': z.color, 'fill-opacity': 0.08 } });
-        mapInstance.addLayer({ id: `${z.id}-line`, type: 'line', source: z.id, paint: { 'line-color': z.color, 'line-width': 1.5, 'line-opacity': 0.35 } });
+      // Simcoe County service-area boundary — subtle fill, clear outline
+      mapInstance.addSource('sam-service-area', {
+        type: 'geojson',
+        data: { type: 'Feature', geometry: { type: 'Polygon', coordinates: config.serviceArea?.coordinates ?? [] } },
+      });
+      mapInstance.addLayer({ id: 'sam-service-area-fill', type: 'fill', source: 'sam-service-area', paint: { 'fill-color': BRAND_COLOR, 'fill-opacity': 0.06 } });
+      mapInstance.addLayer({ id: 'sam-service-area-line', type: 'line', source: 'sam-service-area', paint: { 'line-color': BRAND_COLOR_DARK, 'line-width': 1.5, 'line-opacity': 0.55 } });
+
+      // Route line
+      mapInstance.addSource('sam-route', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      mapInstance.addLayer({
+        id: 'sam-route-line', type: 'line', source: 'sam-route',
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: { 'line-color': BRAND_COLOR, 'line-width': 4, 'line-opacity': 0.9 },
       });
 
-      mapInstance.addSource('place-hl', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
-      mapInstance.addLayer({ id: 'place-hl-fill', type: 'fill', source: 'place-hl', paint: { 'fill-color': '#0ea5e9', 'fill-opacity': 0.3 } });
-      mapInstance.addLayer({ id: 'place-hl-line', type: 'line', source: 'place-hl', paint: { 'line-color': '#0ea5e9', 'line-width': 2.5, 'line-opacity': 0.9 } });
+      // Try to declutter default labels (POI / transit) without changing the base style
+      try {
+        (mapInstance.getStyle()?.layers ?? []).forEach((layer: any) => {
+          if (/poi|transit/i.test(layer.id)) {
+            mapInstance.setLayoutProperty(layer.id, 'visibility', 'none');
+          }
+        });
+      } catch { /* non-critical */ }
 
-      new mapboxgl.Marker({ color: '#0ea5e9' })
-        .setLngLat([BARRIE.lng, BARRIE.lat])
+      officeMarker = new mapboxgl.Marker({ element: buildOfficeMarkerEl(), anchor: 'left' })
+        .setLngLat([OFFICE.lng, OFFICE.lat])
         .addTo(mapInstance);
+
+      // The map container's final size depends on the grid/flex layout settling
+      // (especially the very first time the modal is shown), so force a resize
+      // pass once the browser has painted before fitting the default view.
+      requestAnimationFrame(() => {
+        mapInstance?.resize();
+        fitDefaultView();
+      });
     });
+
+    window.addEventListener('resize', () => mapInstance?.resize());
 
     const geocoder = new MapboxGeocoder({
       accessToken: token, mapboxgl,
-      placeholder: 'Enter your address or city...',
+      placeholder: 'Enter the installation address',
       countries: 'ca',
-      proximity: { longitude: BARRIE.lng, latitude: BARRIE.lat },
-      marker: { color: '#0ea5e9' },
+      proximity: { longitude: OFFICE.lng, latitude: OFFICE.lat },
+      marker: false,
+      flyTo: false,
     });
+    (window as any).samGeocoder = geocoder;
 
-    document.getElementById('sam-geocoder')?.appendChild(geocoder.onAdd(mapInstance));
+    const geocoderContainer = document.getElementById('sam-geocoder');
+    geocoderContainer?.appendChild(geocoder.onAdd(mapInstance));
+    const geocoderInput = geocoderContainer?.querySelector('input');
+    if (geocoderInput) geocoderInput.id = 'sam-geocoder-input';
 
-    geocoder.on('result', (e: any) => {
-      const [lng, lat] = e.result.center;
-      const dist = haversineKm(BARRIE.lat, BARRIE.lng, lat, lng);
-      const zone = getZone(dist);
-      const zoneColor = zone?.color ?? '#94a3b8';
+    // Show/hide our clear (x) button based on whether there's any text in the
+    // field at all — not just after a full result is selected — so it's
+    // available while the customer is still typing too.
+    function updateClearButton() {
+      const hasValue = !!(geocoderInput as HTMLInputElement | undefined)?.value?.trim();
+      document.getElementById('sam-clear')?.classList.toggle('hidden', !hasValue);
+    }
+    geocoderInput?.addEventListener('input', updateClearButton);
 
-      showResult(dist, e.result.place_name, mapInstance, zone);
+    let notFoundTimer: any = null;
 
-      fetchPlacePolygon(lat, lng).then(geometry => {
-        if (!geometry || !mapInstance?.getSource('place-hl')) return;
-        mapInstance.getSource('place-hl').setData({ type: 'Feature', geometry });
-        mapInstance.setPaintProperty('place-hl-fill', 'fill-color', zoneColor);
-        mapInstance.setPaintProperty('place-hl-line', 'line-color', zoneColor);
-      });
-    });
-
-    geocoder.on('clear', () => {
-      document.getElementById('sam-result')?.classList.add('hidden');
-      if (mapInstance.getSource('place-hl')) {
-        mapInstance.getSource('place-hl').setData({ type: 'FeatureCollection', features: [] });
+    geocoder.on('results', (e: any) => {
+      if (busy) return;
+      clearTimeout(notFoundTimer);
+      const query = (geocoderInput as HTMLInputElement | undefined)?.value?.trim() ?? '';
+      if (query.length < 4) return;
+      if (!e.features || e.features.length === 0) {
+        notFoundTimer = setTimeout(() => setState(renderNotFound(), true), 700);
       }
     });
+
+    geocoder.on('result', async (e: any) => {
+      if (busy) return;
+      busy = true;
+      clearTimeout(notFoundTimer);
+      setState(renderLoading());
+      document.getElementById('sam-clear')?.classList.remove('hidden');
+
+      try {
+        const [lng, lat] = e.result.center;
+        const placeName: string = e.result.place_name ?? e.result.text ?? 'Selected address';
+
+        if (!isInsideServiceArea(lng, lat)) {
+          removeCustomerMarker();
+          setRouteData(null);
+          placeCustomerMarker(lng, lat);
+          fitToPoints([[OFFICE.lng, OFFICE.lat], [lng, lat]]);
+          setState(renderOutside(placeName), true);
+          return;
+        }
+
+        const tokens = getComponentTokens(e.result);
+        const flat = matchFlatRateTown(tokens);
+
+        let km: number | null = null;
+        let travelFee: number;
+        let routeGeometry: any = null;
+
+        if (flat) {
+          travelFee = flat.fee;
+          try {
+            const route = await getDrivingRoute(lng, lat, token);
+            routeGeometry = route.geometry;
+          } catch { /* route line is a bonus, pricing still valid */ }
+        } else {
+          const route = await getDrivingRoute(lng, lat, token);
+          km = Math.round(route.km);
+          travelFee = km * PER_KM_RATE;
+          routeGeometry = route.geometry;
+        }
+
+        const total = travelFee + INSTALL_FEE + FUEL_SURCHARGE;
+
+        placeCustomerMarker(lng, lat);
+        setRouteData(routeGeometry);
+
+        const points: [number, number][] = [[OFFICE.lng, OFFICE.lat], [lng, lat]];
+        if (routeGeometry?.coordinates) points.push(...routeGeometry.coordinates);
+        fitToPoints(points);
+
+        const pricingType = flat
+          ? (flat.name === 'Barrie' ? 'No travel fee — Barrie office location' : 'Flat-rate location')
+          : 'One-way distance pricing';
+
+        setState(renderResult({
+          address: placeName,
+          pricingType,
+          km: flat ? null : km,
+          travelFee,
+          installFee: INSTALL_FEE,
+          fuelSurcharge: FUEL_SURCHARGE,
+          total,
+        }));
+      } catch {
+        setState(renderNotFound(), true);
+      } finally {
+        busy = false;
+      }
+    });
+
+    geocoder.on('clear', () => { resetAll(); });
   }
 
   function closeModal() {
@@ -252,10 +497,11 @@ const { token, installMap } = Astro.props;
   }
 
   function setup() {
-    document.querySelectorAll('a[href="#install-map"]').forEach(el => {
+    document.querySelectorAll('a[href="#install-map"]').forEach((el) => {
       el.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
     });
     document.getElementById('sam-close')?.addEventListener('click', closeModal);
+    document.getElementById('sam-clear')?.addEventListener('click', clearAddress);
     document.addEventListener('astro:before-swap', () => { mapInstance = null; }, { once: true });
   }
 

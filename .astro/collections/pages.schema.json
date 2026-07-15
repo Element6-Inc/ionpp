@@ -289,9 +289,15 @@
             "subtitle": {
               "type": "string"
             },
-            "center": {
+            "office": {
               "type": "object",
               "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                },
                 "lat": {
                   "type": "number"
                 },
@@ -300,6 +306,8 @@
                 }
               },
               "required": [
+                "label",
+                "address",
                 "lat",
                 "lng"
               ],
@@ -308,58 +316,95 @@
             "zoom": {
               "type": "number"
             },
-            "zones": {
+            "installFee": {
+              "type": "number"
+            },
+            "fuelSurcharge": {
+              "type": "number"
+            },
+            "perKmRate": {
+              "type": "number"
+            },
+            "flatRateTowns": {
               "type": "array",
               "items": {
                 "type": "object",
                 "properties": {
-                  "id": {
+                  "name": {
                     "type": "string"
                   },
-                  "minKm": {
-                    "type": "number"
+                  "match": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
                   },
-                  "maxKm": {
+                  "fee": {
                     "type": "number"
-                  },
-                  "surcharge": {
-                    "type": "number"
-                  },
-                  "color": {
-                    "type": "string"
                   }
                 },
                 "required": [
-                  "id",
-                  "minKm",
-                  "maxKm",
-                  "surcharge",
-                  "color"
+                  "name",
+                  "match",
+                  "fee"
                 ],
                 "additionalProperties": false
               }
             },
+            "serviceArea": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "Polygon"
+                },
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "minItems": 2,
+                      "maxItems": 2,
+                      "items": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              "required": [
+                "type",
+                "coordinates"
+              ],
+              "additionalProperties": false
+            },
             "messages": {
               "type": "object",
               "properties": {
-                "free": {
-                  "type": "string"
-                },
-                "surcharge": {
+                "loading": {
                   "type": "string"
                 },
                 "outside": {
                   "type": "string"
                 },
-                "outsideSub": {
+                "notFound": {
+                  "type": "string"
+                },
+                "note": {
                   "type": "string"
                 }
               },
               "required": [
-                "free",
-                "surcharge",
+                "loading",
                 "outside",
-                "outsideSub"
+                "notFound",
+                "note"
               ],
               "additionalProperties": false
             }
@@ -367,9 +412,13 @@
           "required": [
             "title",
             "subtitle",
-            "center",
+            "office",
             "zoom",
-            "zones",
+            "installFee",
+            "fuelSurcharge",
+            "perKmRate",
+            "flatRateTowns",
+            "serviceArea",
             "messages"
           ],
           "additionalProperties": false

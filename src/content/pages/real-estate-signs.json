@@ -11,7 +11,7 @@
   },
   "centreText": {
     "title": "Your One-Stop Real Estate Sign Shop",
-    "description": "We do it all – sign printing, posts, installs and take-downs - handled by the trusted team that agents know and trust.",
+    "description": "From weather-resistant coroplast signs and sturdy posts to custom toppers, installation and take-down, we handle it all. Through our partnership with Cardinal Signs, formerly Gibson Digital Print, we bring over 20 years of trusted experience.",
     "icon": "icon"
   },
   "services": {
@@ -28,25 +28,27 @@
   },
   "features": [
     {
-      "id": "signs",
-      "title": "Backed by Experience",
-      "description": "<p>We have over 20 years of experience through our partnership with Cardinal Signs, formerly Gibson Digital Print.</p><p>We handle everything from durable coroplast printing and sturdy wooden posts, to custom sign toppers, full installation and take-down so your listings and properties get the visibility they need.</p><p><p>Check out our FAQs below for all the details and how to get signed up!</p></p>",
-      "imageAlt": "Real estate coroplast lawn sign installation",
-      "imagePosition": "left",
-      "image": "feature1"
-    },
-    {
       "id": "installs",
       "title": "Sign Installs for Busy Realtors",
-      "description": "<p>ION Print & Promo provides trusted real estate sign installation and take-down services for realtors, agents and brokerages. We help wiith:</p><ul><li>Real estate sign installation</li><li>Sign take-downs</li><li>Custom toppers & sign printing</li><li>Service routes across Barrie & Simcoe County</li></ul>",
+      "description": "<p>ION Print & Promo provides trusted real estate sign services for realtors, agents and brokerages.</p><ul><li>Real estate sign installation</li><li>Sign take-downs</li><li>Custom toppers & sign printing</li><li>Service routes across Barrie & Simcoe County</li></ul>",
       "imageAlt": "Sign post installation in front yard",
+      "imagePosition": "left",
+      "image": "feature2",
+      "buttonLink": "#install-map",
+      "buttonText": "View Install Map"
+    },
+    {
+      "id": "post-rentals",
+      "title": "Post-Only Installation Rentals",
+      "description": "<p>Need a real estate post installed in Simcoe County, but already have your own sign? We offer post-only installation rentals for out-of-town realtors and agents.</p><ul><li>Post installation & 90-day rental: $60 per post</li><li>Installs outside of Barrie: Additional $30 fee</li><li>Optional 90-day renewal: $40 per post</li></ul>",
+      "imageAlt": "Real estate sign post ready for installation",
       "imagePosition": "right",
-      "image": "feature2"
+      "image": "feature1"
     },
     {
       "id": "printing",
       "title": "Real Estate Printing",
-      "description": "<p>We print all sizes of real estate signs, custom toppers, sold signs, open house signs, directional signs and A-frames designed to stand up to the elements! We use tough coroplast and laminate it for extra durability.</p><p>We also support agents and brokers with everyday print materials to market their listings and build their business.</p><p>This includes feature sheets, business cards, postcards, door hangers, presentation folders and custom brokerage materials.</p>",
+      "description": "<p>We help realtors, agents and brokerages promote listings with durable signage and professional print materials.</p><ul><li>Real estate signs, toppers & sold signs</li><li>Open house, directional signs & A-frames</li><li>Feature sheets, postcards & door hangers</li><li>Business cards, folders & brokerage materials</li></ul><p>Our signs are printed on tough coroplast, with optional lamination for added durability.</p>",
       "imageAlt": "Real estate coroplast lawn sign installation",
       "imagePosition": "left",
       "image": "feature3",
@@ -70,45 +72,55 @@
     "description": "Enter your address to see if an install surcharge applies to your location."
   },
   "installMap": {
-    "title": "Install Pricing Map",
-    "subtitle": "Surcharges are based on straight-line distance from Barrie.",
-    "center": { "lat": 44.3894, "lng": -79.6903 },
+    "title": "Installation Pricing Map",
+    "subtitle": "Enter your installation address to confirm availability and calculate travel fees.",
+    "office": {
+      "label": "ION Print & Promo",
+      "address": "178 Tiffin Street, Barrie, Ontario L4N 2M3",
+      "lat": 44.3727398,
+      "lng": -79.7012894
+    },
     "zoom": 9,
-    "zones": [
-      {
-        "id": "z20",
-        "minKm": 0,
-        "maxKm": 20,
-        "surcharge": 0,
-        "color": "#16a34a"
-      },
-      {
-        "id": "z30",
-        "minKm": 20,
-        "maxKm": 30,
-        "surcharge": 10,
-        "color": "#d97706"
-      },
-      {
-        "id": "z40",
-        "minKm": 30,
-        "maxKm": 40,
-        "surcharge": 15,
-        "color": "#ea580c"
-      },
-      {
-        "id": "z50",
-        "minKm": 40,
-        "maxKm": 50,
-        "surcharge": 20,
-        "color": "#dc2626"
-      }
+    "installFee": 60,
+    "fuelSurcharge": 5,
+    "perKmRate": 1,
+    "flatRateTowns": [
+      { "name": "Barrie", "match": ["barrie"], "fee": 0 },
+      { "name": "Angus", "match": ["angus"], "fee": 15 },
+      { "name": "Orillia", "match": ["orillia"], "fee": 30 },
+      { "name": "Midland", "match": ["midland"], "fee": 50 },
+      { "name": "Wasaga Beach", "match": ["wasaga beach", "wasaga"], "fee": 40 }
     ],
+    "serviceArea": {
+      "type": "Polygon",
+      "coordinates": [[
+        [-80.33, 44.52],
+        [-80.20, 44.62],
+        [-80.10, 44.75],
+        [-79.98, 44.87],
+        [-79.86, 44.83],
+        [-79.80, 44.78],
+        [-79.68, 44.78],
+        [-79.55, 44.82],
+        [-79.35, 44.80],
+        [-79.20, 44.65],
+        [-79.13, 44.50],
+        [-79.25, 44.35],
+        [-79.38, 44.22],
+        [-79.55, 44.10],
+        [-79.72, 44.05],
+        [-79.90, 44.05],
+        [-80.02, 44.15],
+        [-80.15, 44.30],
+        [-80.28, 44.42],
+        [-80.33, 44.52]
+      ]]
+    },
     "messages": {
-      "free": "No surcharge — your address falls within the standard service area.",
-      "surcharge": "Contact us for more information and pricing.",
-      "outside": "Outside standard service area",
-      "outsideSub": "Contact us for more information and pricing."
+      "loading": "Checking address and calculating travel fee…",
+      "outside": "Sorry, installation is currently available within Simcoe County only.",
+      "notFound": "We could not confirm that address. Please check the address and try again.",
+      "note": "Installation service is available within Simcoe County only. Distance pricing is based on the one-way driving distance from our Barrie office."
     }
   },
   "accordionHeading": "Frequently Asked Questions",
@@ -127,6 +139,11 @@
       "id": "install-info",
       "title": "What information should I include in my install request?",
       "content": "<ol><li>The address of the install, including the postal code.</li><li>Any sign toppers you may need, such as \"Coming Soon\" or \"10 Acres\" (custom sign topper printing is extra and requires 2 business days).</li><li>Please note that our installer must follow local by-laws and may have limited options for sign post placement.</li><li>Make sure your for sale sign is at our Barrie location before the installation date.</li></ol>"
+    },
+    {
+      "id": "post-rental-terms",
+      "title": "What are your post-only installation rental terms",
+      "content": "Renewal fees are waived when your signs are printed by ION Print & Promo. Posts will be removed after 90 days unless the rental is renewed, and missing or damaged posts will be charged to the client at $240 per post."
     },
     {
       "id": "leave-sign",

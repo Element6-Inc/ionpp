@@ -940,15 +940,218 @@ li {
 }
 #sam-geocoder .mapboxgl-ctrl-geocoder--input {
   padding: 0.6rem 2.5rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
+  min-height: 2.75rem;
   color: var(--color-text-heading);
 }
 #sam-geocoder .mapboxgl-ctrl-geocoder--input:focus {
   outline: 2px solid var(--color-border-accent);
   outline-offset: -2px;
 }
+/* Hide the geocoder plugin's own built-in clear (x) button inside the input —
+   our custom #sam-clear icon next to the label is the only clear control now */
+#sam-geocoder .mapboxgl-ctrl-geocoder--button {
+  display: none !important;
+}
+/* Strip default browser bullet markers from the suggestions dropdown */
+#sam-geocoder .suggestions,
+#sam-geocoder .suggestions li {
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+}
+/* The site-wide decorative "ul li::before" bullet dot (used for prose/content
+   lists elsewhere) was leaking into the geocoder's suggestion list — undo the
+   position/padding it adds and remove the dot itself so suggestions render
+   exactly as the plugin intends */
+#sam-geocoder .suggestions li {
+  position: static;
+  padding-left: 0;
+}
+#sam-geocoder .suggestions li::before {
+  content: none;
+}
+/* The suggestions dropdown must render above the map (and its zoom controls)
+   sitting directly below the search field */
+#sam-geocoder .mapboxgl-ctrl-geocoder .suggestions {
+  z-index: 20;
+}
 .mapboxgl-ctrl-attrib,
 .mapboxgl-ctrl-logo { display: none !important; }
+
+/* Clear-address icon button */
+#sam-clear:hover { color: var(--color-primary-dark); }
+#sam-clear:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Modal: single stacked column (search, map, results) at a roomy,
+   near-square proportion rather than a wide rectangle */
+.sam-modal {
+  max-width: 40rem; /* 640px */
+}
+#sam-map { display: block; }
+
+/* Shared uppercase label style — used for the address field label and every
+   label inside the results card, so capitalized titles read at one consistent size */
+.sam-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-placeholder);
+  margin: 0;
+}
+
+/* Office marker: branded dot + persistent label */
+.sam-office-marker {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  pointer-events: none;
+}
+.sam-office-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: var(--color-primary);
+  border: 2px solid var(--color-bg-white);
+  box-shadow: 0 0 0 1px var(--color-primary), 0 2px 6px rgba(0,0,0,0.25);
+  flex-shrink: 0;
+}
+.sam-office-label {
+  white-space: nowrap;
+  background: var(--color-bg-white);
+  color: var(--color-text-heading);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border-base);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+/* Loading state */
+.sam-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: var(--color-text-base);
+}
+.sam-spinner {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  border: 2px solid var(--color-border-base);
+  border-top-color: var(--color-primary);
+  animation: sam-spin 0.7s linear infinite;
+}
+@keyframes sam-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error / outside-area / not-found states */
+.sam-error {
+  border: 1px solid var(--color-border-base);
+  border-left: 3px solid var(--color-text-danger);
+  background: var(--color-bg-subtle);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+.sam-error-title {
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-heading);
+  margin: 0;
+}
+.sam-error-sub {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin: 0.25rem 0 0;
+}
+
+/* Results card — labels reuse .sam-label so every capitalized title
+   (address field, card labels, total row) sits at the same size */
+.sam-card-value {
+  font-size: 0.9375rem;
+  color: var(--color-text-heading);
+  margin: 0.2rem 0 0;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Form-style layout: Installation Address spans the full row; Pricing Type
+   and One-Way Distance sit side by side as a second row of two columns
+   (Pricing Type spans full width on its own when there's no distance to pair it with) */
+.sam-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem 1.25rem;
+}
+.sam-field-full { grid-column: 1 / -1; }
+@media (max-width: 479px) {
+  .sam-form-grid { grid-template-columns: 1fr; }
+}
+
+/* Pricing Type / One-Way Distance — rendered as small pills so this
+   classification info reads as distinct from plain address/value text */
+.sam-badge {
+  display: inline-block;
+  margin: 0.35rem 0 0;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+}
+.sam-badge-primary {
+  background: var(--color-primary-bg);
+  color: var(--color-primary-dark);
+}
+.sam-badge-neutral {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-heading);
+  border: 1px solid var(--color-border-base);
+}
+
+.sam-card-breakdown {
+  margin-top: 1.35rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border-base);
+}
+.sam-card-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: var(--color-text-base);
+  padding: 0.4rem 0;
+}
+.sam-card-total {
+  margin-top: 0.5rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--color-border-base);
+  font-size: 1.375rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+.sam-card-total span:first-child {
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.sam-card-note {
+  margin-top: 1.25rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
 
 /* --- 5.9 Cookie Banner --- */
 

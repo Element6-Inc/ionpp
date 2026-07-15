@@ -12,12 +12,12 @@ import { getEntry } from "astro:content";
 const entry = await getEntry("pages", "real-estate-signs");
 const content = entry!.data;
 
-import hero     from "../assets/heros/realtors.webp";
+import hero from "../assets/heros/realtors.webp";
 import feature1 from "../assets/features/realtors/experience.webp";
 import feature2 from "../assets/features/realtors/realtor-instal.webp";
 import feature3 from "../assets/features/realtors/realtor-printing.webp";
 import feature4 from "../assets/features/realtors/realtor-promo.webp";
-import icon     from "../assets/icons/animated/for-sale.gif";
+import icon from "../assets/icons/animated/for-sale.gif";
 
 const imageMap = { hero, feature1, feature2, feature3, feature4, icon };
 const features = content.features ?? [];
@@ -27,7 +27,6 @@ const installMap = content.installMap;
 ---
 
 <Layout title={content.site.title} description={content.site.description}>
-
   <!-- HERO -->
   <SmallHero
     title={content.hero.title}
@@ -37,67 +36,78 @@ const installMap = content.installMap;
   />
 
   <!-- CENTRE TEXT -->
-  {content.centreText && (
-    <section class="sm:pt-12 relative bg-slate-50">
-      <CentreText
-        title={content.centreText.title}
-        description={content.centreText.description}
-        imageSrc={imageMap[(content.centreText.icon ?? "icon") as keyof typeof imageMap].src}
-        imageAlt="ION Group Logo"
-      />
-    </section>
-  )}
+  {
+    content.centreText && (
+      <section class="sm:pt-12 relative bg-slate-50">
+        <CentreText
+          title={content.centreText.title}
+          description={content.centreText.description}
+          imageSrc={
+            imageMap[
+              (content.centreText.icon ?? "icon") as keyof typeof imageMap
+            ].src
+          }
+          imageAlt="ION Group Logo"
+        />
+      </section>
+    )
+  }
 
   <!-- CHECKLIST -->
-  {content.services && (
-    <section class="bg-slate-50">
-      <div class="pt-6">
-        <ChecklistGrid items={content.services.checklist} />
-      </div>
-    </section>
-  )}
+  {
+    content.services && (
+      <section class="bg-slate-50">
+        <div class="pt-6">
+          <ChecklistGrid items={content.services.checklist} />
+        </div>
+      </section>
+    )
+  }
 
   <!-- FEATURES -->
   <section class="pt-6 sm:pb-20 sm:pt-32 sm:-mt-24 bg-white">
-    {features.map((feature: any) => (
-      <div id={feature.id}>
-        <Feature
-          title={feature.title}
-          description={feature.description}
-          imageSrc={imageMap[(feature.image ?? "hero") as keyof typeof imageMap]}
-          imageAlt={feature.imageAlt}
-          imagePosition={feature.imagePosition}
-          buttonLink={feature.buttonLink}
-          buttonText={feature.buttonText}
-          buttonTarget={feature.buttonTarget}
-        />
-      </div>
-    ))}
+    {
+      features.map((feature: any) => (
+        <div id={feature.id}>
+          <Feature
+            title={feature.title}
+            description={feature.description}
+            imageSrc={
+              imageMap[(feature.image ?? "hero") as keyof typeof imageMap]
+            }
+            imageAlt={feature.imageAlt}
+            imagePosition={feature.imagePosition}
+            buttonLink={feature.buttonLink}
+            buttonText={feature.buttonText}
+            buttonTarget={feature.buttonTarget}
+          />
+        </div>
+      ))
+    }
   </section>
 
-  <!-- INSTALL PRICING TRIGGER (hidden until map data is finalized) -->
-  <!-- {false && mapToken && installMap && content.installMapCta && (
-    <section class="bg-slate-50 py-20 sm:py-28 px-6 text-center">
-      <p class="text-sm font-semibold uppercase tracking-widest mb-2" style="color: var(--color-primary);">{content.installMapCta.eyebrow}</p>
-      <h2 class="mb-3">{content.installMapCta.title}</h2>
-      <p class="mb-10 max-w-md mx-auto">{content.installMapCta.description}</p>
-      <a href="#install-map" class="btn">Check Install Pricing</a>
-    </section>
-  )} -->
-
-  <!-- SERVICE AREA MODAL (hidden until map data is finalized) -->
-  <!-- {false && mapToken && installMap && <ServiceAreaModal token={mapToken} installMap={installMap} />} -->
+  <!-- SERVICE AREA MODAL -->
+  {
+    mapToken && installMap && (
+      <ServiceAreaModal token={mapToken} installMap={installMap} />
+    )
+  }
 
   <!-- ACCORDION -->
-  <AccordionSection items={accordions} heading={content.accordionHeading} loadMoreAt={5} />
+  <AccordionSection
+    items={accordions}
+    heading={content.accordionHeading}
+    loadMoreAt={5}
+  />
 
   <!-- CTA -->
-  {content.cta && (
-    <CTA
-      heading={content.cta.heading}
-      button={content.cta.button}
-      link={content.cta.link}
-    />
-  )}
-
+  {
+    content.cta && (
+      <CTA
+        heading={content.cta.heading}
+        button={content.cta.button}
+        link={content.cta.link}
+      />
+    )
+  }
 </Layout>

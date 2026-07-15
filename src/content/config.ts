@@ -138,20 +138,32 @@ const pages = defineCollection({
       .object({
         title: z.string(),
         subtitle: z.string(),
-        center: z.object({ lat: z.number(), lng: z.number() }),
+        office: z.object({
+          label: z.string(),
+          address: z.string(),
+          lat: z.number(),
+          lng: z.number(),
+        }),
         zoom: z.number(),
-        zones: z.array(z.object({
-          id: z.string(),
-          minKm: z.number(),
-          maxKm: z.number(),
-          surcharge: z.number(),
-          color: z.string(),
-        })),
+        installFee: z.number(),
+        fuelSurcharge: z.number(),
+        perKmRate: z.number(),
+        flatRateTowns: z.array(
+          z.object({
+            name: z.string(),
+            match: z.array(z.string()),
+            fee: z.number(),
+          })
+        ),
+        serviceArea: z.object({
+          type: z.literal("Polygon"),
+          coordinates: z.array(z.array(z.tuple([z.number(), z.number()]))),
+        }),
         messages: z.object({
-          free: z.string(),
-          surcharge: z.string(),
+          loading: z.string(),
           outside: z.string(),
-          outsideSub: z.string(),
+          notFound: z.string(),
+          note: z.string(),
         }),
       })
       .optional(),
