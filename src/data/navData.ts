@@ -28,25 +28,25 @@ export interface FooterLink {
 // ===========================================
 
 export const navigationItems: NavItem[] = [
-  {
-    type: "dropdown",
-    data: {
-      label: "Printing",
-      footerLabel: "Printing Services",
-      href: "/printing",
-      children: [
-        { label: "Printing Services", href: "/printing" },
-        { label: "Business Cards", href: "/printing/business-cards" },
-        { label: "Booklets & Manuals", href: "/printing/booklets-manuals" },
-        { label: "Brochures & Flyers", href: "/printing/brochures-flyers" },
-        { label: "Event & Party Printing", href: "/printing/event-printing" },
-        { label: "Labels & Stickers", href: "/printing/labels-stickers" },
-        { label: "NCR Forms & Cheques", href: "/printing/ncr-cheques" },
-        { label: "Office Stationery", href: "/printing/office-stationery" },
-        { label: "Postcards & Rack Cards", href: "/printing/rack-cards-postcards" },
-      ],
-    } as NavDropdown,
-  },
+  // {
+  //   type: "dropdown",
+  //   data: {
+  //     label: "Printing",
+  //     footerLabel: "Printing Services",
+  //     href: "/printing",
+  //     children: [
+  //       { label: "Printing Services", href: "/printing" },
+  //       { label: "Business Cards", href: "/printing/business-cards" },
+  //       { label: "Booklets & Manuals", href: "/printing/booklets-manuals" },
+  //       { label: "Brochures & Flyers", href: "/printing/brochures-flyers" },
+  //       { label: "Event & Party Printing", href: "/printing/event-printing" },
+  //       { label: "Labels & Stickers", href: "/printing/labels-stickers" },
+  //       { label: "NCR Forms & Cheques", href: "/printing/ncr-cheques" },
+  //       { label: "Office Stationery", href: "/printing/office-stationery" },
+  //       { label: "Postcards & Rack Cards", href: "/printing/rack-cards-postcards" },
+  //     ],
+  //   } as NavDropdown,
+  // },
   {
     type: "link",
     data: {
@@ -54,25 +54,6 @@ export const navigationItems: NavItem[] = [
       footerLabel: "Printing Services",
       href: "/printing",
     } as NavLink,
-  },
-  {
-    type: "dropdown",
-    data: {
-      label: "Signs",
-      footerLabel: "Sign Services",
-      href: "/signs",
-      children: [
-        { label: "Sign Services", href: "/signs" },
-        { label: "Banners & Awnings", href: "/signs/banners-awnings" },
-        { label: "Business & Storefront", href: "/signs/business-storefronts" },
-        { label: "Flags & Pole Banners", href: "/signs/flags-pole-banners" },
-        { label: "Graphics & Murals", href: "/signs/graphics-murals" },
-        { label: "Lawn & Event Signs", href: "/signs/lawn-event-signs" },
-        { label: "LED & Illuminated Signs", href: "/signs/led-illuminated-signs" },
-        { label: "Portable Signs", href: "/signs/portable-signs" },
-        { label: "Wayfinding Signs", href: "/signs/wayfinding-signs" },
-      ],
-    } as NavDropdown,
   },
   // {
   //   type: "dropdown",
@@ -82,10 +63,29 @@ export const navigationItems: NavItem[] = [
   //     href: "/signs",
   //     children: [
   //       { label: "Sign Services", href: "/signs" },
-  //       { label: "Election Campaigns", href: "/signs/election-campaigns" },
+  //       { label: "Banners & Awnings", href: "/signs/banners-awnings" },
+  //       { label: "Business & Storefront", href: "/signs/business-storefronts" },
+  //       { label: "Flags & Pole Banners", href: "/signs/flags-pole-banners" },
+  //       { label: "Graphics & Murals", href: "/signs/graphics-murals" },
+  //       { label: "Lawn & Event Signs", href: "/signs/lawn-event-signs" },
+  //       { label: "LED & Illuminated Signs", href: "/signs/led-illuminated-signs" },
+  //       { label: "Portable Signs", href: "/signs/portable-signs" },
+  //       { label: "Wayfinding Signs", href: "/signs/wayfinding-signs" },
   //     ],
   //   } as NavDropdown,
   // },
+  {
+    type: "dropdown",
+    data: {
+      label: "Signs",
+      footerLabel: "Sign Services",
+      href: "/signs",
+      children: [
+        { label: "Sign Services", href: "/signs" },
+        { label: "Election Campaigns", href: "/signs/election-campaigns" },
+      ],
+    } as NavDropdown,
+  },
   // {
   //   type: "dropdown",
   //   data: {
