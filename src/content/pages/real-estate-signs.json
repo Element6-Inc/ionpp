@@ -40,7 +40,7 @@
     {
       "id": "post-rentals",
       "title": "Post-Only Installations & Rentals",
-      "description": "<p>Need a real estate post installed in Simcoe County, but already have your own sign? We offer post-only installation rentals for out-of-town realtors and agents.</p><ul><li>Post installation & 90-day rental: $60 per post</li><li>Installs outside of Barrie: Additional $30 fee</li><li>Optional 90-day renewal: $40 per post</li></ul>",
+      "description": "<p>Need a real estate post installed in Simcoe County, but already have your own sign? We offer post-only installation rentals for out-of-town realtors and agents.</p><ul><li>Post installation & 90-day rental: $60 per post</li><li>Installs outside of Barrie: Additional $30 fee</li><li>Optional 90-day renewal: $40 per post</li></ul><p><strong>All new realtors must pay a one-time only administration/storage fee of $25.</strong></p>",
       "imageAlt": "Real estate sign post ready for installation",
       "imagePosition": "right",
       "image": "feature1"
@@ -158,7 +158,7 @@
     {
       "id": "cost",
       "title": "How much does a real estate sign install cost?",
-      "content": "Within Barrie, standard installs are $60. After that, the price increases based on distance from Barrie. There is currently a diesel fuel surcharge of $5 per install while fuel prices remain high."
+      "content": "Within Barrie, standard installs are $60. After that, the price increases based on distance from Barrie. There is currently a diesel fuel surcharge of $5 per install while fuel prices remain high. <strong>All new realtors must pay a one-time only administration/storage fee of $25.</strong>"
     },
     {
       "id": "takedown-included",
