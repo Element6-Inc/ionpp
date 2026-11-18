@@ -78,6 +78,11 @@ const modalId = `${formName}-modal`;
   </label>
 
 
+  <p class="form-error" data-duplicate-message>
+    It looks like you've already entered this contest with that email. Only
+    one entry per person counts.
+  </p>
+
   <button type="submit" class="btn form-submit">Enter now</button>
 </form>
 
@@ -89,6 +94,23 @@ const modalId = `${formName}-modal`;
 </Modal>
 
 <script>
+  // jane.doe+x@gmail.com and janedoe@gmail.com count as the same email
+  function normaliseEmail(raw: string) {
+    const email = raw.trim().toLowerCase();
+    const [local = "", domain = ""] = email.split("@");
+    let l = local.split("+")[0];
+    if (domain === "gmail.com" || domain === "googlemail.com") l = l.replace(/\./g, "");
+    return domain ? `${l}@${domain === "googlemail.com" ? "gmail.com" : domain}` : email;
+  }
+
+  function enteredEmails(key: string): string[] {
+    try {
+      return JSON.parse(localStorage.getItem(key) || "[]");
+    } catch {
+      return [];
+    }
+  }
+
   function initContestForms() {
     document.querySelectorAll<HTMLFormElement>("form.contest-form").forEach((form) => {
       if (form.dataset.bound) return;
@@ -96,6 +118,19 @@ const modalId = `${formName}-modal`;
 
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
+
+        // Soft duplicate check: same email already entered from this device
+        const storageKey = `contest-entered:${form.name}`;
+        const emailValue = normaliseEmail(
+          (form.elements.namedItem("email") as HTMLInputElement)?.value || ""
+        );
+        const dupMessage = form.querySelector<HTMLElement>("[data-duplicate-message]");
+        if (emailValue && enteredEmails(storageKey).includes(emailValue)) {
+          if (dupMessage) dupMessage.style.display = "block";
+          return;
+        }
+        if (dupMessage) dupMessage.style.display = "none";
+
         const button = form.querySelector<HTMLButtonElement>("button[type=submit]");
         if (button) button.disabled = true;
 
@@ -107,6 +142,11 @@ const modalId = `${formName}-modal`;
           });
 
           if (response.ok) {
+            try {
+              const list = enteredEmails(storageKey);
+              if (emailValue) list.push(emailValue);
+              localStorage.setItem(storageKey, JSON.stringify(list));
+            } catch {}
             (window as any).openModal(form.dataset.modal);
           } else {
             alert("There was an error submitting your entry. Please try again.");

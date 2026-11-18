@@ -66,6 +66,19 @@ const api = async (path: string) => {
 
 const results: ContestEntries[] = [];
 
+// Treat jane.doe+x@gmail.com and janedoe@gmail.com as the same person.
+const normaliseEmail = (raw: string) => {
+  const email = raw.trim().toLowerCase();
+  const [local = "", domain = ""] = email.split("@");
+  let l = local.split("+")[0];
+  if (domain === "gmail.com" || domain === "googlemail.com") l = l.replace(/\./g, "");
+  return domain ? `${l}@${domain === "googlemail.com" ? "gmail.com" : domain}` : email;
+};
+const normalisePhone = (raw: string) => {
+  const digits = raw.replace(/\D/g, "");
+  return digits.length >= 10 ? digits.slice(-10) : ""; // ignore +1 / country code
+};
+
 if (authorised) {
   if (!apiToken || !siteId) {
     for (const c of contests) {
@@ -100,7 +113,8 @@ if (authorised) {
           result.error =
             "No entries yet — Netlify registers this form after the first submission.";
         } else {
-          const seen = new Set<string>();
+          const seenEmails = new Set<string>();
+          const seenPhones = new Set<string>();
           for (let page = 1; page <= 50; page++) {
             const subs: any[] = await api(
               `/forms/${form.id}/submissions?per_page=100&page=${page}`
@@ -108,12 +122,14 @@ if (authorised) {
             if (!subs.length) break;
             for (const s of subs) {
               const d = s.data ?? {};
-              const email = String(d.email ?? "").trim().toLowerCase();
-              if (email && seen.has(email)) {
+              const email = normaliseEmail(String(d.email ?? ""));
+              const phone = normalisePhone(String(d.phone ?? ""));
+              if ((email && seenEmails.has(email)) || (phone && seenPhones.has(phone))) {
                 result.duplicates++;
                 continue;
               }
-              if (email) seen.add(email);
+              if (email) seenEmails.add(email);
+              if (phone) seenPhones.add(phone);
               result.entries.push({
                 name: String(d.name ?? ""),
                 email: String(d.email ?? ""),
@@ -173,7 +189,7 @@ const fmt = (iso: string) =>
             <>
               <p class="ca-count">
                 <strong>{r.entries.length}</strong> unique {r.entries.length === 1 ? "entry" : "entries"}
-                {r.duplicates > 0 && <> · {r.duplicates} duplicate{r.duplicates === 1 ? "" : "s"} (same email) ignored</>}
+                {r.duplicates > 0 && <> · {r.duplicates} duplicate{r.duplicates === 1 ? "" : "s"} (same email or phone) ignored</>}
                 · Draw date: {drawDate}
               </p>
 
