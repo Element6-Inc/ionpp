@@ -87,3 +87,7 @@ https://www.businesscardsandflyers.ca/contact-us            https://www.ionprint
 # Catch-all for any remaining businesscardsandflyers.ca paths
 https://businesscardsandflyers.ca/*                         https://www.ionprintandpromo.ca/                        301!
 https://www.businesscardsandflyers.ca/*                     https://www.ionprintandpromo.ca/                        301!
+
+# Contest QR short links (302 so targets can change without reprinting)
+/raptors  /contest/raptors-tickets    302
+/win500   /contest/printing-promo-500 302

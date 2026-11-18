@@ -1,0 +1,125 @@
+---
+/* =======================================================
+ * CONTEST ENTRY FORM
+ * Netlify Forms (no database). One form name per contest so
+ * entries stay separate in the Netlify dashboard.
+ * ======================================================= */
+import Modal from "./Modal.astro";
+
+interface Props {
+  formName: string;
+  organizationRequired?: boolean;
+}
+
+const { formName, organizationRequired = false } = Astro.props;
+const formId = `${formName}-form`;
+const modalId = `${formName}-modal`;
+---
+
+<form
+  id={formId}
+  name={formName}
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="form-group contest-form"
+  data-modal={modalId}
+>
+  <input type="hidden" name="form-name" value={formName} />
+
+  <p class="hidden">
+    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+  </p>
+
+  <div>
+    <label for={`${formName}-name`} class="form-label">
+      Full name <span class="form-required">*</span>
+    </label>
+    <input type="text" id={`${formName}-name`} name="name" required autocomplete="name" class="form-input" />
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div>
+      <label for={`${formName}-email`} class="form-label">
+        Email <span class="form-required">*</span>
+      </label>
+      <input type="email" id={`${formName}-email`} name="email" required autocomplete="email" class="form-input" />
+    </div>
+    <div>
+      <label for={`${formName}-phone`} class="form-label">
+        Phone <span class="form-required">*</span>
+      </label>
+      <input type="tel" id={`${formName}-phone`} name="phone" required autocomplete="tel" class="form-input" />
+    </div>
+  </div>
+
+  <div>
+    <label for={`${formName}-org`} class="form-label">
+      Business / organization
+      {organizationRequired && <span class="form-required">*</span>}
+    </label>
+    <input
+      type="text"
+      id={`${formName}-org`}
+      name="organization"
+      required={organizationRequired}
+      autocomplete="organization"
+      class="form-input"
+    />
+  </div>
+
+  <label class="form-checkbox-label">
+    <input type="checkbox" name="accepted-rules" value="yes" required class="form-checkbox" />
+    <span>
+      I am 18 or older, a resident of Ontario, and I agree to the
+      <a href="/contest/rules" target="_blank" rel="noopener"> official contest rules</a>.
+      <span class="form-required">*</span>
+    </span>
+  </label>
+
+
+  <button type="submit" class="btn form-submit">Enter now</button>
+</form>
+
+<Modal id={modalId} title="You're entered!">
+  <p class="text-slate-600 text-center">
+    Thank you! Your entry has been received. Good luck in the draw on
+    Monday, November 30.
+  </p>
+</Modal>
+
+<script>
+  function initContestForms() {
+    document.querySelectorAll<HTMLFormElement>("form.contest-form").forEach((form) => {
+      if (form.dataset.bound) return;
+      form.dataset.bound = "true";
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const button = form.querySelector<HTMLButtonElement>("button[type=submit]");
+        if (button) button.disabled = true;
+
+        try {
+          const response = await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(new FormData(form) as any).toString(),
+          });
+
+          if (response.ok) {
+            (window as any).openModal(form.dataset.modal);
+          } else {
+            alert("There was an error submitting your entry. Please try again.");
+            if (button) button.disabled = false;
+          }
+        } catch (error) {
+          console.error("Contest entry error:", error);
+          alert("There was an error submitting your entry. Please try again.");
+          if (button) button.disabled = false;
+        }
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initContestForms);
+</script>

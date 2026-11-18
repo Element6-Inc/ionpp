@@ -1,0 +1,102 @@
+---
+/* =======================================================
+ * CONTEST ENTRY PAGE (QR-code landing page)
+ * Hidden from nav, noindex. Mirrors the contact page:
+ * hero + two-column layout (details left, form right).
+ * Content lives in src/data/contests.ts
+ * ======================================================= */
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import SmallHero from "../../components/hero/HeroSmall.astro";
+import ContestForm from "../../components/forms/ContestForm.astro";
+import defaultHero from "../../assets/heros/contact-hero.webp";
+import { contests, drawDate, entryDeadline } from "../../data/contests";
+
+export function getStaticPaths() {
+  return contests.map((contest) => ({
+    params: { slug: contest.slug },
+    props: { contest },
+  }));
+}
+
+const { contest } = Astro.props;
+const heroImage = contest.heroImage ?? defaultHero;
+---
+
+<Layout title={contest.title} description={contest.prize} noindex={true}>
+  <SmallHero
+    title={contest.heroTitle}
+    imageSrc={heroImage}
+    imageAlt="ION Print & Promo contest"
+  />
+
+  <section class="contact-section">
+    <div class="contact-container">
+      <div class="contact-grid">
+        <!-- LEFT COLUMN - Contest details: one block, paragraph flow -->
+        <div class="contest-info">
+          {contest.logo && (
+            <Image
+              src={contest.logo}
+              alt={contest.logoAlt ?? ""}
+              width={140}
+              height={140}
+              class="contest-logo"
+            />
+          )}
+
+          <h3 class="mb-4">{contest.copy?.headline ?? contest.heading}</h3>
+
+          <p class="text-lg text-gray-600 leading-relaxed">
+            {contest.copy?.intro ?? `${contest.prize}.`}
+            {contest.retailValue && <> Approximate retail value: {contest.retailValue}.</>}
+          </p>
+
+          <p class="contest-small">
+            <strong>Entries close:</strong> {entryDeadline}<br />
+            <strong>Draw date:</strong> {drawDate}
+            {contest.copy && (
+              <>
+                <br />
+                <strong>{contest.copy.prizeDateLabel}:</strong> {contest.copy.prizeDate}
+              </>
+            )}
+          </p>
+
+          <p class="contest-small">
+            No purchase necessary.{" "}
+            <a href="/contest/rules" class="contact-link">Read the official contest rules</a>.
+          </p>
+        </div>
+
+        <!-- RIGHT COLUMN - Entry form -->
+        <div class="contact-form-card">
+          <ContestForm
+            formName={contest.formName}
+            organizationRequired={contest.organizationRequired}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contest-info {
+    align-self: center;
+  }
+  .contest-logo {
+    width: 6rem;
+    height: auto;
+    margin: 0 0 1.5rem;
+  }
+  .contest-small {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 0.75rem;
+  }
+  .contest-small strong {
+    color: var(--color-text-strong);
+    font-weight: var(--font-weight-medium);
+  }
+</style>

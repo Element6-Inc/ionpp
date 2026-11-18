@@ -1,0 +1,327 @@
+---
+/* =======================================================
+ * CONTEST ADMIN (private)
+ * Password-protected, server-rendered (not prerendered).
+ * Pulls entries from the Netlify Forms API for each contest,
+ * de-duplicates by email, lists them and draws a random winner.
+ *
+ * Netlify environment variables required:
+ *   CONTEST_ADMIN_PASSWORD  – password to open this page
+ *   NETLIFY_API_TOKEN       – personal access token (Netlify user
+ *                             settings → Applications → Personal
+ *                             access tokens)
+ * Netlify provides SITE_ID automatically at runtime.
+ * ======================================================= */
+export const prerender = false;
+
+import { timingSafeEqual } from "node:crypto";
+import Layout from "../../layouts/Layout.astro";
+import { contests, drawDate } from "../../data/contests";
+
+const env = (key: string): string | undefined =>
+  (typeof process !== "undefined" ? process.env[key] : undefined) ??
+  (import.meta.env as Record<string, string | undefined>)[key];
+
+const adminPassword = env("CONTEST_ADMIN_PASSWORD");
+const apiToken = env("NETLIFY_API_TOKEN");
+const siteId = env("SITE_ID") ?? env("NETLIFY_SITE_ID");
+
+const safeEqual = (a: string, b: string) => {
+  const A = Buffer.from(a);
+  const B = Buffer.from(b);
+  return A.length === B.length && timingSafeEqual(A, B);
+};
+
+let authorised = false;
+let passwordError = false;
+if (Astro.request.method === "POST" && adminPassword) {
+  const form = await Astro.request.formData();
+  const attempt = String(form.get("password") ?? "");
+  if (safeEqual(attempt, adminPassword)) authorised = true;
+  else passwordError = true;
+}
+
+interface Entry {
+  name: string;
+  email: string;
+  phone: string;
+  organization: string;
+  enteredAt: string;
+}
+interface ContestEntries {
+  title: string;
+  formName: string;
+  entries: Entry[];
+  duplicates: number;
+  error?: string;
+}
+
+const api = async (path: string) => {
+  const res = await fetch(`https://api.netlify.com/api/v1${path}`, {
+    headers: { Authorization: `Bearer ${apiToken}` },
+  });
+  if (!res.ok) throw new Error(`Netlify API ${res.status} for ${path}`);
+  return res.json();
+};
+
+const results: ContestEntries[] = [];
+
+if (authorised) {
+  if (!apiToken || !siteId) {
+    for (const c of contests) {
+      results.push({
+        title: c.heading,
+        formName: c.formName,
+        entries: [],
+        duplicates: 0,
+        error: "NETLIFY_API_TOKEN or SITE_ID is not set in Netlify's environment variables.",
+      });
+    }
+  } else {
+    let forms: any[] = [];
+    let formsError: string | undefined;
+    try {
+      forms = await api(`/sites/${siteId}/forms`);
+    } catch (e) {
+      formsError = (e as Error).message;
+    }
+
+    for (const c of contests) {
+      const result: ContestEntries = {
+        title: c.heading,
+        formName: c.formName,
+        entries: [],
+        duplicates: 0,
+      };
+      try {
+        if (formsError) throw new Error(formsError);
+        const form = forms.find((f) => f.name === c.formName);
+        if (!form) {
+          result.error =
+            "No entries yet — Netlify registers this form after the first submission.";
+        } else {
+          const seen = new Set<string>();
+          for (let page = 1; page <= 50; page++) {
+            const subs: any[] = await api(
+              `/forms/${form.id}/submissions?per_page=100&page=${page}`
+            );
+            if (!subs.length) break;
+            for (const s of subs) {
+              const d = s.data ?? {};
+              const email = String(d.email ?? "").trim().toLowerCase();
+              if (email && seen.has(email)) {
+                result.duplicates++;
+                continue;
+              }
+              if (email) seen.add(email);
+              result.entries.push({
+                name: String(d.name ?? ""),
+                email: String(d.email ?? ""),
+                phone: String(d.phone ?? ""),
+                organization: String(d.organization ?? ""),
+                enteredAt: String(s.created_at ?? ""),
+              });
+            }
+            if (subs.length < 100) break;
+          }
+        }
+      } catch (e) {
+        result.error = (e as Error).message;
+      }
+      results.push(result);
+    }
+  }
+}
+
+const fmt = (iso: string) =>
+  iso
+    ? new Date(iso).toLocaleString("en-CA", {
+        timeZone: "America/Toronto",
+        dateStyle: "medium",
+        timeStyle: "short",
+      })
+    : "";
+---
+
+<Layout title="Contest Admin" description="Private contest admin" noindex={true}>
+  <section class="bg-white pt-28 pb-16 sm:pt-36">
+    <div class="ca-wrap">
+      <h1 class="ca-title">Contest entries</h1>
+
+      {!adminPassword && (
+        <p class="ca-note">
+          Set <code>CONTEST_ADMIN_PASSWORD</code> in Netlify's environment
+          variables to use this page.
+        </p>
+      )}
+
+      {adminPassword && !authorised && (
+        <form method="POST" class="ca-login">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" name="password" required autofocus class="form-input" />
+          {passwordError && <p class="ca-error">Incorrect password.</p>}
+          <button type="submit" class="btn form-submit">View entries</button>
+        </form>
+      )}
+
+      {authorised && results.map((r, i) => (
+        <div class="ca-contest" data-contest={i}>
+          <h2>{r.title}</h2>
+          {r.error ? (
+            <p class="ca-note">{r.error}</p>
+          ) : (
+            <>
+              <p class="ca-count">
+                <strong>{r.entries.length}</strong> unique {r.entries.length === 1 ? "entry" : "entries"}
+                {r.duplicates > 0 && <> · {r.duplicates} duplicate{r.duplicates === 1 ? "" : "s"} (same email) ignored</>}
+                · Draw date: {drawDate}
+              </p>
+
+              <div class="ca-draw">
+                <button type="button" class="btn ca-draw-btn" disabled={r.entries.length === 0}>
+                  Draw random winner
+                </button>
+                <div class="ca-winner" hidden>
+                  <p class="ca-winner-label">Winner</p>
+                  <p class="ca-winner-name"></p>
+                  <p class="ca-winner-detail"></p>
+                  <p class="ca-winner-past"></p>
+                </div>
+              </div>
+
+              <div class="ca-table-wrap">
+                <table class="ca-table">
+                  <thead>
+                    <tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Organization</th><th>Entered</th></tr>
+                  </thead>
+                  <tbody>
+                    {r.entries.map((e, n) => (
+                      <tr>
+                        <td>{n + 1}</td>
+                        <td>{e.name}</td>
+                        <td>{e.email}</td>
+                        <td>{e.phone}</td>
+                        <td>{e.organization}</td>
+                        <td>{fmt(e.enteredAt)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+        </div>
+      ))}
+
+      {authorised && (
+        <script type="application/json" id="ca-data" set:html={JSON.stringify(results.map((r) => r.entries)).replace(/</g, "\\u003c")} />
+      )}
+    </div>
+  </section>
+</Layout>
+
+<script>
+  function initAdmin() {
+    const dataEl = document.getElementById("ca-data");
+    if (!dataEl) return;
+    const all: { name: string; email: string; phone: string; organization: string }[][] =
+      JSON.parse(dataEl.textContent || "[]");
+
+    // Unbiased crypto random integer in [0, max)
+    const randomInt = (max: number) => {
+      const limit = Math.floor(0x100000000 / max) * max;
+      const buf = new Uint32Array(1);
+      do {
+        crypto.getRandomValues(buf);
+      } while (buf[0] >= limit);
+      return buf[0] % max;
+    };
+
+    document.querySelectorAll<HTMLElement>(".ca-contest").forEach((section) => {
+      const idx = Number(section.dataset.contest);
+      const entries = all[idx] || [];
+      const btn = section.querySelector<HTMLButtonElement>(".ca-draw-btn");
+      const box = section.querySelector<HTMLElement>(".ca-winner");
+      if (!btn || !box || btn.dataset.bound) return;
+      btn.dataset.bound = "true";
+
+      const drawn: number[] = [];
+      btn.addEventListener("click", () => {
+        const remaining = entries.map((_, i) => i).filter((i) => !drawn.includes(i));
+        if (!remaining.length) return;
+        const pick = remaining[randomInt(remaining.length)];
+        drawn.push(pick);
+        const w = entries[pick];
+
+        box.hidden = false;
+        box.querySelector(".ca-winner-label")!.textContent =
+          drawn.length === 1 ? "Winner" : `Alternate #${drawn.length - 1}`;
+        box.querySelector(".ca-winner-name")!.textContent = w.name;
+        box.querySelector(".ca-winner-detail")!.textContent =
+          [w.email, w.phone, w.organization].filter(Boolean).join(" · ");
+        box.querySelector(".ca-winner-past")!.textContent =
+          drawn.length > 1
+            ? "Previously drawn: " + drawn.slice(0, -1).map((i) => entries[i].name).join(", ")
+            : "";
+        btn.textContent = "Draw another (alternate)";
+        if (drawn.length === entries.length) btn.disabled = true;
+      });
+    });
+  }
+  document.addEventListener("astro:page-load", initAdmin);
+</script>
+
+<style is:global>
+  .ca-wrap {
+    width: 100%;
+    max-width: 64rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+    box-sizing: border-box;
+  }
+  .ca-title {
+    color: var(--color-text-heading);
+    line-height: 1.15;
+    text-align: center;
+    margin: 0 0 2rem;
+  }
+  .ca-login {
+    max-width: 22rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .ca-error { color: var(--color-text-danger); margin: 0; }
+  .ca-note { text-align: center; }
+  .ca-contest {
+    margin-bottom: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border-base);
+  }
+  .ca-contest h2 { font-size: 1.5rem; line-height: 1.2; margin: 0 0 0.5rem; }
+  .ca-count { margin: 0 0 1rem; line-height: 1.5; }
+  .ca-draw { margin-bottom: 1.5rem; }
+  .ca-winner {
+    margin-top: 1rem;
+    padding: 1.25rem 1.5rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 0.75rem;
+    background: var(--color-primary-subtle);
+    text-align: center;
+  }
+  .ca-winner[hidden] { display: none; }
+  .ca-winner p { margin: 0; line-height: 1.4; }
+  .ca-winner-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .ca-winner-name { font-size: 1.75rem; font-weight: 700; color: var(--color-text-heading); margin: 0.25rem 0 !important; }
+  .ca-winner-past { font-size: 0.85rem; margin-top: 0.5rem !important; }
+  .ca-table-wrap { overflow-x: auto; }
+  .ca-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; line-height: 1.4; }
+  .ca-table th, .ca-table td {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-border-base);
+    white-space: nowrap;
+  }
+  .ca-table th { color: var(--color-text-heading); font-weight: 600; }
+</style>

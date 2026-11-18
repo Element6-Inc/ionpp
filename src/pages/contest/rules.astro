@@ -1,0 +1,117 @@
+---
+/* =======================================================
+ * OFFICIAL CONTEST RULES
+ * Linked from both entry forms. noindex, hidden from nav.
+ * Content lives in src/data/contests.ts
+ * ======================================================= */
+import Layout from "../../layouts/Layout.astro";
+import {
+  contests,
+  sponsor,
+  drawDate,
+  entryDeadline,
+  skillTestingQuestion,
+} from "../../data/contests";
+---
+
+<Layout
+  title="Official Contest Rules | ION Print & Promo"
+  description="Official rules for the ION Print & Promo enter-to-win contests."
+  noindex={true}
+>
+
+  <section class="bg-white pt-32 pb-16 sm:pt-40 sm:pb-20">
+    <div class="mx-auto max-w-3xl px-6">
+      <h1 class="contest-title">Official Contest Rules</h1>
+      <p><strong>NO PURCHASE NECESSARY.</strong> These rules apply to both contests below, run by {sponsor} (the "Sponsor").</p>
+
+      <h2>Contests and prizes</h2>
+      <ol>
+        {contests.map((c) => (
+          <li>
+            {c.prize}.
+            {c.retailValue && <> Approximate retail value: {c.retailValue}.</>}
+          </li>
+        ))}
+      </ol>
+      <p>
+        One prize per contest. Prizes must be accepted as awarded, have no cash
+        value, and cannot be transferred or substituted, except by the Sponsor
+        for a prize of equal or greater value if circumstances require. The
+        Raptors ticket prize is for the event date shown and is subject to the
+        venue's own terms and entry conditions. The printing and promotional products prize
+        is redeemable only with ION Print &amp; Promo, must be used by the
+        winning organization, and has no cash value. It expires on December 31,
+        2027.
+      </p>
+
+      <h2>Eligibility</h2>
+      <p>
+        Open to residents of Ontario who are 18 years of age or older at the time
+        of entry. Employees of the Sponsor and ION Group, and members of their
+        immediate families or households, are not eligible. For the $500
+        printing and promotional products prize, the entrant must be entering on
+        behalf of a business, team or organization.
+      </p>
+
+      <h2>How to enter</h2>
+      <p>
+        Scan the contest QR code or visit the entry page and complete the entry
+        form before <strong>{entryDeadline}</strong>. Limit one entry per person
+        per contest. Duplicate, incomplete, automated or illegible entries are
+        void.
+      </p>
+
+      <h2>The draw</h2>
+      <p>
+        A random draw will be held on <strong>{drawDate}</strong> at the
+        Sponsor's office in Barrie, Ontario, from all eligible entries received
+        for each contest. The odds of winning depend on the number of eligible
+        entries received. The selected entrant will be contacted by email or
+        phone and must, before being declared a winner, correctly answer a
+        mathematical skill-testing question without assistance and sign a
+        standard release form. Sample skill-testing question format:
+        <em> {skillTestingQuestion} = ?</em>
+        If a selected entrant cannot be reached within five (5) business days,
+        is ineligible, or does not correctly answer the skill-testing question,
+        the prize may be awarded to an alternate entrant drawn at random.
+      </p>
+
+      <h2>General conditions</h2>
+      <p>
+        By entering, winners consent to the use of their name and, if requested,
+        photograph for promotional purposes without further compensation. The
+        Sponsor is not responsible for lost, late, misdirected or incomplete
+        entries, or for technical failures. The Sponsor may cancel or modify a
+        contest if it cannot be run as planned. These rules are governed by the
+        laws of Ontario and Canada.
+      </p>
+
+      <h2>Privacy</h2>
+      <p>
+        Personal information collected is used only to administer the contests
+        and contact winners. It will not be used to send marketing email.
+        Questions? <a href="/contact">Contact us</a>.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contest-title {
+    text-align: center;
+    color: var(--color-text-heading);
+    font-size: 2.25rem;
+    line-height: 1.15;
+    margin: 0 0 2rem;
+  }
+  @media (min-width: 640px) {
+    .contest-title { font-size: 2.75rem; }
+  }
+  h2 {
+    font-size: 1.375rem;
+    line-height: 1.25;
+    color: var(--color-text-heading);
+    margin: 2rem 0 0.5rem;
+  }
+</style>

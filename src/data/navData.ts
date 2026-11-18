@@ -65,6 +65,7 @@ export const navigationItems: NavItem[] = [
   //       { label: "Sign Services", href: "/signs" },
   //       { label: "Banners & Awnings", href: "/signs/banners-awnings" },
   //       { label: "Business & Storefront", href: "/signs/business-storefronts" },
+  //       { label: "Election Campaigns", href: "/signs/election-campaigns" },
   //       { label: "Flags & Pole Banners", href: "/signs/flags-pole-banners" },
   //       { label: "Graphics & Murals", href: "/signs/graphics-murals" },
   //       { label: "Lawn & Event Signs", href: "/signs/lawn-event-signs" },
@@ -74,18 +75,15 @@ export const navigationItems: NavItem[] = [
   //     ],
   //   } as NavDropdown,
   // },
-  {
-    type: "dropdown",
+    {
+    type: "link",
     data: {
       label: "Signs",
       footerLabel: "Sign Services",
       href: "/signs",
-      children: [
-        { label: "Sign Services", href: "/signs" },
-        { label: "Election Campaigns", href: "/signs/election-campaigns" },
-      ],
-    } as NavDropdown,
+    } as NavLink,
   },
+
   // {
   //   type: "dropdown",
   //   data: {

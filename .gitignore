@@ -45,3 +45,6 @@ coverage/
 
 # Local Netlify folder
 .netlify
+
+# Local design mockups (large, licensed files)
+mockups/
