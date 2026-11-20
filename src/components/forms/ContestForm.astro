@@ -96,10 +96,10 @@ const modalId = `${formName}-modal`;
   <button type="submit" class="btn form-submit">Enter now</button>
 </form>
 
-<Modal id={modalId} title="You're entered!">
+<Modal id={modalId} title="You're entered!" redirectTo="/">
   <p class="text-slate-600 text-center">
     Thank you! Your entry has been received. Good luck in the draw on
-    Monday, November 30.
+    Monday, November 30. Taking you to our home page&hellip;
   </p>
 </Modal>
 
@@ -179,6 +179,8 @@ const modalId = `${formName}-modal`;
               localStorage.setItem(storageKey, JSON.stringify(list));
             } catch {}
             (window as any).openModal(form.dataset.modal);
+            // Send them to the home page after a few seconds (or when they close the popup)
+            setTimeout(() => { window.location.href = "/"; }, 4000);
           } else if (result.error === "duplicate") {
             if (dupMessage) dupMessage.style.display = "block";
             if (button) button.disabled = false;

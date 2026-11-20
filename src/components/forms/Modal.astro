@@ -6,13 +6,15 @@
 interface Props {
   id: string;
   title?: string;
+  redirectTo?: string; // if set, closing the modal goes here instead of reloading
 }
 
-const { id, title = "Success!" } = Astro.props;
+const { id, title = "Success!", redirectTo } = Astro.props;
 ---
 
 <div
   id={id}
+  data-redirect={redirectTo}
   class="modal-overlay"
   role="dialog"
   aria-modal="true"
@@ -118,8 +120,12 @@ const { id, title = "Success!" } = Astro.props;
     modal.classList.remove("modal-active");
     modalState.activeModal = null;
     
-    // Reload the current page
-    window.location.reload();
+    // Go to the configured page, otherwise reload the current page
+    if (modal.dataset.redirect) {
+      window.location.href = modal.dataset.redirect;
+    } else {
+      window.location.reload();
+    }
   }
 
   // Open modal function
