@@ -122,7 +122,7 @@ const modalId = `${formName}-modal`;
         e.preventDefault();
 
         // Soft duplicate check: same email already entered from this device
-        const storageKey = `contest-entered:${form.name}`;
+        const storageKey = `contest-entered:${form.dataset.contest}`;
         const emailValue = normaliseEmail(
           (form.elements.namedItem("email") as HTMLInputElement)?.value || ""
         );
