@@ -80,6 +80,14 @@ const modalId = `${formName}-modal`;
   </label>
 
 
+  <label class="form-checkbox-label">
+    <input type="checkbox" name="marketing-consent" value="yes" class="form-checkbox" />
+    <span>
+      Optional: Yes, I would like to receive news and offers from ION Print &amp;
+      Promo by email. I can unsubscribe at any time.
+    </span>
+  </label>
+
   <p class="form-error" data-duplicate-message>
     It looks like you've already entered this contest with that email or phone
     number. Only one entry per person counts.
@@ -158,6 +166,7 @@ const modalId = `${formName}-modal`;
               email: field("email"),
               phone: field("phone"),
               organization: field("organization"),
+              marketing: (form.elements.namedItem("marketing-consent") as HTMLInputElement | null)?.checked ? "Yes" : "No",
               website: field("bot-field"), // honeypot
             }),
           });

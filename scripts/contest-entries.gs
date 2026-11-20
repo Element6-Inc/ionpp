@@ -30,7 +30,7 @@ var CONTESTS = {
 };
 
 var HEADERS = [
-  'Timestamp', 'Name', 'Email', 'Phone', 'Organization', 'Notes',
+  'Timestamp', 'Name', 'Email', 'Phone', 'Organization', 'Marketing consent',
   'Email key (do not edit)', 'Phone key (do not edit)',
 ];
 
@@ -73,7 +73,8 @@ function doPost(e) {
 
     // Prefix with ' so Sheets never treats text as a formula.
     sheet.appendRow([
-      new Date(), safe_(name), safe_(email), safe_(phone), safe_(org), '',
+      new Date(), safe_(name), safe_(email), safe_(phone), safe_(org),
+      data.marketing === 'Yes' ? 'Yes' : 'No',
       emailKey, phoneKey,
     ]);
     return json_({ ok: true });
@@ -116,6 +117,10 @@ function doGet(e) {
 function getSheet_(tabName) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(tabName);
+  // Tabs created before the consent column existed: rename the old header.
+  if (sheet && sheet.getRange(1, 6).getValue() === 'Notes') {
+    sheet.getRange(1, 6).setValue('Marketing consent');
+  }
   if (!sheet) {
     sheet = ss.insertSheet(tabName);
     sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight('bold');
