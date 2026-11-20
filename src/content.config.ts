@@ -1,4 +1,12 @@
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
+
+// astro/loaders' default id generation runs filenames through github-slug,
+// which lowercases everything (e.g. "logoSlider.json" -> "logoslider").
+// Every getEntry() call in this codebase expects the exact case-preserving
+// file path (matching the old legacy "data" collection ids), so generate
+// ids that way instead.
+const idFromPath = (entry: string) => entry.replace(/\.[^/.]+$/, "");
 
 // ── Reusable sub-schemas ────────────────────────────────────────────────────
 
@@ -44,7 +52,7 @@ const featureNavItem = z.object({
 // ── Collection definition ───────────────────────────────────────────────────
 
 const pages = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "**/*.json", base: "./src/content/pages", generateId: ({ entry }) => idFromPath(entry) }),
   schema: z.object({
     site: z.object({
       title: z.string(),
@@ -213,7 +221,7 @@ const pages = defineCollection({
 // ── Global collections ──────────────────────────────────────────────────────
 
 const footer = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "*.json", base: "./src/content/footer", generateId: ({ entry }) => idFromPath(entry) }),
   schema: z.object({
     logo: z.object({ alt: z.string() }),
     contact: z.object({
@@ -234,7 +242,7 @@ const footer = defineCollection({
 });
 
 const logoSlider = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "*.json", base: "./src/content/logoSlider", generateId: ({ entry }) => idFromPath(entry) }),
   schema: z.object({
     logoSlider: z.object({
       animationDuration: z.object({
@@ -253,7 +261,7 @@ const logoSlider = defineCollection({
 });
 
 const social = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "*.json", base: "./src/content/social", generateId: ({ entry }) => idFromPath(entry) }),
   schema: z.object({
     socialIcons: z.array(
       z.object({
@@ -265,7 +273,7 @@ const social = defineCollection({
 });
 
 const testimonials = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "*.json", base: "./src/content/testimonials", generateId: ({ entry }) => idFromPath(entry) }),
   schema: z.object({
     testimonials: z.object({
       sectionTitle: z.string(),

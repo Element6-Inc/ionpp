@@ -6,8 +6,9 @@ const entry = await getEntry("pages", "signs/banners-awnings");
 const content = entry!.data;
 
 import hero          from "../../assets/heros/signs/banner.webp";
-import feature1      from "../../assets/features/signs/wind-flag.webp";
+import feature1      from "../../assets/features/signs/banners-1.webp";
+import feature2      from "../../assets/features/signs/banners-2.webp";
 import animatedIcon  from "../../assets/icons/animated/banner.gif";
 ---
 
-<InnerServicePage content={content} imageMap={{ hero, feature1 }} animatedIcon={animatedIcon} />
+<InnerServicePage content={content} imageMap={{ hero, feature1, feature2 }} animatedIcon={animatedIcon} />

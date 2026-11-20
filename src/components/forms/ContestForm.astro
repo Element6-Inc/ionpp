@@ -1,17 +1,20 @@
 ---
 /* =======================================================
  * CONTEST ENTRY FORM
- * Netlify Forms (no database). One form name per contest so
- * entries stay separate in the Netlify dashboard.
+ * Posts to a Google Apps Script web app (entryEndpoint in
+ * src/data/contests.ts) that saves each entry to a Google
+ * Sheet and rejects duplicate emails / phone numbers.
  * ======================================================= */
 import Modal from "./Modal.astro";
+import { entryEndpoint } from "../../data/contests";
 
 interface Props {
   formName: string;
+  contestSlug: string;
   organizationRequired?: boolean;
 }
 
-const { formName, organizationRequired = false } = Astro.props;
+const { formName, contestSlug, organizationRequired = false } = Astro.props;
 const formId = `${formName}-form`;
 const modalId = `${formName}-modal`;
 ---
@@ -20,12 +23,11 @@ const modalId = `${formName}-modal`;
   id={formId}
   name={formName}
   method="POST"
-  data-netlify="true"
-  netlify-honeypot="bot-field"
   class="form-group contest-form"
   data-modal={modalId}
+  data-contest={contestSlug}
+  data-endpoint={entryEndpoint}
 >
-  <input type="hidden" name="form-name" value={formName} />
 
   <p class="hidden">
     <label>Don't fill this out if you're human: <input name="bot-field" /></label>
@@ -79,8 +81,8 @@ const modalId = `${formName}-modal`;
 
 
   <p class="form-error" data-duplicate-message>
-    It looks like you've already entered this contest with that email. Only
-    one entry per person counts.
+    It looks like you've already entered this contest with that email or phone
+    number. Only one entry per person counts.
   </p>
 
   <button type="submit" class="btn form-submit">Enter now</button>
@@ -134,22 +136,45 @@ const modalId = `${formName}-modal`;
         const button = form.querySelector<HTMLButtonElement>("button[type=submit]");
         if (button) button.disabled = true;
 
-        try {
-          const response = await fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(new FormData(form) as any).toString(),
-          });
+        const endpoint = form.dataset.endpoint || "";
+        if (!endpoint) {
+          alert("Entries aren't open yet. Please try again soon.");
+          if (button) button.disabled = false;
+          return;
+        }
 
-          if (response.ok) {
+        const field = (name: string) =>
+          (form.elements.namedItem(name) as HTMLInputElement | null)?.value?.trim() || "";
+
+        try {
+          // text/plain keeps this a "simple" request (no CORS preflight),
+          // which Google Apps Script web apps require.
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify({
+              contest: form.dataset.contest,
+              name: field("name"),
+              email: field("email"),
+              phone: field("phone"),
+              organization: field("organization"),
+              website: field("bot-field"), // honeypot
+            }),
+          });
+          const result = await response.json();
+
+          if (result.ok) {
             try {
               const list = enteredEmails(storageKey);
               if (emailValue) list.push(emailValue);
               localStorage.setItem(storageKey, JSON.stringify(list));
             } catch {}
             (window as any).openModal(form.dataset.modal);
+          } else if (result.error === "duplicate") {
+            if (dupMessage) dupMessage.style.display = "block";
+            if (button) button.disabled = false;
           } else {
-            alert("There was an error submitting your entry. Please try again.");
+            alert("There was an error submitting your entry. Please check your details and try again.");
             if (button) button.disabled = false;
           }
         } catch (error) {

@@ -2,29 +2,28 @@
 /* =======================================================
  * CONTEST ADMIN (private)
  * Password-protected, server-rendered (not prerendered).
- * Pulls entries from the Netlify Forms API for each contest,
- * de-duplicates by email, lists them and draws a random winner.
+ * Reads entries from the Google Sheet (through the Apps Script
+ * web app in scripts/contest-entries.gs), de-duplicates by
+ * email/phone, lists them and draws a random winner.
  *
- * Netlify environment variables required:
+ * Netlify environment variables required (Builds not needed;
+ * Functions + Runtime scopes, "Contains secret values" on):
  *   CONTEST_ADMIN_PASSWORD  – password to open this page
- *   NETLIFY_API_TOKEN       – personal access token (Netlify user
- *                             settings → Applications → Personal
- *                             access tokens)
- * Netlify provides SITE_ID automatically at runtime.
+ *   CONTEST_SHEET_KEY       – same value as ADMIN_KEY in the
+ *                             Apps Script's Script properties
  * ======================================================= */
 export const prerender = false;
 
 import { timingSafeEqual } from "node:crypto";
 import Layout from "../../layouts/Layout.astro";
-import { contests, drawDate } from "../../data/contests";
+import { contests, drawDate, entryEndpoint } from "../../data/contests";
 
 const env = (key: string): string | undefined =>
   (typeof process !== "undefined" ? process.env[key] : undefined) ??
   (import.meta.env as Record<string, string | undefined>)[key];
 
 const adminPassword = env("CONTEST_ADMIN_PASSWORD");
-const apiToken = env("NETLIFY_API_TOKEN");
-const siteId = env("SITE_ID") ?? env("NETLIFY_SITE_ID");
+const sheetKey = env("CONTEST_SHEET_KEY");
 
 const safeEqual = (a: string, b: string) => {
   const A = Buffer.from(a);
@@ -56,14 +55,6 @@ interface ContestEntries {
   error?: string;
 }
 
-const api = async (path: string) => {
-  const res = await fetch(`https://api.netlify.com/api/v1${path}`, {
-    headers: { Authorization: `Bearer ${apiToken}` },
-  });
-  if (!res.ok) throw new Error(`Netlify API ${res.status} for ${path}`);
-  return res.json();
-};
-
 const results: ContestEntries[] = [];
 
 // Treat jane.doe+x@gmail.com and janedoe@gmail.com as the same person.
@@ -80,72 +71,57 @@ const normalisePhone = (raw: string) => {
 };
 
 if (authorised) {
-  if (!apiToken || !siteId) {
-    for (const c of contests) {
-      results.push({
-        title: c.heading,
-        formName: c.formName,
-        entries: [],
-        duplicates: 0,
-        error: "NETLIFY_API_TOKEN or SITE_ID is not set in Netlify's environment variables.",
-      });
-    }
-  } else {
-    let forms: any[] = [];
-    let formsError: string | undefined;
-    try {
-      forms = await api(`/sites/${siteId}/forms`);
-    } catch (e) {
-      formsError = (e as Error).message;
-    }
+  let sheet: Record<string, any[]> | undefined;
+  let sheetError: string | undefined;
 
-    for (const c of contests) {
-      const result: ContestEntries = {
-        title: c.heading,
-        formName: c.formName,
-        entries: [],
-        duplicates: 0,
-      };
-      try {
-        if (formsError) throw new Error(formsError);
-        const form = forms.find((f) => f.name === c.formName);
-        if (!form) {
-          result.error =
-            "No entries yet — Netlify registers this form after the first submission.";
-        } else {
-          const seenEmails = new Set<string>();
-          const seenPhones = new Set<string>();
-          for (let page = 1; page <= 50; page++) {
-            const subs: any[] = await api(
-              `/forms/${form.id}/submissions?per_page=100&page=${page}`
-            );
-            if (!subs.length) break;
-            for (const s of subs) {
-              const d = s.data ?? {};
-              const email = normaliseEmail(String(d.email ?? ""));
-              const phone = normalisePhone(String(d.phone ?? ""));
-              if ((email && seenEmails.has(email)) || (phone && seenPhones.has(phone))) {
-                result.duplicates++;
-                continue;
-              }
-              if (email) seenEmails.add(email);
-              if (phone) seenPhones.add(phone);
-              result.entries.push({
-                name: String(d.name ?? ""),
-                email: String(d.email ?? ""),
-                phone: String(d.phone ?? ""),
-                organization: String(d.organization ?? ""),
-                enteredAt: String(s.created_at ?? ""),
-              });
-            }
-            if (subs.length < 100) break;
-          }
-        }
-      } catch (e) {
-        result.error = (e as Error).message;
-      }
-      results.push(result);
+  if (!entryEndpoint || !sheetKey) {
+    sheetError =
+      "The entry sheet isn't connected yet: set entryEndpoint in src/data/contests.ts and CONTEST_SHEET_KEY in Netlify's environment variables.";
+  } else {
+    try {
+      const res = await fetch(
+        `${entryEndpoint}?action=entries&key=${encodeURIComponent(sheetKey)}`,
+        { redirect: "follow" }
+      );
+      const json = await res.json();
+      if (!json.ok) throw new Error(`Sheet says: ${json.error ?? "error"}`);
+      sheet = json.contests;
+    } catch (e) {
+      sheetError = `Could not read the entry sheet (${(e as Error).message}).`;
     }
+  }
+
+  for (const c of contests) {
+    const result: ContestEntries = {
+      title: c.heading,
+      formName: c.formName,
+      entries: [],
+      duplicates: 0,
+    };
+    if (sheetError) {
+      result.error = sheetError;
+    } else {
+      const seenEmails = new Set<string>();
+      const seenPhones = new Set<string>();
+      for (const row of sheet?.[c.slug] ?? []) {
+        const email = normaliseEmail(String(row.email ?? ""));
+        const phone = normalisePhone(String(row.phone ?? ""));
+        if ((email && seenEmails.has(email)) || (phone && seenPhones.has(phone))) {
+          result.duplicates++;
+          continue;
+        }
+        if (email) seenEmails.add(email);
+        if (phone) seenPhones.add(phone);
+        result.entries.push({
+          name: String(row.name ?? ""),
+          email: String(row.email ?? ""),
+          phone: String(row.phone ?? ""),
+          organization: String(row.organization ?? ""),
+          enteredAt: String(row.enteredAt ?? ""),
+        });
+      }
+    }
+    results.push(result);
   }
 }
 

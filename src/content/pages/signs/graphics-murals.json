@@ -13,10 +13,16 @@
     "title": "Transform Your Space",
     "description": "Transform your space with fabulous decals & mural designs. From full wall murals to subtle window & floor decals, we help you create environments that look polished, on-brand & easy to navigate."
   },
-  "featureImage": {
-    "image": "feature1",
-    "imageAlt": "Custom large format wall mural installation"
-  },
+  "featureImages": [
+    {
+      "image": "feature1",
+      "imageAlt": "Coroplast election lawn signs printed in-house"
+    },
+    {
+      "image": "feature2",
+      "imageAlt": "Durable outdoor signage built for all conditions"
+    }
+  ],
   "features": [
     {
       "id": "wall-murals",

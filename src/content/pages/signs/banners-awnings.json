@@ -14,10 +14,16 @@
     "description": "Whether you need something temporary or long-term, we produce large format signage that's durable, highly visible & built to promote your business, team, event or project.",
     "icon": "icon"
   },
-  "featureImage": {
-    "image": "feature1",
-    "imageAlt": "Custom vinyl banner installation"
-  },
+  "featureImages": [
+    {
+      "image": "feature1",
+      "imageAlt": "Coroplast election lawn signs printed in-house"
+    },
+    {
+      "image": "feature2",
+      "imageAlt": "Durable outdoor signage built for all conditions"
+    }
+  ],
   "features": [
     {
       "id": "vinyl-banners",

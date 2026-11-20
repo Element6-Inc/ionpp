@@ -9,6 +9,12 @@ import raptorsLogo from "../assets/logos/raptors-primary.png";
 import raptorsHero from "../assets/heros/contests/raptors.webp";
 import giveawayHero from "../assets/heros/contests/giveaway.webp";
 
+// Google Apps Script web app that stores entries in a Google Sheet.
+// Paste the "Web app" URL here after deploying scripts/contest-entries.gs
+// (see the setup steps at the top of that file).
+export const entryEndpoint =
+  "https://script.google.com/macros/s/AKfycby3-1I3S7mzZy8EjCsFecymTGvpRz3mqH-rCpBZRAt-_tM4KMsy2Hw5vuC_Lv5ibsIXIQ/exec";
+
 export const sponsor = "ION Print & Promo, a division of ION Group";
 
 export const drawDate = "Monday, November 30, 2026";

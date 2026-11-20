@@ -1,61 +1,53 @@
 {
-  "$ref": "#/definitions/testimonials",
-  "definitions": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
     "testimonials": {
       "type": "object",
       "properties": {
-        "testimonials": {
-          "type": "object",
-          "properties": {
-            "sectionTitle": {
-              "type": "string"
-            },
-            "maxChars": {
-              "type": "number"
-            },
-            "maxCharsMobile": {
-              "type": "number"
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "content": {
-                    "type": "string"
-                  },
-                  "author": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "id",
-                  "content",
-                  "author"
-                ],
-                "additionalProperties": false
-              }
-            }
-          },
-          "required": [
-            "sectionTitle",
-            "maxChars",
-            "items"
-          ],
-          "additionalProperties": false
-        },
-        "$schema": {
+        "sectionTitle": {
           "type": "string"
+        },
+        "maxChars": {
+          "type": "number"
+        },
+        "maxCharsMobile": {
+          "type": "number"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "content": {
+                "type": "string"
+              },
+              "author": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "content",
+              "author"
+            ]
+          }
         }
       },
       "required": [
-        "testimonials"
-      ],
-      "additionalProperties": false
+        "sectionTitle",
+        "maxChars",
+        "items"
+      ]
+    },
+    "$schema": {
+      "type": "string"
     }
   },
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "required": [
+    "testimonials"
+  ]
 }
